@@ -3,7 +3,7 @@ const path = require("path");
 var session = require('express-session')
 // const bodyParser = require("body-parser");
 
-const api_user = require("./models/users/API_USER");
+const api_user = require("./Models/users/API_USER");
 const api_courses = require("./Models/courses/API_COURSES");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 
