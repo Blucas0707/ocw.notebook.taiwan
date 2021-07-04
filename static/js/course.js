@@ -256,7 +256,7 @@ let views = {
         logout_btn.style.display = "none";
         //隱藏Note box & 顯示note-not-login box
         document.querySelector(".note-list").style.display = "none";
-        document.querySelector(".note-not-login").style.display = "block";
+        document.querySelector(".note-not-login").style.display = "flex";
       }
     },
     Logout:function(){
@@ -277,7 +277,7 @@ let views = {
         logout_btn.style.display = "none";
         //隱藏Note box & 顯示note-not-login box
         document.querySelector(".note-list").style.display = "none";
-        document.querySelector(".note-not-login").style.display = "block";
+        document.querySelector(".note-not-login").style.display = "flex";
       }
     },
   },
