@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  opacity: 1;
+}
+
+/* nav */
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 2;
+  border-bottom: 1px solid #E8E8E8;
+  box-shadow: 0px 4px 5px gray;
+}
+
+.nav-bar-items {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-title {
+  flex: auto;
+  margin-left: 20px;
+  font-size: 1.5rem;
+  color: #438899;
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 34px;
+}
+a,a:link,a:visited {
+  color: #438899;
+  text-decoration: none;
+}
+
+
+.nav-search {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.keyin_Keyword {
+  float: left;
+  min-height: 46px;
+  min-width: 60px;
+  background-color: #438899;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.nav-login {
+  display: flex;
+  flex: auto;
+  justify-content: flex-end;
+  margin: 10px 0;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+.nav-login-box:hover, .nav-logout:hover{
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+.nav-login-box {
+  margin: 0 10px;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+/* cover */
+
+.cover {
+  padding-top:55px;
+  display: flex;
+  height: 150px;
+  background: linear-gradient(to top left, #e7e5e8, #e7e5e8);
+  z-index: -1;
+  overflow-x: hidden;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+.cover-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.cover-content {
+  display: flex;
+  align-items: center;
+  color: #3d3b37;
+  z-index: 1;
+}
+
+.cover-greeting {
+  display: flex;
+  align-items: center;
+  height: 41px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 24px;
+  text-shadow: 0px 0px 30px #AABBCC;
+}
+
+.cover-greeting2 {
+  height: 22px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+}
+
+.cover-img {
+  /* position:absolute;
+  right:10%; */
+  width: 20%;
+  height: auto;
+
+}
+
+/* main */
+
+/* learning box */
+.learning-box, .note-box{
+  display: flex;
+  max-width: 1200px;
+  margin: 5px auto;
+}
+
+/* lecture list */
+.lecturelist-box {
+  flex:auto;
+  width: 10%;
+  height: 200px;
+  overflow: scroll;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+.lecture-list {
+  /* border: 1px solid #dcdacb; */
+  /* width: 50%; */
+  /* border-radius: 10px; */
+}
+
+.lecture-status {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+  margin:auto 5px;
+}
+
+ul {
+  list-style: none;
+}
+li {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 10px 10px;
+  border-bottom: 1px solid black;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 1rem;
+  line-height: 24px;
+}
+li:hover {
+  cursor: pointer;
+  background-color: #f4f3e3;
+  /* color: white; */
+}
+
+/* video box */
+.video-box, .note-content-box {
+  flex:auto;
+  width: 60%;
+}
+
+
+.lecture-video {
+  width: 100%;
+  height: auto;
+}
+
+/* reference box */
+.reference-box {
+  flex:auto;
+  /* border: 1px solid #dcdacb;
+  border-radius: 10px; */
+  width: 10%;
+}
+
+.reference-list {
+  border: 2px solid gray;
+  /* border-bottom: 0; */
+  border-radius: 10px;
+}
+.reference-list-element {
+  padding-left: 10px;
+  border-bottom: 2px solid gray;
+}
+.video-download {
+  border-bottom: 0;
+}
+
+.note-download:hover {
+  cursor: pointer;
+  background-color: #f4f3e3;
+  border-radius: 6px 6px 0 0;
+  /* color: white; */
+}
+
+.reference-download:hover {
+  cursor: pointer;
+  background-color: #f4f3e3;
+  /* border-radius: 6px 6px 0 0; */
+}
+
+.video-download:hover {
+  cursor: pointer;
+  background-color: #f4f3e3;
+  border-radius: 0 0 6px 6px;
+  /* color: white; */
+}
+
+
+/* note box */
+.note-empty {
+  flex: auto;
+  width: 10%;
+}
+.note-content-box {
+  margin-top: 20px;
+}
+.note-title {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 10px;
+  /* line-height: 13px; */
+}
+
+.note-input-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-input-box textarea {
+  flex:auto;
+  padding-left: 1.5px;
+  /* width: 95%; */
+  /* height: 200px; */
+  /* padding-left: 10px;
+  padding-bottom: 150px;
+  padding-top: 10px;
+  margin-left: 10px; */
+  /* text-align:justify; */
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-size: 1rem;
+
+
+}
+
+
+.note-btn-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin:10px 0;
+}
+
+.note-btn {
+  margin: 0 10px;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+
+.note-btn:hover, .nav-logout:hover{
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+.note-show-list {
+  margin: 10px 0 ;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  /* border-bottom: 2px solid lightgray; */
+  /* line-height: 13px; */
+}
+.note-content {
+  font-weight: normal;
+}
+
+
+footer {
+  display: flex;
+  background-color: #757575;
+  height: 104px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 13px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1200px) {
+}
+
+/* @media (min-width: 600px) and (max-width:1000px) {
+
+} */
+
+@media (max-width: 1000px) {
+  .cover {
+    height: 100px;
+  }
+  .cover-container {
+    margin-left: 10px;
+  }
+  .learning-box {
+    display: block;
+  }
+  .lecturelist-box, .video-box, .reference-box  {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .lecture-video {
+    border-radius: 10px;
+  }
+  .reference-list {
+    display: flex;
+  }
+  .reference-list-element {
+    display: flex;
+    justify-content: center;
+    flex:auto;
+    border-bottom: none;
+  }
+  .note-box {
+    width: 95%;
+  }
+  .note-empty {
+    display: none;
+  }
+  .note-content-box {
+    margin-top: 0;
+  }
+}
+@media (max-width: 600px) {
+  .nav-title {
+    display: none;
+  }
+}

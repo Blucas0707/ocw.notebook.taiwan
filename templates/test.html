@@ -1,0 +1,43 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+      <!-- <iframe src="http://ocw.aca.ntu.edu.tw/ntu-ocw/bitstream/preview?fn=099S110_GE07V02.mp4" width="400" height="400"></iframe> -->
+      <!-- <iframe src="http://140.112.161.158/videos/099S110/099S110_GE07V02.mp4" width="" height=""></iframe> -->
+      <video width="480" height="400" controls>
+      <source src="https://ocwvideo.nctu.edu.tw/pub/metal081/metal081_200102.mp4" type="video/mp4">
+
+      Your browser does not support the video tag.
+    </video>
+    <div class="timer">總時間(秒)：<span id="video-totaltime"></span></div>
+    <div class="timer">目前播放時間：<span id="video-playtime"></span></div>
+    <div class="timer">百分比：<span id="video-playratio"></span></div>
+    <div class="timer">完成：<span id="video-status"></span></div>
+    <div class="time-btn">取得時間</div>
+    </div>
+    <script type="text/javascript">
+      let btn = document.querySelector(".time-btn");
+      let video = document.querySelector("video");
+      video.addEventListener("timeupdate",()=>{
+        let total_time = document.querySelector("#video-totaltime");
+        let time = document.querySelector("#video-playtime");
+        let ratio = document.querySelector("#video-playratio");
+        let status = document.querySelector("#video-status");
+        let video = document.querySelector("video");
+        let video_Length = video.duration;
+        let video_playLength = video.currentTime;
+        let playRatio = (video_playLength/video_Length *100).toFixed(2);
+        total_time.innerHTML = video_Length.toFixed(2);
+        ratio.innerHTML = playRatio + "%";
+        time.innerHTML = video_playLength.toFixed(2);
+        if(playRatio < 75){
+          status.innerHTML = "Uncomplete";
+        }else{
+          status.innerHTML = "completed";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1766 @@
+{
+    "university": "台灣大學",
+    "total_course": 10,
+    "course": [
+        {
+            "course_semester": "099",
+            "course_department": "文學院中國文學系",
+            "course_category": "法社管理",
+            "course_establish": "2010-09",
+            "course_name": "中國傳統生命禮俗",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg",
+            "course_teacher": "葉國良",
+            "course_description": "中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，期間儘管有所變革，但仍保有特定的精神與儀式。生於現代社會的人士，既然仍舊從事生命禮俗活動，則對於該活動的意義與期間的變革有所了解，無疑可以提升生命的價值。基於以上的了解，本課程將分成生育、成年、婚禮、喪祭等單元講授，每個單元都從先秦介紹到現代。先秦的部分是源頭，最為重要，因此以《禮記》中〈檀弓〉、〈冠義〉、〈昏義〉、〈內則〉、〈三年問〉諸篇為教材，詳細講解，使學生了解各該禮俗的意義。接著使用自編講義，介紹各該禮俗之演變狀況，並闡發現代生活中人們習以為常的禮俗軌跡，使古今發展變化得到脈絡性的說明。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S101",
+            "course_lecture": {
+                "lecture_total": 12,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．緒論",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE01L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．生育禮俗",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE02L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．成人、成年禮俗",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE03L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．古漢族的婚姻禮俗及其演變",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE04L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．漢族婚姻中的兩性地位與男女關係",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE05L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．因婚姻而衍生的文體及其內容",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE06L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．漢族婚姻禮俗中的異族文化成分",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE07L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．古漢族的喪葬禮俗",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE08L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．史籍所見周邊民族的喪俗",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE09L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．漢族喪禮的變遷",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE10L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．漢族的祭祀觀念",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE11L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．禮文禮意的變形與研究方法",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S101_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S101/099S101_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "哲學系",
+            "course_category": "文史哲藝",
+            "course_establish": "2010-09",
+            "course_name": "哲學概論",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S103.jpg",
+            "course_teacher": "苑舉正",
+            "course_description": "主要的上課內容將以哲學中之各學門為介紹的對象。授課內容在於將哲學科目依照「真」、「善」、「美」、「聖」的大原則，區分為：「哲學是什麼？」、「形上學」、「知識論」、「科學哲學」、「倫理學」、「政治社會哲學」、「藝術哲學」與「宗教哲學」。在介紹這些哲學科目的同時，我們都會從西方哲學的「歷史傳統」、「應用可能」以及「創造主題」住三種方式作為評述的核心。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S103",
+            "course_lecture": {
+                "lecture_total": 13,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．哲學是什麼",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA01L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．知識論 (上)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．知識論 (下)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA03V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．形上學與心靈哲學",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．科學哲學 (上)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．科學哲學 (下)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA06V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．倫理學與醫學中的倫理面",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．社會與政治哲學 (上)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．社會與政治哲學 (下)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA09V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．藝術哲學 (上)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA10L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．藝術哲學 (下)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA11V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．宗教哲學 (上)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S103/099S103_AA12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 13．宗教哲學 (下)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S103_AA13V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "",
+            "course_category": "法社管理",
+            "course_establish": "2010-09",
+            "course_name": "多元文化與媒體再現 (99學年)",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S104.jpg",
+            "course_teacher": "李紋霞",
+            "course_description": "本課程以多元文化與媒體識讀基本理論介紹出發，藉由分析各類媒體對弱勢族群呈現的刻板印象，來了解臺灣多元文化社會中的族群、性別、階層等現象與問題。透過課堂授課、自我閱讀、小組討論、影片觀賞分析、口頭與書面報告等方式，培養學生批判省思的多元文化觀點，使學生有機會檢視媒體內容中各種意識形態和文化刻板印象之再現以及其背後操縱的各種權力關係網絡。同時鼓勵學生觀察、分析自己接受媒體訊息內容的情形與偏好，及其與媒體論述及社會現況與改革之間的關連性。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S104",
+            "course_lecture": {
+                "lecture_total": 17,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．文化與多元文化",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE01L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．多元文化觀的媒體識讀教育",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE02V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．閱聽人的認知基模與性格",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE03L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．種族意識與媒體再現-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 4．種族意識與媒體再現-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE04V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 4．種族意識與媒體再現-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE04V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 5．原住民的媒體再現-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 5．原住民的媒體再現-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE05V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 6．媒體中階級意識的呈現-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 6．媒體中階級意識的呈現-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE06V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 6．媒體中階級意識的呈現-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE06V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 7．外籍勞工之媒體再現",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 8．外籍新娘之媒體再現",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 14,
+                        "lecture_name": "單元 9．社會的「彩虹」現象",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/099S104_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 15,
+                        "lecture_name": "單元 10．有愛無礙：認識身心障礙者-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/10-982W6_Disabilityspeech.pdf"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 16,
+                        "lecture_name": "單元 10．有愛無礙：認識身心障礙者-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE10V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/10-982W6_Disabilityspeech.pdf"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 17,
+                        "lecture_name": "單元 10．有愛無礙：認識身心障礙者-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S104_GE10V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S104/10-982W6_Disabilityspeech.pdf"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "文學院人類學系",
+            "course_category": "生農醫衛",
+            "course_establish": "2010-09",
+            "course_name": "太平洋島嶼世界",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S105.jpg",
+            "course_teacher": "童元昭",
+            "course_description": "這門課的目的，在於介紹學生熟悉太平洋群島的人與文化。在島嶼有限的環境中，自然的力量相對強大，而文化愈益顯得活潑有彈性，也成就了豐富多樣的屬於太平洋的文化。太平洋群島地理上與台灣接近；而與台灣原住民族所使用的語言，均同屬南島語族，自是台灣學生學習容忍、了解與欣賞異文化一個極佳的起點。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S105",
+            "course_lecture": {
+                "lecture_total": 16,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．課程簡介：文化概念：太平洋群島做為一文化區的考慮",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE01L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．由文化與環境看南島語族的起源與擴散",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE02L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．西方船舶的到來：接觸形式與接觸脈絡",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE03L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．禮物交換、人觀與社會秩序 (地圖小考)",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE04L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．土地、個人與集體",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．兩性關係",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．經濟發展：島嶼觀點；MIRAB 經濟型態的爭議",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．全球化下的生態議題",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．多樣的國家形態與觀念",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．期中辯論",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE10V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．在地化的基督宗教",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE11L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．殖民遺緒－移民",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 13．國族形成；習俗的典範化",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE13V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE13L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 14,
+                        "lecture_name": "單元 14．文化概念的再探討：文化的創發",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE14V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE14L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE15L01.pptx",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S105/099S105_GE15L01.pptx"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 15,
+                        "lecture_name": "單元 15．演講：中研院民族所郭佩宜老師",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE15V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 16,
+                        "lecture_name": "單元 16．結論；複習",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S105_GE16V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "",
+            "course_category": "生農醫衛",
+            "course_establish": "2010-09",
+            "course_name": "從現代生物學看人類行為",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S106.jpg",
+            "course_teacher": "謝豐舟等",
+            "course_description": "本課程主要藉由對生物領域的介紹，以及生命科學和日常生活中的關連，期望引導同學思考現代生物學和人類行為之間的關係。 除了邀請生命科學及醫學領域的講員教授基礎的生命科學知識，另外還邀請心理系、醫學院家醫科、社會醫學科、以及政治系的教授和大家討論人類行為及道德上的議題。在生命科學研究蓬勃發展的過程中，除了致力於學術的探究，我們也必須了解這些學問對人類本身的影響，從行為到道德倫理，我們希望這門課可以給學生開一扇窗，讓學生學習從多樣化的角度去看待每一門學門的發展，並充分了解生命科學對人類行為的影響。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S106",
+            "course_lecture": {
+                "lecture_total": 12,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．課程概述",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS01V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．從基因到生物",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS02V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．從昆蟲到人類",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS03V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．性別差異",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS04V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．達爾文與演化論",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS05V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．哥本哈根",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS06V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．食物營養吸收與肥胖",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS07V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．大腦探索",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS08V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．To live or not to live—探究自殺",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS09V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．大腦和語言",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS10V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．生態系統",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS11V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．性與繁殖",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S106_CS12V01.mp4"
+                        ],
+                        "lecture_note": [],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "文學院歷史學系",
+            "course_category": "文史哲藝",
+            "course_establish": "2010-09",
+            "course_name": "東亞文化：傳統與現代",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S107.jpg",
+            "course_teacher": "黃俊傑",
+            "course_description": "本課程在 21 世紀全球化時代語境中，引導學生從東亞文化與思想的角度出發，思考東亞文化傳統及其現代轉化等相關問題。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S107",
+            "course_lecture": {
+                "lecture_total": 14,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．如何「從東亞出發思考」",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE01L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE01L02.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．東亞傳統文化的根源：農業傳統及其現代轉化",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．東亞文化交流圈中「自我」與「他者」的互動",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE03L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．東亞文化交流圈的文化中國與現實中國",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．東亞交流經驗中日本人的台灣論述",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．東亞交流經驗中日據時代台灣人的中國論述",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．東亞脈絡中海峽兩岸關係的歷史背景與未來展望",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．台灣意識與台灣文化：歷史回顧與未來展望",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．東亞思維方式及其價值觀：歷史回顧與現代啟示",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．東亞思想中的身體觀：傳統論述與現代批判",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE10L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．東亞遺民知識份子生命的抉擇",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．東亞政治權力與知識建構的辯證",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 13．東亞儒者理解經典的途徑及其方法論問題",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE13V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE13L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 14,
+                        "lecture_name": "單元 14．東亞近世思想家對「公」「私」領域分際的思考",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S107_GE14V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE14L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S107/099S107_GE14L02.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "生物資源暨農學院農藝學系",
+            "course_category": "生農醫衛",
+            "course_establish": "2010-09",
+            "course_name": "植物與糧食",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S108.jpg",
+            "course_teacher": "劉麗飛",
+            "course_description": "本課程是依據通識課程的精神開設，課程是由各種不同角度來講授植物生產與人類的關係，包括植物特性、栽培管理技術、自然環境、歷史、地理、人文、社會、政治、經濟等方面，內容相當多元與生活化，使同學們在修課後能落實在生活中實踐人類、植物、與自然環境之間的相處之道。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S108",
+            "course_lecture": {
+                "lecture_total": 15,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．課程簡介，植物與人類",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE01L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE01L02.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE01R02.docx"
+                        ]
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．認識重要的栽培植物[作物]",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．世界各地作物的生產-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE03L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE03L02.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 3．世界各地作物的生產-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE03V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE03L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE03L02.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 4．人口與糧食的平衡",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 5．植物與人類的營養",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 6．糧食生產與地球環境",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 7．由太陽能轉換到人類的糧食",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 8．聰明的現代農夫",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 9．人類眼中的理想作物",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 10．重要糧食作物的生產與利用",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE10L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 11．世界糧食作物生產與貿易的演變",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 12．有機作物生產-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 14,
+                        "lecture_name": "單元 12．有機作物生產-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE12V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 15,
+                        "lecture_name": "單元 13．生物技術與作物生產",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S108_GE13V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S108/099S108_GE13L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "海洋研究所",
+            "course_category": "理工電資",
+            "course_establish": "2010-09",
+            "course_name": "海洋環境概論",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S109.jpg",
+            "course_teacher": "范光龍",
+            "course_description": "1.每次上課方式是第一小時講解海洋環境的課程內容，第二小時則利用PowerPoint檔補充說明，並以台灣的海洋環境為例討論問題。2.每學期在課堂上開放兩小時提供學生發問，並當場回答。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S109",
+            "course_lecture": {
+                "lecture_total": 12,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．海洋學里程碑",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE01L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．海洋探測",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．科技文明的災難",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE03L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．海平面上升",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．聖嬰現象",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．海流",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．波浪",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．潮汐",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．河口環境",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．海洋污染",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE10L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 11．海拋問題",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 12．海洋資源",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S109_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S109/099S109_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "理學院天文物理研究所",
+            "course_category": "生農醫衛",
+            "course_establish": "2010-09",
+            "course_name": "演化、宇宙、人",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S110.jpg",
+            "course_teacher": "侯維恕",
+            "course_description": "人能認知自身的存在，實是一大奧秘。人類受好奇心驅使，想了解自身所處的世界及在天地間如何自處，越發認知宇宙的浩瀚，就越發追問自己在宇宙究竟是孤單的，還是另有同伴？本課程探討生命及宇宙的起源與演化，並人在其中的位置。演化論是生命科學的根基。我們藉探討生物演化的證據說明科學精神，討論美國源自信仰的「演化與創造」爭議，並與我國文化作對比。生命的奧秘，令人驚異；生命能夠存在於這宇宙，令人讚歎。我們從地球與生命出發，討論我們的太陽 (系)、銀河、銀河系以上的尺度、銀河系成形之前的時間、直到宇宙初始的形成，從欣賞的角度來認知我們的宇宙是何等驚人。最終，我們盼能討論人能認知生命及宇宙的起源，或許並非偶然。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S110",
+            "course_lecture": {
+                "lecture_total": 26,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．序論與自我介紹;「演化」及「宇宙」之教材資訊",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE01L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．演化I-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 2．演化I-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE02V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE02L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 3．演化II-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 3．演化II-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE03V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 3．演化II-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE03V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE03R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 4．演化III",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE04L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE04R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 5．宇宙1 行星與恆星-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 5．宇宙1 行星與恆星-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE05V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 6．宇宙2 生命與自覺意識-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE06L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE06R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 11,
+                        "lecture_name": "單元 6．宇宙2 生命與自覺意識-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE06V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE06L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE06R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 12,
+                        "lecture_name": "單元 7．宇宙3 原子、星星、銀河-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 13,
+                        "lecture_name": "單元 7．宇宙3 原子、星星、銀河-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE07V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 14,
+                        "lecture_name": "單元 8．宇宙4 銀河之外與天文望遠鏡發展-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 15,
+                        "lecture_name": "單元 8．宇宙4 銀河之外與天文望遠鏡發展-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE08V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 16,
+                        "lecture_name": "單元 8．宇宙4 銀河之外與天文望遠鏡發展-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE08V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 17,
+                        "lecture_name": "單元 9．宇宙5 銀河之前-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 18,
+                        "lecture_name": "單元 9．宇宙5 銀河之前-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE09V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 19,
+                        "lecture_name": "單元 10．宇宙6 黑洞與時光機",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE10L01.ppt"
+                        ],
+                        "lecture_reference": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE10R01.ppt"
+                        ]
+                    },
+                    {
+                        "lecture_id": 20,
+                        "lecture_name": "單元 11．宇宙7 宇宙擴張是加速或減速？-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE11V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 21,
+                        "lecture_name": "單元 11．宇宙7 宇宙擴張是加速或減速？-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE11V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 22,
+                        "lecture_name": "單元 11．宇宙7 宇宙擴張是加速或減速？-3",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE11V03.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 23,
+                        "lecture_name": "單元 11．宇宙7 宇宙擴張是加速或減速？-4",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE11V04.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 24,
+                        "lecture_name": "單元 12．宇宙8 宇宙初始頭一毫秒-1",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE12V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 25,
+                        "lecture_name": "單元 12．宇宙8 宇宙初始頭一毫秒-2",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE12V02.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE12L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 26,
+                        "lecture_name": "單元 13．結尾反思：穹蒼與微觀世界",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S110_GE13V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE13L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S110/099S110_GE13L02.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        },
+        {
+            "course_semester": "099",
+            "course_department": "共同教育中心通識教育組",
+            "course_category": "文史哲藝",
+            "course_establish": "2010-09",
+            "course_name": "猶太文化",
+            "course_cover": "http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S111.jpg",
+            "course_teacher": "曾宗盛",
+            "course_description": "歷經猶太宗教傳統的薰陶，猶太文化發展出豐富而多元的特色，從過去到現今深遠影響人類的文化面貌，對世界與未來有不可忽視的貢獻。本課程介紹猶太文化及其對世界文化的貢獻與影響。課程內容分三個部分來介紹：接續導論之後，第一部份介紹猶太文化的歷史、經典與傳統。第二部份介紹猶太文化的節期、人生禮儀、與日常生活。第三部份介紹猶太文化與生活世界。",
+            "course_link": "http://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/099S111",
+            "course_lecture": {
+                "lecture_total": 10,
+                "lecture": [
+                    {
+                        "lecture_id": 1,
+                        "lecture_name": "單元 1．導言",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE01V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE01L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 2,
+                        "lecture_name": "單元 2．猶太文化的起源與歷史發展",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE02V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/2010 猶太文化2 歷史.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 3,
+                        "lecture_name": "單元 3．猶太教的經典",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE03V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE03L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 4,
+                        "lecture_name": "單元 4．猶太教的教義與律法",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE04V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE04L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 5,
+                        "lecture_name": "單元 5．猶太文化的節期",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE05V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE05L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 6,
+                        "lecture_name": "單元 6．猶太文化中的人生禮儀： 出生、成年禮、婚禮、葬禮",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE06V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE06L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 7,
+                        "lecture_name": "單元 7．日常生活與安息日",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE07V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE07L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 8,
+                        "lecture_name": "單元 8．猶太文化與現代社會",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE08V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE08L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 9,
+                        "lecture_name": "單元 9．毀滅與新生",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE09V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE09L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    },
+                    {
+                        "lecture_id": 10,
+                        "lecture_name": "單元 10．猶太文化中的性別議題",
+                        "lecture_video": [
+                            "http://140.112.161.118/dl_video.php?fn=099S111_GE10V01.mp4"
+                        ],
+                        "lecture_note": [
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE10L01.ppt",
+                            "http://ocw.aca.ntu.edu.tw/ocw_files/099S111/099S111_GE11L01.ppt"
+                        ],
+                        "lecture_reference": []
+                    }
+                ]
+            }
+        }
+    ]
+}

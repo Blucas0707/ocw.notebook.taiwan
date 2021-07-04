@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>台北一日遊</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/css/thankyou-style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../static/img/favicon.ico">
+  <script src="../static/js/thankyou.js" async></script>
+
+</head>
+
+<body class="body">
+  <div class="hideall"></div>
+  <!-- login box -->
+  <div class="login-box">
+    <div class="login-header"></div>
+    <div class="login-title">
+      登入會員帳號
+      <img src="../static/img/icon_close.svg" alt="" class="login-cancel">
+    </div>
+    <!-- <form id="login-form" method="PATCH" > -->
+      <input type="text" name="email" placeholder="輸入電子信箱" class="login-email">
+      <input type="password" name="password" placeholder="輸入密碼" class="login-password">
+      <!-- <input type="submit" value="登入帳戶" class="login-btn"> -->
+    <!-- </form> -->
+    <div class="login-btn">登入帳戶</div>
+    <div class="login-status"></div>
+    <div class="login-register" >還沒有帳戶？點此註冊</div>
+  </div>
+  <!-- register box -->
+  <div class="register-box">
+    <div class="register-header"></div>
+    <div class="register-title">
+      註冊會員帳號
+      <img src="../static/img/icon_close.svg" alt="" class="register-cancel">
+    </div>
+    <form id="register-form" method="POST">
+      <input type="text" name="name" placeholder="輸入姓名" class="register-name" required>
+      <input type="text" name="email" placeholder="輸入電子信箱" class="register-email" required>
+      <input type="password" name="password" placeholder="輸入密碼" class="register-password" required>
+      <!-- <input type="submit" value="註冊新帳戶" class="register-btn"> -->
+    </form>
+    <div class="register-btn">註冊新帳戶</div>
+    <div class="register-status" ></div>
+    <div class="register-login">已經有帳戶了？點此登入</div>
+  </div>
+
+  <div class="nav-bar">
+    <div class="nav-bar-items">
+      <div class="nav-title"><a href="/">台北一日遊</a></div>
+      <div class="nav-menu">
+        <div class="nav-schedule">預定行程</div>
+        <!-- <div class="nav-logout">登出系統</div> -->
+        <div class="nav-login"></div>
+      </div>
+    </div>
+  </div>
+  <main class="main-body">
+    <div class="greeting"></div>
+    <div class="payment-status"></div>
+
+  </main>
+
+  <footer class="copyright" id="footer">COPYRIGHT &copy;2021 台北一日遊</footer>
+</body>
+
+</html>

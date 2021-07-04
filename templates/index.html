@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>OCW Notebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/index-style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.ico">
+  </head>
+  <body class="body">
+    <div class="hideall"></div>
+    <!-- login box -->
+    <div class="login-box">
+      <div class="login-header"></div>
+      <div class="login-title">
+        登入會員帳號
+        <img src="/img/icon_close.svg" alt="" class="login-cancel">
+      </div>
+      <!-- <form id="login-form" method="PATCH" > -->
+        <input type="text" name="email" placeholder="輸入電子信箱" class="login-email">
+        <input type="password" name="password" placeholder="輸入密碼" class="login-password">
+        <!-- <input type="submit" value="登入帳戶" class="login-btn"> -->
+      <!-- </form> -->
+      <div class="login-btn">登入帳戶</div>
+      <div class="login-status"></div>
+      <div class="login-register" >還沒有帳戶？點此註冊</div>
+    </div>
+    <!-- register box -->
+    <div class="register-box">
+      <div class="register-header"></div>
+      <div class="register-title">
+        註冊會員帳號
+        <img src="/img/icon_close.svg" alt="" class="register-cancel">
+      </div>
+      <form id="register-form" method="POST" >
+        <input type="text" name="name" placeholder="輸入姓名" class="register-name" required>
+        <input type="text" name="email" placeholder="輸入電子信箱" class="register-email" required>
+        <input type="password" name="password" placeholder="輸入密碼" class="register-password" required>
+        <!-- <input type="submit" value="註冊新帳戶" class="register-btn"> -->
+      </form>
+      <div class="register-btn">註冊新帳戶</div>
+      <div class="register-status" ></div>
+      <div class="register-login">已經有帳戶了？點此登入</div>
+    </div>
+
+    <div class="nav-bar">
+      <div class="nav-bar-items">
+        <div class="nav-title"><a href="/">OCW Notebook</a></div>
+        <div class="nav-search">
+          <form class="search" name ="search-keyword">
+            <input type="search" placeholder="輸入課程關鍵字" name="keyword" id="keyword" class="search">
+            <!-- <input type="text" style="display: none"> -->
+          </form>
+          <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
+          <!-- <div class="nav-schedule">預定行程</div> -->
+          <!-- <div class="nav-logout">登出系統</div> -->
+        </div>
+        <div class="nav-login">
+          <div id="login-btn" class="nav-login-box">登入</div>
+          <div id="register-btn" class="nav-login-box">註冊</div>
+          <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
+          <div id="logout-btn" class="nav-login-box">登出</div>
+        </div>
+
+      </div>
+    </div>
+    <main class="main">
+      <div class="cover">
+        <div class="cover-content">
+          <div class="cover-greeting">輕鬆享受學習的每一刻</div>
+          <div class="cover-greeting2">探索這個世界，突破自己</div>
+        </div>
+        <img src="/img/cover-learning.jpeg" class="cover-img">
+      </div>
+      <div class="course-gallery" id = "course-gallery-contain">
+        <div class="course-all course-border">
+          <div class="course-title">
+            <div class="course-category" id="category-0">全部課程</div>
+            <div class="course-category" id="category-1">文史哲藝</div>
+            <div class="course-category" id="category-2">法社管理</div>
+            <div class="course-category" id="category-3">理工電資</div>
+            <div class="course-category" id="category-4">生農醫衛</div>
+            <div class="course-category" id="category-5">百家學堂</div>
+          </div>
+          <div class="course-content" id="allCourse">
+            <!-- <div class="course-class">
+              <div class="course-class-cover">
+                <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
+              </div>
+              <div class="course-class-name">中國傳統生命禮俗</div>
+              <div class="course-class-teacher">葉國良</div>
+              <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，</div>
+            </div>
+            -->
+          </div>
+          <div class="previous-arrow" id="previous-arrow-all">
+            <div class="arrow-box">
+              <img src="/img/left-arrow.svg" alt="">
+            </div>
+          </div>
+          <div class="next-arrow" id="next-arrow-all">
+            <div class="arrow-box">
+              <img src="/img/right-arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="course-NTU course-border">
+          <div class="course-title">台大相關</div>
+          <div class="course-content" id="allCourse_NTU">
+            <!-- <div class="course-class">
+              <div class="course-class-cover">
+                <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
+              </div>
+              <div class="course-class-name">中國傳統生命禮俗</div>
+              <div class="course-class-teacher">葉國良</div>
+              <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，期間儘管有所變革</div>
+            </div> -->
+          </div>
+          <div class="previous-arrow">
+            <div class="arrow-box">
+              <img src="/img/left-arrow.svg" alt="">
+            </div>
+          </div>
+          <div class="next-arrow">
+            <!-- <img src="/img/right-arrow.svg" alt=""> -->
+            <div class="arrow-box">
+              <!-- <div class="next-arrow-box-inner">></div> -->
+              <img src="/img/right-arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="course-NTHU course-border">
+          <div class="course-title">清大相關</div>
+          <div class="course-content" id="allCourse_NTHU">
+            <!-- <div class="course-class">
+              <div class="course-class-cover">
+                <img src="https://ocw.nthu.edu.tw/ocw/upload/teacher/83/83.png" alt="Error">
+              </div>
+              <div class="course-class-name">離散數學</div>
+              <div class="course-class-teacher">趙啟超</div>
+              <div class="course-class-description">Thiscoursegivesanintroductiontotheessentialsofdiscreteandcombinatorialmathematics.﻿</div>
+            </div> -->
+          </div>
+          <div class="previous-arrow">
+            <div class="arrow-box">
+              <img src="/img/left-arrow.svg" alt="">
+            </div>
+          </div>
+          <div class="next-arrow">
+            <!-- <img src="/img/right-arrow.svg" alt=""> -->
+            <div class="arrow-box">
+              <!-- <div class="next-arrow-box-inner">></div> -->
+              <img src="/img/right-arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="course-NYTU course-border">
+          <div class="course-title">陽交大相關</div>
+          <div class="course-content" id="allCourse_NYTU">
+            <!-- <div class="course-class">
+              <div class="course-class-cover">
+                <img src="https://i.ytimg.com/vi/NV5jYlyEbXU/hqdefault.jpg" alt="Error">
+              </div>
+              <div class="course-class-name">華語(一)  Mandarin I</div>
+              <div class="course-class-teacher">華語中心 范瀞月老師</div>
+              <div class="course-class-description">本課程由國立交通大學華語中心提供。This course is designed for students to acquire Mandarin and Chinese culture. </div>
+            </div> -->
+          </div>
+          <div class="previous-arrow">
+            <div class="arrow-box">
+              <img src="/img/left-arrow.svg" alt="">
+            </div>
+          </div>
+          <div class="next-arrow">
+            <!-- <img src="/img/right-arrow.svg" alt=""> -->
+            <div class="arrow-box">
+              <!-- <div class="next-arrow-box-inner">></div> -->
+              <img src="/img/right-arrow.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="loading"><img src="/img/loading.gif" alt="" class="loading_img"></div> -->
+    </main>
+    <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
+  <script src="/js/index.js" type="text/javascript"></script>
+  </body>
+</html>

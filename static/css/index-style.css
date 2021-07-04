@@ -1,0 +1,546 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  opacity: 1;
+}
+.hideall {
+  display: none;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: #000000;
+  opacity: 0.25;
+  z-index: 3;
+}
+
+/* login & register*/
+.login-box, .register-box {
+  display: none;
+  position: fixed;
+  top:80px;
+  left: calc(50% - 170px);
+  width:340px;
+  /* height:275px; */
+  background-color: white;
+  z-index: 4;
+}
+.register-box {
+  /* height:332px; */
+}
+.login-header, .register-header {
+  height:10px;
+  background: linear-gradient(to top left, #6baebf, #a1d7e8);
+}
+
+.login-title, .register-title {
+  position: relative;
+  margin:15px;
+  text-align: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  color: #666666;
+}
+
+.login-cancel, .register-cancel {
+  position: absolute;
+  top: 0;
+  right: 17px;
+  width: 16px;
+  height: 16px;
+}
+.login-cancel:hover , .register-cancel:hover, .nav-schedule:hover {
+  cursor: pointer;
+}
+.login-email, .login-password,.register-name, .register-email, .register-password  {
+  margin:0 15px 10px;
+  border: 1px solid #CCCCCC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 310px;
+  height: 47px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+  padding-left:15px;
+}
+
+.login-btn, .register-btn {
+  display: flex;
+  width: 310px;
+  height: 47px;
+  margin:0 15px 10px;
+  background: #448899;
+  border-radius: 5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 16px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.login-btn:hover, .register-btn:hover {
+  cursor: pointer;
+}
+.login-status, .register-status {
+  display:none;
+  justify-content: center;
+  /* text-align: center; */
+  width: 310px;
+  height: 22px;
+  margin:0 15px 15px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+
+}
+.login-register, .register-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height: 22px;
+  margin:0 15px 15px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+.login-register:hover, .register-login:hover {
+  cursor: pointer;
+}
+
+/* nav */
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 2;
+  border-bottom: 1px solid #E8E8E8;
+  box-shadow: 0px 4px 5px gray;
+}
+
+.nav-bar-items {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-title {
+  flex: auto;
+  margin-left: 20px;
+  font-size: 1.5rem;
+  color: #438899;
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 34px;
+}
+a,a:link,a:visited {
+  color: #438899;
+  text-decoration: none;
+}
+
+
+.nav-search {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  border: 1px solid gray;
+  border-radius: 7px;
+}
+
+form.search {
+  /* height: 46px; */
+  width: 100%;
+}
+
+form.search input {
+  float: left;
+  background-color: white;
+  height: 46px;
+  border: 0;
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 13px;
+  text-indent: 15px;
+}
+
+.keyin_Keyword {
+  float: left;
+  min-height: 46px;
+  min-width: 60px;
+  background-color: #438899;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.nav-login {
+  display: flex;
+  flex: auto;
+  justify-content: flex-end;
+  margin: 10px 0;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+.nav-login-box:hover, .nav-logout:hover{
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+.nav-login-box {
+  margin: 0 10px;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+#mylearning-btn, #logout-btn {
+  display: none;
+}
+
+
+
+.main {
+
+}
+
+/* cover */
+
+.cover {
+  padding-top:55px;
+  display: flex;
+  height: 320px;
+  background: linear-gradient(to top left, #e7e5e8, #e7e5e8);
+  z-index: -1;
+  overflow-x: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cover-content {
+  width: 61.5%;
+  color: #3d3b37;
+  margin: auto 18%;
+  z-index: 1;
+}
+
+.cover-greeting {
+  display: flex;
+  align-items: center;
+  height: 41px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 24px;
+  text-shadow: 0px 0px 30px #AABBCC;
+}
+
+.cover-greeting2 {
+  height: 22px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+}
+
+.cover-img {
+  /* position:absolute;
+  right:10%; */
+  width: 20%;
+  height: auto;
+
+
+}
+
+/* course */
+.course-gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.course-border {
+  position: relative;
+  border: 1px solid #dcdacb;
+  border-radius: 10px;
+  margin: 20px;
+  height: 400px;
+  /* padding-bottom: 30px;  */
+}
+
+.course-title {
+  margin: 15px 25px;
+  display: flex;
+  align-items: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 20px;
+}
+
+.course-category {
+  /* margin: 0 10px; */
+  margin-right: 10px;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.course-category:hover {
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+
+.course-content {
+  display: flex;
+  overflow: scroll;
+}
+
+.course-class {
+  width: 300px;
+  height: 300px;
+  margin:5px;
+}
+.course-class:hover {
+  cursor: pointer;
+  /* border: 1px solid blue;
+  border-radius: 10px; */
+
+}
+
+.course-class-cover {
+  display: flex;
+  justify-content: center;
+}
+
+.course-class-cover img {
+  border-radius: 5px;
+  width: 250px;
+  height: 200px;
+}
+
+.course-class-name, .course-class-teacher, .course-class-description {
+  padding-left: 25px;
+  width: 250px;
+  margin: 5px 0;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+.course-class-name {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.1rem;
+  /* line-height: 20px; */
+}
+
+.course-class-teacher {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 0.8rem;
+  /* line-height: 20px; */
+  color: grey;
+}
+
+.course-class-description {
+  overflow: hidden;
+  height: 20px;
+}
+
+.next-arrow img, .previous-arrow img {
+  width: 50%;
+}
+
+.next-arrow, .previous-arrow {
+  /* display: none; */
+  position: absolute;
+  top: 50%;
+}
+
+.previous-arrow {
+  display: none;
+  left: -25px;
+}
+
+.next-arrow {
+  right: -25px;
+}
+
+.arrow-box {
+  display: flex;
+  justify-content: center;
+  width:50px;
+  height: 50px;
+  /* border: 1px solid black; */
+  border-radius: 999rem;
+  background-color: white;
+  /* opacity: 0.8; */
+  box-shadow: 0px 2px 5px gray;
+}
+.arrow-box:hover {
+  background-color: #ffffef;
+  /* opacity: 0.8; */
+}
+
+/* .arrow-svg {
+  fill: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 3.2rem;
+  height: 3.2rem;
+  color: #438899;
+} */
+
+
+/* .next-arrow-box-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 2rem;
+  color: #438899;
+} */
+
+.nodata {
+  width: 100%;
+  text-align: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 13px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+footer {
+  display: flex;
+  background-color: #757575;
+  height: 104px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 13px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1200px) {
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 40px auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width:1200px) {
+  .cover {
+    position:relative;
+  }
+  .cover-img {
+    position: absolute;
+    height: 60%;
+    bottom: 0;
+    right: 0;
+    width: auto;
+  }
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+    margin: 40px auto;
+  }
+
+  .image-gallery .img {
+    width: 45%;
+  }
+
+
+  form.search input {
+    /* flex:none; */
+    width: 320px;
+    /* color:black; */
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-bar-items {
+    margin: auto 20px;
+  }
+
+  .cover {
+    height: 280px;
+    position:relative;
+  }
+  .cover-img {
+    position: absolute;
+    bottom: 0;
+    width: 60%;
+    right: 0;
+  }
+
+  .cover-content {
+    width: 100%;
+    margin: auto 20px;
+  }
+
+  form.search input {
+    /* flex:none; */
+    width: 230px;
+    /* color:black; */
+  }
+}

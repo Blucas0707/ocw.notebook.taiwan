@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>board</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../static/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/css/board-style.css">
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="nav-bar-items">
+        <div class="nav-title">
+          留言板
+        </div>
+      </div>
+    </div>
+    <div class="user-input-text">
+      <div class="input-box">
+        <div class="input-min-box">
+          您想說什麼：
+           <input class="text-input" id="text-input" placeholder="你想說的話" type="text">
+        </div>
+        <div class="input-min-box">
+          <input class="image-input" id="image-input" type="file" accept="image/*">
+        </div>
+
+      </div>
+        <hr>
+        <div class="submit">留言</div>
+        <div class="error">請重新輸入</div>
+        <div class="loading"><img src="../static/img/loading.gif" alt=""></div>
+    </div>
+    <div class="content-display"></div>
+    <script src="../static/js/board.js" type="text/javascript"></script>
+  </body>
+</html>

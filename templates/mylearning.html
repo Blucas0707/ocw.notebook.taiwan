@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>OCW Notebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/mylearning-style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/favicon.ico">
+  </head>
+  <body class="body">
+    <div class="nav-bar">
+      <div class="nav-bar-items">
+        <div class="nav-title"><a href="/">OCW Notebook</a></div>
+        <div class="nav-search">
+          <form class="search" name ="search-keyword">
+            <input type="search" placeholder="輸入課程關鍵字" name="keyword" id="keyword" class="search">
+            <!-- <input type="text" style="display: none"> -->
+          </form>
+          <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
+          <!-- <div class="nav-schedule">預定行程</div> -->
+          <!-- <div class="nav-logout">登出系統</div> -->
+        </div>
+        <div class="nav-login">
+          <!-- <div id="login-btn" class="nav-login-box">登入</div>
+          <div id="register-btn" class="nav-login-box">註冊</div> -->
+          <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
+          <div id="logout-btn" class="nav-login-box">登出</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cover">
+      <div class="cover-container">
+        <div class="cover-content">
+          <div class="cover-greeting">學習紀錄</div>
+        </div>
+      </div>
+    </div>
+
+    <main class="main">
+      <div class="status-container">
+        <div class="status-container-box">
+          <select name="learning-status" id="learning-status">
+            <option value="" disabled selected>學習狀態</option>
+            <option value="completed">已完成</option>
+            <option value="incompleted">未完成</option>
+          </select>
+        </div>
+      </div>
+      <div class="static-course-box">
+        <div class="static-container">
+          <div class="static-container-box">
+            <div class="static-box">學習總時數：<span class="static-hours">100.2</span></div>
+            <div class="static-box">學習總天數：<span class="static-hours">31</span></div>
+            <div class="static-box">課程完成數：<span class="static-hours">3</span></div>
+          </div>
+        </div>
+        <div class="course-gallery" id = "course-gallery-contain">
+          <div class="course-all course-border">
+            <div class="course-title"></div>
+            <div class="course-content">
+              <div class="course-class">
+                <div class="course-class-cover">
+                  <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
+                </div>
+                <div class="course-class-name">中國傳統生命禮俗</div>
+                <div class="course-class-teacher">葉國良</div>
+                <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，</div>
+              </div>
+              <div class="course-class">
+                <div class="course-class-cover">
+                  <img src="https://ocw.nthu.edu.tw/ocw/upload/teacher/83/83.png" alt="Error">
+                </div>
+                <div class="course-class-name">離散數學</div>
+                <div class="course-class-teacher">趙啟超</div>
+                <div class="course-class-description">Thiscoursegivesanintroductiontotheessentialsofdiscreteandcombinatorialmathematics.</div>
+              </div>
+              <div class="course-class">
+                <div class="course-class-cover">
+                  <img src="https://i.ytimg.com/vi/NV5jYlyEbXU/hqdefault.jpg" alt="Error">
+                </div>
+                <div class="course-class-name">華語(一)  Mandarin I</div>
+                <div class="course-class-teacher">華語中心 范瀞月老師</div>
+                <div class="course-class-description">本課程由國立交通大學華語中心提供。This course is designed for students to acquire Mandarin and Chinese culture. </div>
+              </div>
+              <div class="course-class">
+                <div class="course-class-cover">
+                  <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
+                </div>
+                <div class="course-class-name">中國傳統生命禮俗</div>
+                <div class="course-class-teacher">葉國良</div>
+                <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="previous-arrow">
+            <img src="/img/previous.svg" alt="">
+          </div>
+          <div class="next-arrow">
+            <img src="/img/next.svg" alt="">
+          </div> -->
+        </div>
+        <!-- <div class="empty-box"></div> -->
+      </div>
+
+      <!-- <div class="loading"><img src="/img/loading.gif" alt="" class="loading_img"></div> -->
+    </main>
+    <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
+  <script src="/js/mylearning.js" type="text/javascript"></script>
+  </body>
+</html>
