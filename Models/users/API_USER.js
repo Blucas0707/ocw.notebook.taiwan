@@ -60,7 +60,7 @@ let api_user = {
       }else{
         // check user exist in SQL
         SQL.User.checkLogin(email,password).then((result)=>{
-          console.log("result: " + JSON.stringify(result));
+          // console.log("result: " + JSON.stringify(result));
           resolve(JSON.stringify(result));
         })
       }

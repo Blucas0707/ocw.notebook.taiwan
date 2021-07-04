@@ -3,9 +3,9 @@ const path = require("path");
 var session = require('express-session')
 // const bodyParser = require("body-parser");
 
-const api_user = require("./Controllers/API_USER");
+const api_user = require("./models/users/API_USER");
 const api_courses = require("./Models/courses/API_COURSES");
-
+const api_lectures = require("./Models/lectures/API_LECTURES");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -18,10 +18,6 @@ app.use(session({
   // cookie: { secure: false }
 }));
 
-// const router = express.Router();
-// let engine = require('ejs');
-
-// app.engine('ejs', engine);
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
@@ -34,22 +30,35 @@ app.get('/mylearning', function (req, res) {
   res.sendFile(path.join(__dirname,'/templates/'+'mylearning.html'));
 });
 // Route "/mylearning" to index.html
-app.get('/course', function (req, res) {
-  res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
-});
+// app.get('/course', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
+// });
 
 //API
-
 //課程API
 app.get("/api/courses", function(req, res){
-  let page = (req.query.page != null) ? (req.query.page):("0");
-  let category = (req.query.category != "") ? (req.query.category):("%");
-  let university = (req.query.university != "") ? (req.query.university):("%");
+  let page = (req.query.page) ? (req.query.page):("0");
+  let category = (req.query.category) ? (req.query.category):("%");
+  let university = (req.query.university) ? (req.query.university):("%");
+  // console.log(page,category,university);
   api_courses.getAllCourse(page,category,university).then((result)=>{
     // console.log(result);
     res.send(200,result);
   });
+});
 
+app.get("/course/:course_id", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
+});
+
+// Lecture API
+app.get("/api/course/:course_id", function(req, res){
+  let course_id = req.params.course_id;
+  // console.log(course_id);
+  api_lectures.getAllLectures(course_id).then((result)=>{
+    // console.log(result);
+    res.json(result);
+  });
 
 });
 
@@ -64,10 +73,10 @@ app.get("/api/user", function(req, res){
     "email":email,
     "password":password
   };
-  console.log("email" + email,"password" +password);
+  console.log("email：" + email,"password：" +password);
   if(email && password){ //session 存在
     api_user.checkLogin(data).then((result)=>{
-      console.log(result);
+      // console.log(result);
       res.json(result);
     });
   }
@@ -85,7 +94,7 @@ app.delete("/api/user", function(req, res){
   let data = {
         "ok": true
     };
-  console.log("logout  email" + req.session.email,"password" +req.session.password);
+  // console.log("logout  email" + req.session.email,"password" +req.session.password);
   res.json(data);
 
 });
@@ -93,20 +102,20 @@ app.delete("/api/user", function(req, res){
 app.post("/api/user", function(req, res){
   console.log(req.body);
   api_user.Register(req.body).then((result)=>{
-    console.log(result);
+    // console.log(result);
     res.json(result);
   })
 });
 //使用者登入
 app.patch("/api/user", function(req, res){
-  console.log(req.body);
+  // console.log(req.body);
   api_user.Login(req.body).then((result)=>{
     let login_result = JSON.parse(result);
     if(login_result.ok){
       //登入成功後，存到Session
       req.session.email = req.body.email.toString();
       req.session.password = req.body.password.toString();
-      console.log(req.session.email, req.session.password);
+      // console.log(req.session.email, req.session.password);
     }
     res.json(result);
   })

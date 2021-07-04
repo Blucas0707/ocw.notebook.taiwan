@@ -304,16 +304,28 @@ let views = {
     isLogin:function(){
       //判斷已經登入
       if(models.user.isLogin){
-        //隱藏登入＆註冊
-        let login_btn = document.querySelector("#login-btn");
-        let register_btn = document.querySelector("#register-btn");
-        login_btn.style.display = "none";
-        register_btn.style.display = "none";
-        //顯示學習紀錄 & 登出
+        ///已登入 顯示學習紀錄&登出 隱藏登入＆註冊
         let mylearning_btn = document.querySelector("#mylearning-btn");
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "flex";
         logout_btn.style.display = "flex";
+
+        let login_btn = document.querySelector("#login-btn");
+        let register_btn = document.querySelector("#register-btn");
+        login_btn.style.display = "none";
+        register_btn.style.display = "none";
+      }else{
+        //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
+        //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
+        let login_btn = document.querySelector("#login-btn");
+        let register_btn = document.querySelector("#register-btn");
+        login_btn.style.display = "flex";
+        register_btn.style.display = "flex";
+
+        let mylearning_btn = document.querySelector("#mylearning-btn");
+        let logout_btn = document.querySelector("#logout-btn");
+        mylearning_btn.style.display = "none";
+        logout_btn.style.display = "none";
       }
     },
     Logout:function(){
@@ -463,20 +475,6 @@ let controllers = {
         });
       }
     },
-  //   imgClick:function(){
-  //   let imgs = document.querySelectorAll(".img");
-  //   for(let i = 0;i<imgs.length;i++){
-  //     let url = "/attraction/" + imgs[i].id;
-  //     imgs[i].addEventListener("click", function(e){
-  //       let fade = new Promise(views.fadeout);
-  //
-  //       fade.then(()=>{
-  //         window.location.replace(url);
-  //       });
-  //
-  //     });
-  //   }
-  // },
     updateCourse:function(index, elem){ // All台清交
       let university_list = ["","台灣大學","清華大學","陽明交通大學"];
       let update_university = university_list[index];

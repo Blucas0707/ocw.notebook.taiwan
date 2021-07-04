@@ -221,14 +221,15 @@ form.search input {
 }
 
 .nav-login-box {
+  display: none;
   margin: 0 10px;
   border: 1px solid gray;
   padding: 10px 15px;
   border-radius: 5px;
 }
-#mylearning-btn, #logout-btn {
+/* #mylearning-btn, #logout-btn {
   display: none;
-}
+} */
 
 
 

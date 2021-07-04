@@ -11,15 +11,50 @@
     <link rel="icon" href="/img/favicon.ico">
   </head>
   <body class="body">
+    <div class="hideall"></div>
+    <!-- login box -->
+    <div class="login-box">
+      <div class="login-header"></div>
+      <div class="login-title">
+        登入會員帳號
+        <img src="/img/icon_close.svg" alt="" class="login-cancel">
+      </div>
+      <!-- <form id="login-form" method="PATCH" > -->
+        <input type="text" name="email" placeholder="輸入電子信箱" class="login-email">
+        <input type="password" name="password" placeholder="輸入密碼" class="login-password">
+        <!-- <input type="submit" value="登入帳戶" class="login-btn"> -->
+      <!-- </form> -->
+      <div class="login-btn">登入帳戶</div>
+      <div class="login-status"></div>
+      <div class="login-register" >還沒有帳戶？點此註冊</div>
+    </div>
+    <!-- register box -->
+    <div class="register-box">
+      <div class="register-header"></div>
+      <div class="register-title">
+        註冊會員帳號
+        <img src="/img/icon_close.svg" alt="" class="register-cancel">
+      </div>
+      <form id="register-form" method="POST" >
+        <input type="text" name="name" placeholder="輸入姓名" class="register-name" required>
+        <input type="text" name="email" placeholder="輸入電子信箱" class="register-email" required>
+        <input type="password" name="password" placeholder="輸入密碼" class="register-password" required>
+        <!-- <input type="submit" value="註冊新帳戶" class="register-btn"> -->
+      </form>
+      <div class="register-btn">註冊新帳戶</div>
+      <div class="register-status" ></div>
+      <div class="register-login">已經有帳戶了？點此登入</div>
+    </div>
+
     <div class="nav-bar">
       <div class="nav-bar-items">
         <div class="nav-title"><a href="/">OCW Notebook</a></div>
         <div class="nav-search">
-          <div class="course-title">TEST</div>
+          <!-- <div class="course-title"></div> -->
         </div>
         <div class="nav-login">
-          <!-- <div id="login-btn" class="nav-login-box">登入</div>
-          <div id="register-btn" class="nav-login-box">註冊</div> -->
+          <div id="login-btn" class="nav-login-box">登入</div>
+          <div id="register-btn" class="nav-login-box">註冊</div>
           <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
           <div id="logout-btn" class="nav-login-box">登出</div>
         </div>
@@ -37,80 +72,46 @@
 
     <main class="main">
       <div class="learning-box">
-        <div class="lecturelist-box">
-          <ul class="lecture-list">
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1][TEST1][TEST1][TEST1][TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-            <li>
-              <div class="lecture-status"></div>
-              <div class="lecture-id">單元 1 </div>
-              <div class="lecture-name">[TEST1]</div>
-            </li>
-
-          </ul>
+        <div class="learning-title-box">
+          <div class="course-title"></div>
         </div>
-        <div class="video-box">
-          <video class="lecture-video" controls>
-            <source src="http://140.112.161.118/dl_video.php?fn=099S101_GE01V01.mp4" type="video/mp4" preload>
-            Your browser does not support the video tag.
-          </video>
-          <div class="video-timer-box">完成度： <span class="completed-ratio">0.00%</span></div>
-        </div>
-        <div class="reference-box">
-            <div class="reference-list">
-              <div class="note-download reference-list-element">講義下載</div>
-              <div class="reference-download reference-list-element">參考資料下載</div>
-              <div class="video-download reference-list-element">影音下載</div>
-            </div>
+        <div class="learning-content-box">
+          <div class="lecturelist-box">
+            <ul class="lecture-list">
+              <!--
+              <li>
+                <div class="lecture-status"></div>
+                <div class="lecture-id">單元 1 </div>
+                <div class="lecture-name">[TEST1]</div>
+              </li> -->
+            </ul>
+          </div>
+          <div class="video-box">
+            <video class="lecture-video" controls autoplay preload>
+              <source src="" type="video/mp4" id="lecture-video">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-timer-box">完成度： <span class="completed-ratio">0.00%</span></div>
+          </div>
+          <div class="reference-box">
+              <div class="reference-list">
+                <div class="note-download reference-list-element">講義下載</div>
+                <div class="reference-download reference-list-element">參考資料下載</div>
+                <div class="video-download reference-list-element">影音下載</div>
+              </div>
+          </div>
         </div>
       </div>
       <div class="note-box">
         <div class="note-empty"></div>
         <div class="note-content-box">
           <div class="note-title">Note</div>
+          <div class="note-not-login">登入後使用筆記功能</div>
           <div class="note-list">
             <div class="note-update-box">
               <div class="note-input-box">
                 <!-- <input type="text" name="note-input" value="" placeholder="留下你的筆記..."> -->
-                <textarea name="note-input" rows="8" cols="80" placeholder="留下你的筆記..." required></textarea>
+                <textarea id="note-input-content" name="note-input" rows="8" cols="80" placeholder="留下你的筆記..." required></textarea>
               </div>
               <div class="note-btn-box">
                 <div id="note-cancel-btn" class="note-btn">Cancel</div>

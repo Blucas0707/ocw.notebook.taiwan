@@ -1,4 +1,4 @@
-require('dotenv').config({path:__dirname+'/../.env'});
+require('dotenv').config({path:__dirname+'/../../.env'});
 // console.log(process.env.RDS_SQL_HOST);
 const mysql = require('mysql2');
 //建立SQL物件
@@ -103,7 +103,7 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          console.log(rows);
+          // console.log(rows);
           if(rows[0]["user_id"] && rows[0]["user_name"] && rows[0]["user_email"]){ //user existed
             let data = {
               "data":{
@@ -112,7 +112,7 @@ let SQL = {
                 "email": rows[0]["user_email"]
               }
             };
-            console.log("data:" + data);
+            // console.log("data:" + data);
             resolve(data);
 
           }else{
@@ -122,7 +122,7 @@ let SQL = {
           }
           console.log(this.isUserExisted);
         }).catch((err)=>{
-          console.log(err);
+          // console.log(err);
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"

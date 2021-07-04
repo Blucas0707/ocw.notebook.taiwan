@@ -6,6 +6,128 @@ html {
   opacity: 1;
 }
 
+.hideall {
+  display: none;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: #000000;
+  opacity: 0.25;
+  z-index: 3;
+}
+
+/* login & register*/
+.login-box, .register-box {
+  display: none;
+  position: fixed;
+  top:80px;
+  left: calc(50% - 170px);
+  width:340px;
+  /* height:275px; */
+  background-color: white;
+  z-index: 4;
+}
+.register-box {
+  /* height:332px; */
+}
+.login-header, .register-header {
+  height:10px;
+  background: linear-gradient(to top left, #6baebf, #a1d7e8);
+}
+
+.login-title, .register-title {
+  position: relative;
+  margin:15px;
+  text-align: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  color: #666666;
+}
+
+.login-cancel, .register-cancel {
+  position: absolute;
+  top: 0;
+  right: 17px;
+  width: 16px;
+  height: 16px;
+}
+.login-cancel:hover , .register-cancel:hover, .nav-schedule:hover {
+  cursor: pointer;
+}
+.login-email, .login-password,.register-name, .register-email, .register-password  {
+  margin:0 15px 10px;
+  border: 1px solid #CCCCCC;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 310px;
+  height: 47px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+  padding-left:15px;
+}
+
+.login-btn, .register-btn {
+  display: flex;
+  width: 310px;
+  height: 47px;
+  margin:0 15px 10px;
+  background: #448899;
+  border-radius: 5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 16px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.login-btn:hover, .register-btn:hover {
+  cursor: pointer;
+}
+.login-status, .register-status {
+  display:none;
+  justify-content: center;
+  /* text-align: center; */
+  width: 310px;
+  height: 22px;
+  margin:0 15px 15px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+
+}
+.login-register, .register-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  height: 22px;
+  margin:0 15px 15px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+.login-register:hover, .register-login:hover {
+  cursor: pointer;
+}
+
+
 /* nav */
 .nav-bar {
   width: 100%;
@@ -79,6 +201,7 @@ a,a:link,a:visited {
 }
 
 .nav-login-box {
+  display: none;
   margin: 0 10px;
   border: 1px solid gray;
   padding: 10px 15px;
@@ -146,13 +269,55 @@ a,a:link,a:visited {
 /* main */
 
 /* learning box */
-.learning-box, .note-box{
+.learning-box {
+  max-width: 1200px;
+  margin: 5px auto;
+}
+
+.note-box{
   display: flex;
   max-width: 1200px;
   margin: 5px auto;
 }
 
+.note-not-login {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 2rem;
+  /* line-height: 24px; */
+}
+
+.note-list {
+  display: block;
+}
+
 /* lecture list */
+
+.learning-title-box {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  padding: 20px;
+}
+
+.learning-content-box {
+  display: flex;
+  max-width: 1200px;
+  margin: 5px auto;
+}
+
 .lecturelist-box {
   flex:auto;
   width: 10%;
@@ -173,6 +338,10 @@ a,a:link,a:visited {
   height: 15px;
   border: 1px solid black;
   margin:auto 5px;
+}
+
+.lecture-video-link {
+  display: none;
 }
 
 ul {
@@ -205,6 +374,7 @@ li:hover {
 .lecture-video {
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 /* reference box */
@@ -262,7 +432,7 @@ li:hover {
   font-style: normal;
   font-weight: bold;
   font-size: 1.5rem;
-  margin: 10px;
+  margin: 10px 0 10px;
   /* line-height: 13px; */
 }
 
@@ -274,7 +444,7 @@ li:hover {
 
 .note-input-box textarea {
   flex:auto;
-  padding-left: 1.5px;
+  padding-left: 5px;
   /* width: 95%; */
   /* height: 200px; */
   /* padding-left: 10px;
@@ -353,7 +523,7 @@ footer {
   .cover-container {
     margin-left: 10px;
   }
-  .learning-box {
+  .learning-box, .learning-content-box {
     display: block;
   }
   .lecturelist-box, .video-box, .reference-box  {

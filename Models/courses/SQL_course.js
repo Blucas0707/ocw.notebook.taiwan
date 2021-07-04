@@ -26,7 +26,7 @@ let SQL = {
         };
       let sql_statement = "select * from (select * from courses order by course_establish DESC) as T where course_category like ? and course_university like ? limit ?,4";
       let para = [category, university, offset];
-      // console.log(sql_statement);
+      // console.log(para);
       // console.log(para);
       // console.log(page);
       // console.log(category);
@@ -35,7 +35,7 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          console.log(rows);
+          // console.log(rows);
           //後面沒有資料
           if(rows.length == 0){
             data_dict["nextPage"] = null
@@ -57,27 +57,8 @@ let SQL = {
                 new_dict["course_link"] = rows[index]["course_link"]
                 data_dict["data"].push(new_dict);
             }
-            // console.log(data_dict);
-            // console.log(typeof(data_dict));
           }
           resolve(data_dict);
-
-          // if(rows[0]["count(*)"] == 1){ //user existed
-          //     let data = {
-          //       "ok": true
-          //     };
-          //     // console.log("data:" + data);
-          //     resolve(data);
-          //   }
-          // else{
-          //   let data = {
-          //     "error": true,
-          //     "message": "登入失敗，帳號或密碼錯誤或其他原因"
-          //   };
-          //   // console.log("data:" + data);
-          //   resolve(data);
-          // }
-          // console.log(this.isUserExisted);
         }).catch(()=>{
           let data = {
             "error": true,
