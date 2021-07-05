@@ -166,6 +166,36 @@ let models = {
 };
 
 let views = {
+  fadeout:function(elem){
+    let speed = 10;
+    let num = 1000;
+      let timer = setInterval(()=>{
+        // views.isFadeout = false;
+        num -= speed;
+        elem.style.opacity = (num / 1000);
+        // console.log(main.style.opacity);
+        if(num <= 0){
+          clearInterval(timer);
+          views.isFadeout = true;
+          resolve(true);
+        }
+      },10);
+  },
+  fadein:function(elem){
+    let speed = 10;
+    let num = 0;
+    let timer = setInterval(()=>{
+      // views.isFadein = false;
+      num += speed;
+      elem.style.opacity = (num / 1000);
+      // console.log(main.style.opacity);
+      if(num >= 1000){
+        clearInterval(timer);
+        // views.isFadein = true;
+        // resolve(true);
+      }
+    },10);
+  },
   click:{
     allCourse:function(index){
       return new Promise((resolve, reject)=>{
@@ -189,6 +219,11 @@ let views = {
   },
   courses:{
     clearCourses:function(elem){
+      // //顯示Loading img box
+      // elem.previousElementSibling.style.display = "flex";
+      //Fade out
+      // views.fadeout(elem);
+
       while(elem.hasChildNodes()){ //elem child存在
         elem.removeChild(elem.firstChild); //刪除子節點
       };
@@ -244,7 +279,9 @@ let views = {
         else{
           div_allCourse = document.querySelector("#allCourse_NYTU");
         }
+        div_allCourse.style.opacity = 0;
         div_allCourse.appendChild(div_course_class);
+        views.fadein(div_allCourse);
       }
 
       //點選課程
@@ -428,9 +465,9 @@ let controllers = {
           next_btn.addEventListener("click",()=>{
             console.log(models.courses.allCourse_nextPages[index]);
             models.courses.allCourse_nextPages[index]++;
-            let allCourse_div = document.querySelectorAll(".course-content")[index];
-            views.click.allCourse(index);
-            views.courses.clearCourses(allCourse_div);
+            let allCourse_div = document.querySelectorAll(".course-content-main")[index];
+            views.click.allCourse(index); //顯示或隱藏 Next, Previous btn
+            views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
             controllers.courses.updateCourse(index,allCourse_div);
             resolve(true);
           });
@@ -444,7 +481,7 @@ let controllers = {
           let next_btn = next_btns[index];
           next_btn.addEventListener("click",()=>{
             models.courses.allCourse_nextPages[index]--;
-            let allCourse_div = document.querySelectorAll(".course-content")[index];
+            let allCourse_div = document.querySelectorAll(".course-content-main")[index];
             views.click.allCourse(index);
             views.courses.clearCourses(allCourse_div);
             controllers.courses.updateCourse(index,allCourse_div);
@@ -479,8 +516,11 @@ let controllers = {
     updateCourse:function(index, elem){ // All台清交
       let university_list = ["","台灣大學","清華大學","陽明交通大學"];
       let update_university = university_list[index];
-      models.courses.getCourses("",update_university).then(([result,university])=>{
-        views.courses.renderAllCourses_list(result,university);
+      models.courses.getCourses("",update_university).then(([result,university])=>{ //取得資料
+        // //隱藏Loading img box
+        // elem.previousElementSibling.style.display = "none";
+        views.courses.renderAllCourses_list(result,university); //渲染畫面
+        views.fadein(elem);
       });
     },
     allCourse_list:function(){ // All台清交
@@ -522,10 +562,29 @@ let controllers = {
     register:function(){
         let register_btn = document.querySelector(".register-btn");
         register_btn.addEventListener("click", ()=>{
-          models.user.Register().then(()=>{
-            console.log("tstet");
-            views.user.registerStatus();
-          });
+          //判斷規則
+          let formElement = document.querySelector("#register-form");
+          let name = formElement.name.value;
+          let email = formElement.email.value;
+          let password = formElement.password.value;
+
+          // regular rules
+          let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+          let emailCheck = (email.search(emailRule) == 0) ? (true):(false);
+          // let nameCheck = (name.length >= 4) ? (true):(false);
+          let passwordCheck = (password.length > 6) ? (true):(false);
+          models.user.registerSuccess = emailCheck&&passwordCheck;
+          if(!models.user.registerSuccess){
+            let register_status = document.querySelector(".register-status");
+            register_status.style.display = "flex";
+            register_status.innerHTML = "請確認信箱格式或密碼長度小於6";
+            register_status.style.color = "red";
+          }else{
+            models.user.Register().then(()=>{
+              console.log("tstet");
+              views.user.registerStatus();
+            });
+          }
         });
     },
     login:function(){
