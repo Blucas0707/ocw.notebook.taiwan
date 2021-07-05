@@ -1,6 +1,61 @@
 let models = {
+  lecture_id:null,
+  course_id:location.pathname.split("course/")[1],
+  user_id:null,
+  notes:{
+    getNotes:function(){
+      return new Promise((resolve, reject)=>{
+        // let course_id = models.course_id;
+        console.log("/api/note/"+ models.course_id+ "/"+ models.lecture_id);
+        return fetch("/api/note/"+ models.course_id+ "/"+ models.lecture_id,{
+          method:'GET',
+          headers: {
+            "Content-type":"application/json",
+          },
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          console.log(result);
+          console.log(typeof(result));
+          // console.log(models.user.loginSuccess);
+          resolve(result);
+        });
+      });
+    },
+    postNotes:function(note){
+      let course_id = models.course_id;
+      let lecture_id = models.lecture_id;
+      let user_id = models.user_id;
+      return new Promise((resolve, reject)=>{
+        let note = document.querySelector("#note-input-content").value;
+        let data = {
+            "course_id":course_id.toString(),
+            "lecture_id":lecture_id.toString(),
+            "user_id":user_id.toString(),
+            "note":note,
+          };
+        console.log(data);
+        return fetch("/api/note",{
+          method:"POST",
+          headers: {
+            "Content-type":"application/json",
+          },
+          body: JSON.stringify(data)
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          console.log(result);
+          resolve(result);
+        });
+      })
+    },
+  },
   lectures:{
-    allLecture_data:null,
+    allLecture_status:{
+      "user_id":"",
+      "course_id":"",
+      "lectures":[]
+    },
     getAllLectures:function(){
       return new Promise((resolve, reject)=>{
         let course_id = location.pathname.split("course/")[1];
@@ -12,9 +67,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          models.lectures.allLecture_data = result;
-          // console.log(result);
-          // console.log(models.user.loginSuccess);
+          models.lectures.allLecture_status.course_id = course_id;
           resolve(result);
         });
       });
@@ -62,9 +115,12 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
+          console.log(result);
+          // console.log(JSON.parse(result).data.id);
           if(result != null){
             models.user.isLogin = true;
+            models.lectures.allLecture_status.user_id = JSON.parse(result).data.id;
+            models.user_id = JSON.parse(result).data.id;
           }
           else{
             models.user.isLogin = false;
@@ -126,6 +182,39 @@ let models = {
 };
 
 let views = {
+  notes:{
+    renderNotes:function(result){
+      console.log(result);
+      console.log(result.data, result.data.length);
+      //取得 note-show-all
+      let div_note_show_all = document.querySelector(".note-show-all");
+      //清除包含內容
+      while(div_note_show_all.hasChildNodes()){
+        div_note_show_all.removeChild(div_note_show_all.firstChild);
+      }
+
+      for(let index=0;index<result.data.length;index++){
+
+        //新增div note-show-list under note-show-all
+        let div_note_show_list = document.createElement("div");
+        div_note_show_list.className = "note-show-list";
+
+        //新增div note-time under note-show-list
+        let div_note_time = document.createElement("div");
+        div_note_time.className = "note-time";
+        div_note_time.innerHTML = result.data[index].note_time;
+        // console.log(result.data[index].note_time);
+        //新增div note-content under note-show-list
+        let div_note_content = document.createElement("div");
+        div_note_content.className = "note-content";
+        div_note_content.innerHTML = result.data[index].note;
+        // console.log(result.data[index].note);
+        div_note_show_list.appendChild(div_note_time);
+        div_note_show_list.appendChild(div_note_content);
+        div_note_show_all.appendChild(div_note_show_list);
+      }
+    }
+  },
   lectures:{
     renderAllLectures:function(result){
       //models.lectures.allLecture_data;
@@ -149,6 +238,18 @@ let views = {
         let div_lecture_status = document.createElement("div");
         div_lecture_status.className = "lecture-status";
         div_lecture_status.id = lecture_id.toString();
+        let img = document.createElement("img");
+        img.className = "check-box-img";
+        img.src = "/img/blank-check-box.svg"
+        img.id = "blank-check-box";
+        div_lecture_status.appendChild(img);
+        img = document.createElement("img");
+        img.className = "check-box-img";
+        img.src = "/img/check-box.svg"
+        img.id = "check-box";
+        div_lecture_status.appendChild(img);
+
+
         // create new div under lecture-list
         let div_lecture_id = document.createElement("div");
         div_lecture_id.className = "lecture-id";
@@ -161,15 +262,28 @@ let views = {
         let div_lecture_video = document.createElement("div");
         div_lecture_video.className = "lecture-video-link";
         div_lecture_video.innerHTML = lecture_video;
+        // create new div under lecture-list
+        let div_lecture_current = document.createElement("div");
+        div_lecture_current.className = "lecture-video-current";
+        div_lecture_current.innerHTML = 0;
 
         li_lecture.appendChild(div_lecture_status);
         li_lecture.appendChild(div_lecture_id);
         li_lecture.appendChild(div_lecture_name);
         li_lecture.appendChild(div_lecture_video);
+        li_lecture.appendChild(div_lecture_current);
 
         //新增li to lecture-list
         let ul_lecture_list = document.querySelector(".lecture-list");
         ul_lecture_list.appendChild(li_lecture);
+
+        //新增到model data
+        let data = {
+          "lecture_id":lecture_id,
+          "lecture_video_current":0,
+          "lecture_status":0,
+        };
+        models.lectures.allLecture_status.lectures.push(data);
         //點擊課堂
         controllers.click.chooseLecture(li_lecture, lecture_video, lecture_note, lecture_reference);
 
@@ -281,18 +395,6 @@ let views = {
       }
     },
   },
-  // nav:function(){
-  //   //按下學習紀錄按鈕 => 導向自己
-  //   let mylearning_btn = document.querySelector("#mylearning-btn");
-  //   mylearning_btn.addEventListener("click",()=>{
-  //     window.location.replace("/mylearning");
-  //   });
-  //   //按下登出按鈕 => 導向首頁
-  //   let logout_btn = document.querySelector("#logout-btn");
-  //   logout_btn.addEventListener("click",()=>{
-  //     window.location.reload();
-  //   });
-  // },
   nav:function(){
     //按下login btn
     let login_btn = document.querySelector("#login-btn");
@@ -385,14 +487,14 @@ let controllers = {
   click:{
     chooseLecture:function(elem, lecture_video_link, lecture_note_link, lecture_reference_link){
       elem.addEventListener("click",()=>{
+        models.lecture_id = models.course_id + elem.firstChild.id.toString().padStart(3,"0");
+        console.log(elem);
         //清空note box
         let notebox = document.querySelector("#note-input-content");
         notebox.value = "";
         //更改影片網址
         let lecture_video = document.querySelector(".lecture-video");
         lecture_video.src = lecture_video_link;
-        //影片自動播放
-        // document.querySelector("")
         //更改下載相關
         //clear first
         let note_download = document.querySelector(".note-download");
@@ -421,6 +523,12 @@ let controllers = {
             elems[index].appendChild(link);
           }
         }
+        //確認影片是否完成>85%
+        controllers.lectures.checkStatus(elem.firstChild);
+        //顯示Note
+        controllers.notes.getNotes().then((result)=>{
+          views.notes.renderNotes(result);
+        });
       });
     },
     cancelNote:function(){
@@ -430,14 +538,78 @@ let controllers = {
         notebox.value = "";
       });
     },
+    postNotes:function(){
+      return new Promise((resolve, reject)=>{
+        let save_btn = document.querySelector("#note-save-btn");
+        save_btn.addEventListener("click",()=>{
+          let note = document.querySelector("#note-input-content").value;
+          if(note != ""){
+            models.notes.postNotes(note).then((result)=>{
+              resolve(result);
+            })
+          }
+        });
+      })
+    }
+  },
+  notes:{
+    getNotes:function(){
+      return new Promise((resolve, reject)=>{
+        models.notes.getNotes().then((result)=>{
+          resolve(result);
+        });
+      })
+    }
   },
   lectures:{
-    listLectures:function(){
+    listLectures:function(){ //列出所有課程到list
       models.lectures.getAllLectures().then((result)=>{
         // console.log(result);
         views.lectures.renderAllLectures(result);
+        // controllers.lectures.countCourseLength(result);
       });
-    }
+    },
+    checkStatus:function(elem){ //確認該堂影片是否觀看完成 > 85 %
+      let video = document.querySelector(".lecture-video");
+      video.addEventListener("timeupdate",()=>{
+        let video_ration = parseFloat(document.querySelector(".completed-ratio").innerHTML.split("%")[0]);
+        let blank_checkbox = elem.firstChild;
+        // console.log(blank_checkbox);
+        let checkbox = elem.firstChild.nextElementSibling;
+        //存現在時間到model allLecture_data裡面
+        let index = elem.id - 1;
+        // let video_current = elem.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+        models.lectures.allLecture_status.lectures[index].lecture_video_current = video.currentTime;
+        // video_current.innerHTML = video.currentTime;
+        // console.log(models.lectures.allLecture_status);
+        if(video_ration > 85){
+          blank_checkbox.style.display = "none";
+          checkbox.style.display = "flex";
+          elem.parentElement.style.backgroundColor = "#e5fff3";
+        }
+      });
+    },
+    // countCourseLength:function(result){
+    //   // console.log(result.data);
+    //   return new Promise((resolve, reject)=>{
+    //     let video_total_length = 0;
+    //     for(let index=0;index<result.data.length;index++){
+    //       // console.log(index);
+    //       let virtual_video = document.createElement("video");
+    //       virtual_video.src = result.data[index].lecture_video;
+    //       // console.log(result.data[index].lecture_video);
+    //       virtual_video.addEventListener("loadedmetadata", ()=>{
+    //         console.log(virtual_video.duration);
+    //         let video_length = virtual_video.duration;
+    //         video_total_length = video_total_length + video_length;
+    //         console.log(video_total_length);
+    //       });
+    //     }
+    //     return video_total_length;
+    //   }).then((result)=>{
+    //     console.log(result);
+    //   })
+    // }
   },
   member: {
     checkLogin:function(){
@@ -463,7 +635,7 @@ let controllers = {
         let register_btn = document.querySelector(".register-btn");
         register_btn.addEventListener("click", ()=>{
           models.user.Register().then(()=>{
-            console.log("tstet");
+            // console.log("tstet");
             views.user.registerStatus();
           });
         });
@@ -489,6 +661,14 @@ let controllers = {
     controllers.lectures.listLectures();
     controllers.click.cancelNote();
 
+    //Note
+    // //顯示Note
+    // controllers.notes.getNotes();
+    //上傳note
+    controllers.click.postNotes().then((result)=>{
+      console.log(result);
+      views.notes.renderNotes(result);
+    });
   },
 };
 

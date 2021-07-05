@@ -6,6 +6,7 @@ var session = require('express-session')
 const api_user = require("./Models/users/API_USER");
 const api_courses = require("./Models/courses/API_COURSES");
 const api_lectures = require("./Models/lectures/API_LECTURES");
+const api_notes = require("./Models/notes/API_NOTES");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -21,21 +22,23 @@ app.use(session({
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-// Route "/" to index.html
+// 首頁
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'/templates/'+'index.html'));
 });
-// Route "/mylearning" to index.html
+
+// 課程頁
+app.get("/course/:course_id", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
+});
+
+// 學習紀錄
 app.get('/mylearning', function (req, res) {
   res.sendFile(path.join(__dirname,'/templates/'+'mylearning.html'));
 });
-// Route "/mylearning" to index.html
-// app.get('/course', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
-// });
 
 //API
-//課程API
+//課程Course API
 app.get("/api/courses", function(req, res){
   let page = (req.query.page) ? (req.query.page):("0");
   let category = (req.query.category) ? (req.query.category):("%");
@@ -47,17 +50,44 @@ app.get("/api/courses", function(req, res){
   });
 });
 
-app.get("/course/:course_id", function(req, res){
-  res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
-});
-
-// Lecture API
+// 課堂Lecture API
 app.get("/api/course/:course_id", function(req, res){
   let course_id = req.params.course_id;
   // console.log(course_id);
   api_lectures.getAllLectures(course_id).then((result)=>{
     // console.log(result);
     res.json(result);
+  });
+});
+
+// 筆記Note API
+// course_id/lecture_id/user_id
+app.get("/api/note/:course_id/:lecture_id", function(req, res){
+  let course_id = req.params.course_id;
+  let lecture_id = req.params.lecture_id;
+  let user_id = req.session.user_id;
+  console.log(course_id,lecture_id,user_id);
+  if(!course_id || !lecture_id || !user_id){
+    let data = {
+      "error":true,
+      "message":"參數錯誤"
+    };
+    res.send(200,data);
+  }
+  else{
+    api_notes.getNotes(course_id,lecture_id,user_id).then((result)=>{
+      // console.log(result);
+      res.send(200,result);
+    });
+  }
+});
+
+app.post("/api/note", function(req, res){
+  // let user_id = req.session.user_id;
+  console.log(req.body);
+  api_notes.postNotes(req.body).then((result)=>{
+    // console.log(result);
+    res.send(200,result);
   });
 
 });
@@ -76,8 +106,11 @@ app.get("/api/user", function(req, res){
   console.log("email：" + email,"password：" +password);
   if(email && password){ //session 存在
     api_user.checkLogin(data).then((result)=>{
-      // console.log(result);
+      // console.log(JSON.parse(result).data.id);
+      req.session.user_id = JSON.parse(result).data.id;
+      // console.log(req.session.user_id, req.session.email);
       res.json(result);
+
     });
   }
   else{
@@ -85,12 +118,12 @@ app.get("/api/user", function(req, res){
   }
 
 });
-//使用者登入
+//使用者登出
 app.delete("/api/user", function(req, res){
   //移除Session
   req.session.email = null;
   req.session.password = null;
-
+  req.session.user_id = null;
   let data = {
         "ok": true
     };

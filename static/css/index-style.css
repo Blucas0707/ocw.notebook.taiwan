@@ -200,6 +200,9 @@ form.search input {
   border: 0;
   border-radius: 0 5px 5px 0;
 }
+.keyin_Keyword:hover {
+  cursor: pointer;
+}
 
 .nav-login {
   display: flex;
@@ -425,6 +428,8 @@ form.search input {
 }
 .arrow-box:hover {
   background-color: #ffffef;
+  cursor: pointer;
+
   /* opacity: 0.8; */
 }
 

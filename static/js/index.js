@@ -426,6 +426,7 @@ let controllers = {
         for(let index=0;index<next_btns.length;index++){
           let next_btn = next_btns[index];
           next_btn.addEventListener("click",()=>{
+            console.log(models.courses.allCourse_nextPages[index]);
             models.courses.allCourse_nextPages[index]++;
             let allCourse_div = document.querySelectorAll(".course-content")[index];
             views.click.allCourse(index);

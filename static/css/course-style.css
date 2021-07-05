@@ -334,13 +334,24 @@ a,a:link,a:visited {
 }
 
 .lecture-status {
+  position: relative;
   width: 15px;
   height: 15px;
-  border: 1px solid black;
-  margin:auto 5px;
+  margin: 2px 5px;
 }
 
-.lecture-video-link {
+.check-box-img {
+  position: absolute;
+  width: 100%;
+  top: 23.5%;
+}
+
+#check-box {
+  display: none;
+}
+
+
+.lecture-video-link, .lecture-video-current {
   display: none;
 }
 
