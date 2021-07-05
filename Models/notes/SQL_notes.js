@@ -14,8 +14,8 @@ let SQL = {
     waitForConnections: true,
     connectionLimit: 3,
     queueLimit: 0,
-    timezone: '+8:00',
-    dateStrings: true,
+    // timezone: '+8:00',
+    // dateStrings: true,
   }),
   Note:{
     getnotes:function(course_id,lecture_id,user_id){
