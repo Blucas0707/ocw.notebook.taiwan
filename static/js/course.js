@@ -213,7 +213,30 @@ let views = {
         div_note_show_list.appendChild(div_note_content);
         div_note_show_all.appendChild(div_note_show_list);
       }
+    },
+    renderupdateNote:function(result){
+      console.log("result:" + result);
+      //取得 note-show-all
+      let div_note_show_all = document.querySelector(".note-show-all");
+      //新增div note-show-list under note-show-all
+      let div_note_show_list = document.createElement("div");
+      div_note_show_list.className = "note-show-list";
+
+      //新增div note-time under note-show-list
+      let div_note_time = document.createElement("div");
+      div_note_time.className = "note-time";
+      div_note_time.innerHTML = result.data[0].note_time;
+      // console.log(result.data[index].note_time);
+      //新增div note-content under note-show-list
+      let div_note_content = document.createElement("div");
+      div_note_content.className = "note-content";
+      div_note_content.innerHTML = result.data[0].note;
+      // console.log(result.data[index].note);
+      div_note_show_list.appendChild(div_note_time);
+      div_note_show_list.appendChild(div_note_content);
+      div_note_show_all.insertBefore(div_note_show_list,div_note_show_all.childNodes[0]);
     }
+
   },
   lectures:{
     renderAllLectures:function(result){
@@ -543,8 +566,11 @@ let controllers = {
         let save_btn = document.querySelector("#note-save-btn");
         save_btn.addEventListener("click",()=>{
           let note = document.querySelector("#note-input-content").value;
-          if(note != ""){
+          if(note.toString().length != 0){
             models.notes.postNotes(note).then((result)=>{
+              // console.log("models back:" + JSON.stringify(result));
+              document.querySelector("#note-input-content").value = "";
+              views.notes.renderupdateNote(result);
               resolve(result);
             })
           }
@@ -665,10 +691,7 @@ let controllers = {
     // //顯示Note
     // controllers.notes.getNotes();
     //上傳note
-    controllers.click.postNotes().then((result)=>{
-      console.log(result);
-      views.notes.renderNotes(result);
-    });
+    controllers.click.postNotes();
   },
 };
 
