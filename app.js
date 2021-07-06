@@ -7,6 +7,7 @@ const api_user = require("./Models/users/API_USER");
 const api_courses = require("./Models/courses/API_COURSES");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 const api_notes = require("./Models/notes/API_NOTES");
+const api_learnings = require("./Models/learnings/API_LEARNINGS");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -17,6 +18,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   // cookie: { secure: false }
+  cookie: { secure: !true }
 }));
 
 app.set('views', './views');
@@ -66,7 +68,7 @@ app.get("/api/note/:course_id/:lecture_id", function(req, res){
   let course_id = req.params.course_id;
   let lecture_id = req.params.lecture_id;
   let user_id = req.session.user_id;
-  console.log(course_id,lecture_id,user_id);
+  // console.log("note:" + course_id,lecture_id,user_id);
   if(!course_id || !lecture_id || !user_id){
     let data = {
       "error":true,
@@ -81,16 +83,64 @@ app.get("/api/note/:course_id/:lecture_id", function(req, res){
     });
   }
 });
-
+//上傳筆記
 app.post("/api/note", function(req, res){
   // let user_id = req.session.user_id;
-  console.log(req.body);
+  // console.log(req.body);
   api_notes.postNotes(req.body).then((result)=>{
     // console.log(result);
     res.send(200,result);
   });
 
 });
+
+//學習進度Learning API
+//更新學習進度
+app.patch("/api/learning", function(req, res){
+  // console.log(req.body);
+  api_learnings.updateLecture_status(req.body).then((result)=>{
+    let update_status = JSON.parse(result);
+    // console.log(update_status);
+    // console.log(result);
+    res.json(result);
+  })
+});
+//取得單一課程影片進度
+app.get("/api/learning/:course_id/:lecture_id", function(req, res){
+  // console.log("getOneLecture_status start");
+  let course_id = req.params.course_id;
+  let lecture_id = req.params.lecture_id;
+  let user_id = req.session.user_id;
+  // console.log("lecture_video:" + course_id,lecture_id,user_id,req.session.email);
+  if(user_id){
+    api_learnings.getOneLecture_status(user_id,course_id,lecture_id).then((result)=>{
+      let update_status = JSON.parse(result);
+      // console.log(update_status);
+      // console.log(result);
+      res.json(result);
+    })
+  }
+});
+
+//取得全部課程影片進度
+app.get("/api/learnings/:course_id", function(req, res){
+  // console.log("getAllLecture_status start");
+  let course_id = req.params.course_id;
+  let user_id = req.session.user_id;
+  // console.log("app getAllLecture_status:" + course_id,user_id);
+  if(user_id){
+    api_learnings.getAllLecture_status(user_id,course_id).then((result)=>{
+      let update_status = JSON.parse(result);
+      // console.log(update_status);
+      // console.log(result);
+      res.send(200,result);
+    })
+  }
+  else{
+
+  }
+});
+
 
 
 // 使用者API
@@ -103,11 +153,13 @@ app.get("/api/user", function(req, res){
     "email":email,
     "password":password
   };
-  console.log("email：" + email,"password：" +password);
+  // console.log("email：" + email,"password：" +password);
   if(email && password){ //session 存在
     api_user.checkLogin(data).then((result)=>{
+      // console.log("user get result: "+result);
       // console.log(JSON.parse(result).data.id);
       req.session.user_id = JSON.parse(result).data.id;
+      // console.log(req.session.user_id);
       // console.log(req.session.user_id, req.session.email);
       res.json(result);
 
@@ -133,7 +185,7 @@ app.delete("/api/user", function(req, res){
 });
 //使用者註冊
 app.post("/api/user", function(req, res){
-  console.log(req.body);
+  // console.log(req.body);
   api_user.Register(req.body).then((result)=>{
     // console.log(result);
     res.json(result);
