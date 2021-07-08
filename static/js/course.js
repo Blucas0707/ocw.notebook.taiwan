@@ -649,9 +649,9 @@ let controllers = {
             lecture_video.currentTime = video_current_time;
             //For iphone
             lecture_video.addEventListener("loadeddata",function setVideotime(){
-              console.log(lecture_video.currentTime);
+              // console.log(lecture_video.currentTime);
               if(lecture_video.currentTime == 0) {
-                  console("11111");
+                  // console.lo("11111");
                   lecture_video.play();
                   lecture_video.removeEventListener("loadeddata",setVideotime);
               }
@@ -660,7 +660,7 @@ let controllers = {
                   lecture_video.pause();
                   lecture_video.currentTime = video_current_time;
                   lecture_video.removeEventListener("loadeddata",setVideotime);
-                  console.log("22222");
+                  // console.log("22222");
                   lecture_video.play();
                   // setTimeout(lecture_video.play, 500);
               }
