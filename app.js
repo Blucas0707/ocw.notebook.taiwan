@@ -4,7 +4,7 @@ var session = require('express-session')
 // const bodyParser = require("body-parser");
 
 const api_user = require("./Models/users/API_USER");
-const api_courses = require("./Models/courses/API_courses");
+const api_courses = require("./Models/courses/API_courses.js");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 const api_notes = require("./Models/notes/API_NOTES");
 const api_learnings = require("./Models/learnings/API_learnings");
