@@ -22,7 +22,7 @@ let models = {
         });
       });
     },
-    postNotes:function(note){
+    postNotes:function(note,note_record_time,note_video_current){
       let course_id = models.course_id;
       let lecture_id = models.lecture_id;
       let user_id = models.user_id;
@@ -33,6 +33,8 @@ let models = {
             "lecture_id":lecture_id.toString(),
             "user_id":user_id.toString(),
             "note":note,
+            "note_video_current":note_video_current,
+            "note_record_time":note_record_time
           };
         console.log(data);
         return fetch("/api/note",{
@@ -257,9 +259,14 @@ let models = {
 
 let views = {
   notes:{
+    renderNotesCount:function(notecount){
+      let alert = document.querySelector("#note-alert");
+      alert.innerHTML = "(" + (1000 - notecount) + "/1000)";
+      if(1000 - notecount < 0 ){
+        alert.style.color = "red";
+      }
+    },
     renderNotes:function(result){
-      // console.log(result);
-      // console.log(result.data, result.data.length);
       //取得 note-show-all
       let div_note_show_all = document.querySelector(".note-show-all");
       //清除包含內容
@@ -272,17 +279,35 @@ let views = {
           let div_note_show_list = document.createElement("div");
           div_note_show_list.className = "note-show-list";
 
-          //新增div note-time under note-show-list
+          //新增div note-time-box
+          let div_note_time_box = document.createElement("div");
+          div_note_time_box.className = "note-time-box";
+
+          //新增div note-time under note-time-box
           let div_note_time = document.createElement("div");
           div_note_time.className = "note-time";
           div_note_time.innerHTML = result.data[index].note_time;
+
+          //新增div note-time-current under note-time-box
+          let div_note_time_current = document.createElement("div");
+          div_note_time_current.className = "note-time-current";
+          div_note_time_current.innerHTML = result.data[index].note_current;
+
+          div_note_time_box.appendChild(div_note_time);
+          div_note_time_box.appendChild(div_note_time_current);
+
           // console.log(result.data[index].note_time);
           //新增div note-content under note-show-list
           let div_note_content = document.createElement("div");
           div_note_content.className = "note-content";
-          div_note_content.innerHTML = result.data[index].note;
+          div_note_content.innerHTML = "";
+          let lines = result.data[index].note.split("\n");
+          for(let line_index=0;line_index<lines.length;line_index++){
+            let line = "<p>" + lines[line_index] + "</p>";
+            div_note_content.innerHTML += line;
+          }
           // console.log(result.data[index].note);
-          div_note_show_list.appendChild(div_note_time);
+          div_note_show_list.appendChild(div_note_time_box);
           div_note_show_list.appendChild(div_note_content);
           div_note_show_all.appendChild(div_note_show_list);
         }
@@ -296,17 +321,34 @@ let views = {
       let div_note_show_list = document.createElement("div");
       div_note_show_list.className = "note-show-list";
 
+      //新增div note-time-box
+      let div_note_time_box = document.createElement("div");
+      div_note_time_box.className = "note-time-box";
+
       //新增div note-time under note-show-list
       let div_note_time = document.createElement("div");
       div_note_time.className = "note-time";
       div_note_time.innerHTML = result.data[0].note_time;
+
+      //新增div note-time-current under note-time-box
+      let div_note_time_current = document.createElement("div");
+      div_note_time_current.className = "note-time-current";
+      div_note_time_current.innerHTML = result.data[0].note_current;
+
+      div_note_time_box.appendChild(div_note_time);
+      div_note_time_box.appendChild(div_note_time_current);
       // console.log(result.data[index].note_time);
       //新增div note-content under note-show-list
       let div_note_content = document.createElement("div");
       div_note_content.className = "note-content";
-      div_note_content.innerHTML = result.data[0].note;
-      // console.log(result.data[index].note);
-      div_note_show_list.appendChild(div_note_time);
+      let lines = result.data[0].note.split("\n");
+      div_note_content.innerHTML = "";
+      for(let line_index=0;line_index<lines.length;line_index++){
+        let line = "<p>" + lines[line_index] + "</p>";
+        div_note_content.innerHTML += line;
+      }
+
+      div_note_show_list.appendChild(div_note_time_box);
       div_note_show_list.appendChild(div_note_content);
       div_note_show_all.insertBefore(div_note_show_list,div_note_show_all.childNodes[0]);
     }
@@ -602,6 +644,16 @@ let views = {
       let video_playLength = video.currentTime;
       let playRatio = (video_playLength/video_Length *100).toFixed(2);
       video_ratio.innerHTML = playRatio + "%";
+
+      let note_video_current = document.querySelector("#note-video-current");
+      let hour,min,sec;
+
+      hour = (parseInt(video_playLength / 3600)).toString().padStart(2,"0");
+      min = (parseInt(video_playLength / 60)).toString().padStart(2,"0");
+      sec = parseInt((video_playLength - min*60 - hour*3600)).toString().padStart(2,"0");
+      // console.log(video_playLength,hour,min,sec);
+      note_video_current.innerHTML = "at "+hour+":"+min+":"+sec;
+
     });
   },
   fadeout:function(elem){
@@ -620,10 +672,30 @@ let views = {
     },10);
   },
 
+
 };
 
 let controllers = {
   click:{
+    clickNoteCurrent:function(){
+      let note_current_list = document.querySelectorAll(".note-time-current");
+      for(let index=0;index<note_current_list.length;index++){
+        let note_current = note_current_list[index];
+        note_current.addEventListener("click",()=>{
+          let video_currents = note_current.innerHTML.split(":");
+          let hour = parseInt(video_currents[0])*3600;
+          let min = parseInt(video_currents[1])*60;
+          let sec = parseInt(video_currents[2]);
+          let video_current = hour + min + sec;
+
+          console.log(hour,min,sec,video_current);
+          //設定影片時間
+
+          let video = document.querySelector(".lecture-video");
+          video.currentTime = video_current;
+        })
+      }
+    },
     chooseLecture:function(){
       let result = models.lectures.allLecture_data;
       //取得所有li elems
@@ -709,11 +781,18 @@ let controllers = {
         let save_btn = document.querySelector("#note-save-btn");
         save_btn.addEventListener("click",()=>{
           let note = document.querySelector("#note-input-content").value;
-          if(note.toString().length != 0){
-            models.notes.postNotes(note).then((result)=>{
+          // console.log(note);
+          if(note.toString().length != 0 && note.toString().length <= 1000){
+            let time_now = new Date();
+            let note_record_time = time_now.getFullYear()+"/"+(time_now.getMonth()+1).toString().padStart(2,"0")+"/"+(time_now.getDate()).toString().padStart(2,"0")+ " "+(time_now.getHours()).toString().padStart(2,"0")+":"+(time_now.getMinutes()).toString().padStart(2,"0")+":"+(time_now.getSeconds()).toString().padStart(2,"0");
+            let note_video_current = document.querySelector("#note-video-current").innerHTML.substr(3);
+            // console.log(note_record_time);
+            models.notes.postNotes(note,note_record_time,note_video_current).then((result)=>{
+              // console.log(result);
               // console.log("models back:" + JSON.stringify(result));
               document.querySelector("#note-input-content").value = "";
               views.notes.renderupdateNote(result);
+              controllers.click.clickNoteCurrent();
               resolve(result);
             })
           }
@@ -722,10 +801,23 @@ let controllers = {
     }
   },
   notes:{
+    noteIsOverload:false,
+    notesAlert:function(){
+      let notes = document.querySelector("#note-input-content");
+      notes.addEventListener("input",()=>{
+        let notes_count = notes.value.length;
+        if(notes_count >= 1000){
+          controllers.notes.noteIsOverload = true;
+        }
+        views.notes.renderNotesCount(notes_count);
+      })
+
+    },
     getNotes:function(){
       return new Promise((resolve, reject)=>{
         models.notes.getNotes().then((result)=>{
           views.notes.renderNotes(result);
+          controllers.click.clickNoteCurrent();
         });
       })
     }
@@ -852,3 +944,6 @@ let controllers = {
 };
 controllers.init();
 views.videoTimer();
+controllers.notes.notesAlert();
+// controllers.click.clickNoteCurrent();
+// views.notes.renderNoteCurrentTime();

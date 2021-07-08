@@ -492,6 +492,10 @@ li:hover {
   color: white;
 }
 
+#note-video-current {
+  flex:auto;
+}
+
 .note-show-list {
   margin: 10px 0 ;
   font-family: Noto Sans TC;
@@ -504,7 +508,34 @@ li:hover {
 .note-content {
   font-weight: normal;
 }
+.note-time-box {
+  display: flex;
+}
+.note-time {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 20px;
+}
 
+.note-time-current {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 0.8rem;
+  color: #FFFFFF;
+  border: 1px solid;
+  border-radius: 999rem;
+  background-color: #448899;
+  width: 85px;
+}
+.note-time-current:hover {
+  cursor: pointer;
+}
 
 footer {
   display: flex;

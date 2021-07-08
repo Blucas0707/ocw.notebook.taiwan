@@ -11,8 +11,10 @@ let api_notes = {
       let course_id = data.course_id.toString();
       let lecture_id = data.lecture_id.toString();
       let note = data.note.toString();
+      let note_record_time = data.note_record_time.toString();
+      let note_video_current = data.note_video_current.toString();
       // save in sql
-      SQL.Note.postNotes(course_id,lecture_id,user_id,note).then((result)=>{
+      SQL.Note.postNotes(course_id,lecture_id,user_id,note,note_video_current,note_record_time).then((result)=>{
         // console.log("result: " + result);
         // resolve(JSON.stringify(result));
         resolve(result);

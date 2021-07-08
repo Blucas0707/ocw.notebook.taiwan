@@ -555,28 +555,40 @@ let controllers = {
   },
   courses:{
     chooseCategory:function(){
-      let category_list = ["","文史哲藝","法社管理","理工電資","生農醫衛","百家學堂"];
-      let course_category_list = document.querySelectorAll(".course-category");
-      for(let index=0;index<course_category_list.length;index++){
-        let course_category = course_category_list[index];
-        course_category.addEventListener("click",()=>{
-          //清空上次選的顏色
-          let last_index = category_list.indexOf(models.courses.allCourse_category);
-          course_category_list[last_index].style.backgroundColor = "white";
-          //改變這次所選的背景色
-          course_category.style.backgroundColor = "#ffffe6";
-          course_category.style.color = "black";
-
-          models.courses.allCourse_category = category_list[index];
-          models.courses.allCourse_nextPages[0] = 0;
-          models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
-            //clear sub elem
-            let allCourse_div = document.querySelector("#allCourse");
-            views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
-            views.courses.renderAllCourses_list(result,university);
-          })
-        });
-      }
+      let course_category = document.querySelector("#learning-category");
+      course_category.addEventListener("change",()=>{
+        models.courses.allCourse_category = course_category.value;
+        models.courses.allCourse_nextPages[0] = 0;
+        // console.log(models.learnings.allLearning_category,models.learnings.allLearning_nextPage);
+        models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
+          //clear sub elem
+          let allCourse_div = document.querySelector("#allCourse");
+          views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
+          views.courses.renderAllCourses_list(result,university);
+        })
+      })
+      // let category_list = ["","文史哲藝","法社管理","理工電資","生農醫衛","百家學堂"];
+      // let course_category_list = document.querySelectorAll(".course-category");
+      // for(let index=0;index<course_category_list.length;index++){
+      //   let course_category = course_category_list[index];
+      //   course_category.addEventListener("click",()=>{
+      //     //清空上次選的顏色
+      //     let last_index = category_list.indexOf(models.courses.allCourse_category);
+      //     course_category_list[last_index].style.backgroundColor = "white";
+      //     //改變這次所選的背景色
+      //     course_category.style.backgroundColor = "#ffffe6";
+      //     course_category.style.color = "black";
+      //
+      //     models.courses.allCourse_category = category_list[index];
+      //     models.courses.allCourse_nextPages[0] = 0;
+      //     models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
+      //       //clear sub elem
+      //       let allCourse_div = document.querySelector("#allCourse");
+      //       views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
+      //       views.courses.renderAllCourses_list(result,university);
+      //     })
+      //   });
+      // }
     },
     allCourse:function(){
       models.courses.getAllCourse().then(()=>{
