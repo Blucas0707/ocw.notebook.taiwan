@@ -270,9 +270,10 @@ form.search input {
 
 .course-content-main {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   max-width: 1200px;
   flex-wrap: wrap;
+  margin-left: 20px;
   /* align-items: center; */
   /* overflow: scroll; */
 }
