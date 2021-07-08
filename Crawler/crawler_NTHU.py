@@ -172,7 +172,7 @@ class NTHU(getData):
 
         #定義lecture lecture data type
         data_dict = {
-            "lecture_total": "",
+            "lecture_total": 0,
             "lecture": []
         }
         lecture_actual_id = 1

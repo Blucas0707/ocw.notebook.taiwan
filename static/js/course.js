@@ -197,7 +197,7 @@ let models = {
             models.user_id = JSON.parse(result).data.id;
           }
           else{
-            models.user.isLogin = false;
+            models.user.isLogin = null;
           }
           resolve(true);
         });
@@ -735,6 +735,14 @@ let controllers = {
       });
     },
   },
+  actions:{
+    clickMyLearning:function(){
+      let mylearning_btn = document.querySelector("#mylearning-btn");
+      mylearning_btn.addEventListener("click",()=>{
+        window.location.assign("/mylearning");
+      });
+    },
+  },
   member: {
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
@@ -794,7 +802,7 @@ let controllers = {
       controllers.member.register();
       controllers.member.login();
       controllers.member.logout();
-      // models.lectures.getAllLecture_status();
+      controllers.actions.clickMyLearning();
     });
     //display lectures
     controllers.lectures.listLectures();

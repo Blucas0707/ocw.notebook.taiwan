@@ -123,7 +123,7 @@ form.search input {
   margin: 20px auto;
 }
 
-#learning-status {
+#learning-status, #learning-category {
   height: 40px;
   padding: 0 20px;
   font-family: Noto Sans TC;
@@ -235,7 +235,7 @@ form.search input {
 
 .course-title {
   margin: 15px 25px;
-  display: flex;
+  display: none;
   align-items: center;
   font-family: Noto Sans TC;
   font-style: normal;
@@ -247,38 +247,109 @@ form.search input {
 .course-content {
   display: flex;
   justify-content: center;
+  min-height: 350px;
+  margin:20px 0;
+  /* align-items: center; */
+  /* overflow: scroll; */
 }
 
-.course-class {
-  width: 300px;
-  height: 300px;
+.course-content-loading {
+  display: none;
 }
+
+.course-loading-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-content-main {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  /* overflow: scroll; */
+}
+.course-class {
+  /* display: none; */
+  /* width: 300px;
+  height: 300px; */
+  margin: 0 15px 15px;
+}
+.course-class:hover {
+  cursor: pointer;
+  /* border: 1px solid blue;
+  border-radius: 10px; */
+}
+
 
 .course-class-cover {
   display: flex;
   justify-content: center;
+  margin:auto;
+  width: 245px;
+  height: 245px;
 }
 
 .course-class-cover img {
   border-radius: 5px;
-  width: 250px;
-  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  /* height: 100%; */
 }
 
 .course-class-name, .course-class-teacher, .course-class-description {
-  padding-left: 25px;
+  /* padding-left: 25px; */
   width: 250px;
   margin: 5px 0;
   font-family: Noto Sans TC;
   font-style: normal;
   /* font-weight: bold; */
-  font-size: 16px;
-  line-height: 20px;
-  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+.course-class-name {
+  width: 245px;
+  height: 50px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.1rem;
+  /* line-height: 20px; */
+}
+
+.course-class-teacher {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 0.8rem;
+  /* line-height: 20px; */
+  color: grey;
 }
 
 .course-class-description {
+  overflow: hidden;
   height: 20px;
+}
+
+.course-class-status-bar {
+  margin: auto;
+  background-color: lightgrey;
+  /* width: 90%; */
+  height: 2px;
+}
+.course-class-status-subbar {
+  border: 1px solid #438899;
+  background-color: #438899;
+}
+
+.course-class-status {
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: grey;
 }
 
 .next-arrow img, .previous-arrow img {

@@ -363,7 +363,7 @@ form.search input {
   /* display: none; */
   /* width: 300px;
   height: 300px; */
-  margin:5px;
+  margin: 0 15px;
 }
 .course-class:hover {
   cursor: pointer;
@@ -388,7 +388,7 @@ form.search input {
 }
 
 .course-class-name, .course-class-teacher, .course-class-description {
-  padding-left: 25px;
+  /* padding-left: 25px; */
   width: 250px;
   margin: 5px 0;
   font-family: Noto Sans TC;
@@ -399,6 +399,8 @@ form.search input {
 }
 
 .course-class-name {
+  width: 245px;
+  height: 50px;
   font-family: Noto Sans TC;
   font-style: normal;
   font-weight: bold;

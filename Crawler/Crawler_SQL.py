@@ -245,187 +245,199 @@ class Crawler_SQLDB:
                     course_cover, course_teacher, course_description, course_link)
             print(f"Coures: {para[:7]}")
 
-            #check course existed in SQL
-            courseisExisted = self.SQL_course_exist(para) #False = not existed, latest course_id = existed
-            if courseisExisted != False:
-                #check course if totally repeated
-                # get last course_id => new_para
-                print(f"course_id: {course_id}, courseisExisted: {courseisExisted}")
-                if int(course_id) >= int(courseisExisted):
-                    pass
+            course_lecture = course_info["course_lecture"]
+            if course_lecture["lecture_total"] in ["", 0]:  # lecture no video exist
+                lecture_total = 0
+                # 沒有相關影音 不存入SQL
+                print("沒有相關影音 不存入SQL")
+            else:
+                #check course existed in SQL
+                courseisExisted = self.SQL_course_exist(para) #False = not existed, latest course_id = existed
+                if courseisExisted != False:
+                    #check course if totally repeated
+                    # get last course_id => new_para
+                    print(f"course_id: {course_id}, courseisExisted: {courseisExisted}")
+                    if int(course_id) >= int(courseisExisted):
+                        pass
+                    else:
+                        #check lecture list
+                        # lectures
+                        course_lecture = course_info["course_lecture"]
+                        if course_lecture["lecture_total"] in ["",0]:  # lecture no video exist
+                            lecture_total = 0
+                            #沒有相關影音 不存入SQL
+                            print("沒有相關影音 不存入SQL")
+
+                        else:
+                            lecture_total = int(course_lecture["lecture_total"])
+                            lecture_infos = course_lecture["lecture"]
+                            # print(course_lecture,"\n", lecture_total)
+
+                            for lecture_index in range(lecture_total):
+                                lecture_info = lecture_infos[lecture_index]
+                                # print(f"lecture_info: {lecture_info} , {lecture_index}")
+                                lecture_id = course_id + str(lecture_info["lecture_id"]).zfill(3)
+                                lecture_name = lecture_info["lecture_name"]
+
+                                # lecture_videos: []
+                                lecture_videos = lecture_info["lecture_video"]
+                                lecture_video = ""
+                                if len(lecture_videos) == 0:
+                                    lecture_video = ""
+                                elif len(lecture_videos) == 1:
+                                    # NTU need to upload to S3
+                                    if "NTU" in filename:
+                                        web_upload_url = lecture_videos[0]
+                                        lecture_video = S3.upload(web_upload_url)
+                                    else:
+                                        lecture_video = lecture_videos[0]
+
+                                # lecture_notes: []
+                                lecture_notes = lecture_info["lecture_note"]
+                                lecture_note = ""
+                                if len(lecture_notes) == 0:
+                                    lecture_note = ""
+                                elif len(lecture_notes) == 1:
+                                    # NTU need to upload to S3
+                                    if "NTU" in filename:
+                                        web_upload_url = lecture_notes[0]
+                                        lecture_note = S3.upload(web_upload_url)
+                                    else:
+                                        lecture_note = lecture_notes[0]
+                                elif len(lecture_notes) > 1:
+                                    for note_index in range(len(lecture_notes)):
+                                        # NTU need to upload to S3
+                                        if "NTU" in filename:
+                                            web_upload_url = lecture_notes[note_index]
+                                            temp_lecture_note = S3.upload(web_upload_url)
+                                            lecture_note += (temp_lecture_note + "||")
+                                        else:
+                                            lecture_note += (lecture_notes[note_index] + "||")
+
+
+                                # lecture_references: []
+                                lecture_references = lecture_info["lecture_reference"]
+                                lecture_reference = ""
+                                if len(lecture_references) == 0:
+                                    lecture_reference = ""
+                                elif len(lecture_references) == 1:
+                                    #NTU need to upload to S3
+                                    if "NTU" in filename:
+                                        web_upload_url = lecture_references[0]
+                                        lecture_reference = S3.upload(web_upload_url)
+                                    else:
+                                        lecture_reference = lecture_references[0]
+                                elif len(lecture_references) > 1:
+                                    for reference_index in range(len(lecture_references)):
+                                        # NTU need to upload to S3
+                                        if "NTU" in filename:
+                                            web_upload_url = lecture_references[reference_index]
+                                            temp_lecture_reference = S3.upload(web_upload_url)
+                                            lecture_reference += (temp_lecture_reference + "||")
+                                        else:
+                                            lecture_reference += (lecture_references[reference_index] + "||")
+
+                                # save to SQL lectures
+                                para = (lecture_id, course_id, lecture_name, lecture_video, lecture_note, lecture_reference)
+                                print(f"Lecture: {para[:3]}")
+                                #check lecture is existed
+                                lectureisExisted = self.SQL_lecture_exist((para[0],)) #search lecture_id
+                                if lectureisExisted:
+                                    pass
+                                else:
+                                    lectures_update_status = self.SQL_update_lectures(para=para)
+                                    if not lectures_update_status:
+                                        return
                 else:
-                    #check lecture list
+                    #get last course_id => new_para
+                    new_para = self.SQL_get_last_course_id(para)
+                    courses_update_status = self.SQL_update_course_list(para=new_para)
+                    if not courses_update_status:
+                        return
+
                     # lectures
                     course_lecture = course_info["course_lecture"]
-                    if course_lecture["lecture_total"] == "":  # lecture no video exist
+                    if course_lecture["lecture_total"] in ["",0]:  # lecture no video exist
                         lecture_total = 0
+                        # 沒有相關影音 不存入SQL
+                        print("沒有相關影音 不存入SQL")
+
                     else:
                         lecture_total = int(course_lecture["lecture_total"])
-                    lecture_infos = course_lecture["lecture"]
-                    # print(course_lecture,"\n", lecture_total)
+                        lecture_infos = course_lecture["lecture"]
+                        # print(course_lecture,"\n", lecture_total)
 
-                    for lecture_index in range(lecture_total):
-                        lecture_info = lecture_infos[lecture_index]
-                        # print(f"lecture_info: {lecture_info} , {lecture_index}")
-                        lecture_id = course_id + str(lecture_info["lecture_id"]).zfill(3)
-                        lecture_name = lecture_info["lecture_name"]
+                        for lecture_index in range(lecture_total):
+                            lecture_info = lecture_infos[lecture_index]
+                            # print(f"lecture_info: {lecture_info} , {lecture_index}")
+                            lecture_id = str(course_id) + str(lecture_info["lecture_id"]).zfill(3)
+                            lecture_name = lecture_info["lecture_name"]
 
-                        # lecture_videos: []
-                        lecture_videos = lecture_info["lecture_video"]
-                        lecture_video = ""
-                        if len(lecture_videos) == 0:
+                            # lecture_videos: []
+                            lecture_videos = lecture_info["lecture_video"]
                             lecture_video = ""
-                        elif len(lecture_videos) == 1:
-                            # NTU need to upload to S3
-                            if "NTU" in filename:
-                                web_upload_url = lecture_videos[0]
-                                lecture_video = S3.upload(web_upload_url)
-                            else:
-                                lecture_video = lecture_videos[0]
+                            if len(lecture_videos) == 0:
+                                lecture_video = ""
+                            elif len(lecture_videos) == 1:
+                                # NTU need to upload to S3
+                                if "NTU" in filename:
+                                    web_upload_url = lecture_videos[0]
+                                    lecture_video = S3.upload(web_upload_url)
+                                else:
+                                    lecture_video = lecture_videos[0]
 
-                        # lecture_notes: []
-                        lecture_notes = lecture_info["lecture_note"]
-                        lecture_note = ""
-                        if len(lecture_notes) == 0:
+                            # lecture_notes: []
+                            lecture_notes = lecture_info["lecture_note"]
                             lecture_note = ""
-                        elif len(lecture_notes) == 1:
-                            # NTU need to upload to S3
-                            if "NTU" in filename:
-                                web_upload_url = lecture_notes[0]
-                                lecture_note = S3.upload(web_upload_url)
-                            else:
-                                lecture_note = lecture_notes[0]
-                        elif len(lecture_notes) > 1:
-                            for note_index in range(len(lecture_notes)):
+                            if len(lecture_notes) == 0:
+                                lecture_note = ""
+                            elif len(lecture_notes) == 1:
                                 # NTU need to upload to S3
                                 if "NTU" in filename:
-                                    web_upload_url = lecture_notes[note_index]
-                                    temp_lecture_note = S3.upload(web_upload_url)
-                                    lecture_note += (temp_lecture_note + "||")
+                                    web_upload_url = lecture_notes[0]
+                                    lecture_note = S3.upload(web_upload_url)
                                 else:
-                                    lecture_note += (lecture_notes[note_index] + "||")
+                                    lecture_note = lecture_notes[0]
+                            elif len(lecture_notes) > 1:
+                                for note_index in range(len(lecture_notes)):
+                                    # NTU need to upload to S3
+                                    if "NTU" in filename:
+                                        web_upload_url = lecture_notes[note_index]
+                                        temp_lecture_note = S3.upload(web_upload_url)
+                                        lecture_note += (temp_lecture_note + "||")
+                                    else:
+                                        lecture_note += (lecture_notes[note_index] + "||")
 
-
-                        # lecture_references: []
-                        lecture_references = lecture_info["lecture_reference"]
-                        lecture_reference = ""
-                        if len(lecture_references) == 0:
+                            # lecture_references: []
+                            lecture_references = lecture_info["lecture_reference"]
                             lecture_reference = ""
-                        elif len(lecture_references) == 1:
-                            #NTU need to upload to S3
-                            if "NTU" in filename:
-                                web_upload_url = lecture_references[0]
-                                lecture_reference = S3.upload(web_upload_url)
-                            else:
-                                lecture_reference = lecture_references[0]
-                        elif len(lecture_references) > 1:
-                            for reference_index in range(len(lecture_references)):
+                            if len(lecture_references) == 0:
+                                lecture_reference = ""
+                            elif len(lecture_references) == 1:
                                 # NTU need to upload to S3
                                 if "NTU" in filename:
-                                    web_upload_url = lecture_references[reference_index]
-                                    temp_lecture_reference = S3.upload(web_upload_url)
-                                    lecture_reference += (temp_lecture_reference + "||")
+                                    web_upload_url = lecture_references[0]
+                                    lecture_reference = S3.upload(web_upload_url)
                                 else:
-                                    lecture_reference += (lecture_references[reference_index] + "||")
+                                    lecture_reference = lecture_references[0]
+                            elif len(lecture_references) > 1:
+                                for reference_index in range(len(lecture_references)):
+                                    # NTU need to upload to S3
+                                    if "NTU" in filename:
+                                        web_upload_url = lecture_references[reference_index]
+                                        temp_lecture_reference = S3.upload(web_upload_url)
+                                        lecture_reference += (temp_lecture_reference + "||")
+                                    else:
+                                        lecture_reference += (lecture_references[reference_index] + "||")
 
-                        # save to SQL lectures
-                        para = (lecture_id, course_id, lecture_name, lecture_video, lecture_note, lecture_reference)
-                        print(f"Lecture: {para[:3]}")
-                        #check lecture is existed
-                        lectureisExisted = self.SQL_lecture_exist((para[0],)) #search lecture_id
-                        if lectureisExisted:
-                            pass
-                        else:
+                            # save to SQL lectures
+                            course_id = new_para[0]
+                            para = (lecture_id, course_id, lecture_name, lecture_video, lecture_note, lecture_reference)
+                            # print(para)
                             lectures_update_status = self.SQL_update_lectures(para=para)
+
                             if not lectures_update_status:
                                 return
-            else:
-                #get last course_id => new_para
-                new_para = self.SQL_get_last_course_id(para)
-                courses_update_status = self.SQL_update_course_list(para=new_para)
-                if not courses_update_status:
-                    return
-
-                # lectures
-                course_lecture = course_info["course_lecture"]
-                if course_lecture["lecture_total"] == "":  # lecture no video exist
-                    lecture_total = 0
-                else:
-                    lecture_total = int(course_lecture["lecture_total"])
-                lecture_infos = course_lecture["lecture"]
-                # print(course_lecture,"\n", lecture_total)
-
-                for lecture_index in range(lecture_total):
-                    lecture_info = lecture_infos[lecture_index]
-                    # print(f"lecture_info: {lecture_info} , {lecture_index}")
-                    lecture_id = str(course_id) + str(lecture_info["lecture_id"]).zfill(3)
-                    lecture_name = lecture_info["lecture_name"]
-
-                    # lecture_videos: []
-                    lecture_videos = lecture_info["lecture_video"]
-                    lecture_video = ""
-                    if len(lecture_videos) == 0:
-                        lecture_video = ""
-                    elif len(lecture_videos) == 1:
-                        # NTU need to upload to S3
-                        if "NTU" in filename:
-                            web_upload_url = lecture_videos[0]
-                            lecture_video = S3.upload(web_upload_url)
-                        else:
-                            lecture_video = lecture_videos[0]
-
-                    # lecture_notes: []
-                    lecture_notes = lecture_info["lecture_note"]
-                    lecture_note = ""
-                    if len(lecture_notes) == 0:
-                        lecture_note = ""
-                    elif len(lecture_notes) == 1:
-                        # NTU need to upload to S3
-                        if "NTU" in filename:
-                            web_upload_url = lecture_notes[0]
-                            lecture_note = S3.upload(web_upload_url)
-                        else:
-                            lecture_note = lecture_notes[0]
-                    elif len(lecture_notes) > 1:
-                        for note_index in range(len(lecture_notes)):
-                            # NTU need to upload to S3
-                            if "NTU" in filename:
-                                web_upload_url = lecture_notes[note_index]
-                                temp_lecture_note = S3.upload(web_upload_url)
-                                lecture_note += (temp_lecture_note + "||")
-                            else:
-                                lecture_note += (lecture_notes[note_index] + "||")
-
-                    # lecture_references: []
-                    lecture_references = lecture_info["lecture_reference"]
-                    lecture_reference = ""
-                    if len(lecture_references) == 0:
-                        lecture_reference = ""
-                    elif len(lecture_references) == 1:
-                        # NTU need to upload to S3
-                        if "NTU" in filename:
-                            web_upload_url = lecture_references[0]
-                            lecture_reference = S3.upload(web_upload_url)
-                        else:
-                            lecture_reference = lecture_references[0]
-                    elif len(lecture_references) > 1:
-                        for reference_index in range(len(lecture_references)):
-                            # NTU need to upload to S3
-                            if "NTU" in filename:
-                                web_upload_url = lecture_references[reference_index]
-                                temp_lecture_reference = S3.upload(web_upload_url)
-                                lecture_reference += (temp_lecture_reference + "||")
-                            else:
-                                lecture_reference += (lecture_references[reference_index] + "||")
-
-                    # save to SQL lectures
-                    course_id = new_para[0]
-                    para = (lecture_id, course_id, lecture_name, lecture_video, lecture_note, lecture_reference)
-                    # print(para)
-                    lectures_update_status = self.SQL_update_lectures(para=para)
-
-                    if not lectures_update_status:
-                        return
                 # test
                 # break
 

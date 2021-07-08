@@ -37,7 +37,7 @@ let models = {
         }
 
         let url = "/api/courses" + "?page=" + page + "&category=" + category + "&university=" + university;
-        console.log(url);
+        // console.log(url);
         return fetch(url).then((response) => {
           return response.json();
         }).then((result) => {
@@ -253,6 +253,11 @@ let views = {
         let div_course_class_name = document.createElement("div");
         div_course_class_name.className = "course-class-name";
         div_course_class_name.innerHTML = course_name;
+        if(course_name.length > 20 && course_name.length < 30){
+          div_course_class_name.style.fontSize = "medium";
+        }else if (course_name.length > 30) {
+          div_course_class_name.style.fontSize = "small";
+        }
         //course_teacher
         let div_course_class_teacher = document.createElement("div");
         div_course_class_teacher.className = "course-class-teacher";
@@ -457,6 +462,12 @@ let views = {
 
 let controllers = {
   actions:{
+    clickMyLearning:function(){
+      let mylearning_btn = document.querySelector("#mylearning-btn");
+      mylearning_btn.addEventListener("click",()=>{
+        window.location.assign("/mylearning");
+      });
+    },
     clickNext_allCourse_list:function(){
       return new Promise((resolve,reject)=>{
         let next_btns = document.querySelectorAll(".next-arrow");
@@ -604,6 +615,7 @@ let controllers = {
       controllers.member.register();
       controllers.member.login();
       controllers.member.logout();
+      controllers.actions.clickMyLearning();
     });
     // 顯示課程：all /ntu /nthu /nytu
     controllers.courses.allCourse_list();

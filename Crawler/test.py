@@ -93,3 +93,40 @@ import datetime
 # print(soup)
 # div = soup.find("div",{"class":"ytp-cued-thumbnail-overlay-image"})
 # print(div)
+
+import subprocess
+
+# def get_length(filename):
+#     result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
+#                              "format=duration", "-of",
+#                              "default=noprint_wrappers=1:nokey=1", filename],
+#         stdout=subprocess.PIPE,
+#         stderr=subprocess.STDOUT)
+#     return float(result.stdout)
+#
+filename = "https://ocwvideo.nctu.edu.tw/pub/mp4/fco002_mp4/fco002_010320.mp4"
+# print(get_length(filename))
+
+# from moviepy.editor import VideoFileClip
+# clip = VideoFileClip(filename)
+# print( clip.duration )
+# import cv2
+# cap = cv2.VideoCapture(filename)
+# # file_path是文件的绝对路径，防止路径中含有中文时报错，需要解码
+# if cap.isOpened():# 当成功打开视频时cap.isOpened()返回True,否则返回False
+#     # get方法参数按顺序对应下表（从0开始编号)
+#     rate = cap.get(5)   # 帧速率
+#     FrameNumber = cap.get(7)  # 视频文件的帧数
+#     duration = FrameNumber/rate/60  # 帧速率/视频总帧数 是时间，除以60之后单位是分钟
+#     print(duration)
+
+def with_opencv(filename):
+    import cv2
+    video = cv2.VideoCapture(filename)
+    # duration = video.get(cv2.CAP_PROP_POS_MSEC)
+    frame_count = video.get(cv2.CAP_PROP_FRAME_COUNT)
+    frame_rate = video.get(cv2.CAP_PROP_FPS)
+    duration = frame_count/frame_rate
+    image = video.get(cv2.CAP_IMAGES )
+    return frame_count,frame_rate,duration,image
+print(with_opencv(filename))

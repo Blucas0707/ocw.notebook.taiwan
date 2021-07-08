@@ -8,6 +8,7 @@ const api_courses = require("./Models/courses/API_COURSES");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 const api_notes = require("./Models/notes/API_NOTES");
 const api_learnings = require("./Models/learnings/API_LEARNINGS");
+const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -122,7 +123,7 @@ app.get("/api/learning/:course_id/:lecture_id", function(req, res){
   }
 });
 
-//取得全部課程影片進度
+//取得使用者學習進度
 app.get("/api/learnings/:course_id", function(req, res){
   // console.log("getAllLecture_status start");
   let course_id = req.params.course_id;
@@ -140,6 +141,21 @@ app.get("/api/learnings/:course_id", function(req, res){
 
   }
 });
+
+//取得全部課程影片進度
+app.get("/api/mylearnings", function(req, res){
+  let user_id = req.session.user_id;
+  let page = (req.query.page) ? (req.query.page):("0");
+  let learning_status = (req.query.status) ? (req.query.status):("0");
+  let learning_category = (req.query.category) ? (req.query.category):("%");
+  console.log("mylearnings:" + user_id,page,learning_status,learning_category);
+  api_mylearnings.getMyLearnings(user_id,page,learning_status,learning_category).then((result)=>{
+    console.log("app: " + result);
+    res.send(200,result);
+  });
+
+});
+
 
 
 

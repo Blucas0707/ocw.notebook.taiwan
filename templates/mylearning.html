@@ -46,54 +46,35 @@
         <div class="status-container-box">
           <select name="learning-status" id="learning-status">
             <option value="" disabled selected>學習狀態</option>
-            <option value="completed">已完成</option>
-            <option value="incompleted">未完成</option>
+            <option value="completed">正在進行</option>
+            <option value="incompleted">尚未開始</option>
+          </select>
+          <select name="learning-category" id="learning-category">
+            <option value="" disabled selected>課程分類</option>
+            <option value="1">文史哲藝</option>
+            <option value="2">法社管理</option>
+            <option value="3">理工電資</option>
+            <option value="4">生農醫衛</option>
+            <option value="5">百家學堂</option>
           </select>
         </div>
       </div>
       <div class="static-course-box">
         <div class="static-container">
           <div class="static-container-box">
-            <div class="static-box">學習總時數：<span class="static-hours">100.2</span></div>
-            <div class="static-box">學習總天數：<span class="static-hours">31</span></div>
-            <div class="static-box">課程完成數：<span class="static-hours">3</span></div>
+            <div class="static-box">學習總時數(HR)：<span class="static-hours">100.2</span></div>
+            <!-- <div class="static-box">學習總天數：<span class="static-hours">31</span></div> -->
+            <div class="static-box">課程完成數：<span class="static-count"></span></div>
           </div>
         </div>
         <div class="course-gallery" id = "course-gallery-contain">
           <div class="course-all course-border">
             <div class="course-title"></div>
             <div class="course-content">
-              <div class="course-class">
-                <div class="course-class-cover">
-                  <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
-                </div>
-                <div class="course-class-name">中國傳統生命禮俗</div>
-                <div class="course-class-teacher">葉國良</div>
-                <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，</div>
+              <div class="course-content-loading">
+                <img class="course-loading-img" src="/img/loading.gif" alt="">
               </div>
-              <div class="course-class">
-                <div class="course-class-cover">
-                  <img src="https://ocw.nthu.edu.tw/ocw/upload/teacher/83/83.png" alt="Error">
-                </div>
-                <div class="course-class-name">離散數學</div>
-                <div class="course-class-teacher">趙啟超</div>
-                <div class="course-class-description">Thiscoursegivesanintroductiontotheessentialsofdiscreteandcombinatorialmathematics.</div>
-              </div>
-              <div class="course-class">
-                <div class="course-class-cover">
-                  <img src="https://i.ytimg.com/vi/NV5jYlyEbXU/hqdefault.jpg" alt="Error">
-                </div>
-                <div class="course-class-name">華語(一)  Mandarin I</div>
-                <div class="course-class-teacher">華語中心 范瀞月老師</div>
-                <div class="course-class-description">本課程由國立交通大學華語中心提供。This course is designed for students to acquire Mandarin and Chinese culture. </div>
-              </div>
-              <div class="course-class">
-                <div class="course-class-cover">
-                  <img src="http://ocw.aca.ntu.edu.tw/ntu-ocw/files/110px/099S101.jpg" alt="Error">
-                </div>
-                <div class="course-class-name">中國傳統生命禮俗</div>
-                <div class="course-class-teacher">葉國良</div>
-                <div class="course-class-description">中國生命禮俗，有其悠久之傳統，從可考的西周時期傳承到現代，</div>
+              <div class="course-content-main" id="allCourse">
               </div>
             </div>
           </div>

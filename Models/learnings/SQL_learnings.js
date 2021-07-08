@@ -25,12 +25,19 @@ let SQL = {
         let para = [course_id,user_id];
         SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
           // console.log("data_inSQL 1:" + rows[0]);
+
+          //判斷課程是否完成
+          let lecture_status_count = 0;
+
           if(rows.length == 0){ //SQL 沒有資料，user 沒上過
             for(let index=0;index<lectures.length;index++){
               let lecture_id = lectures[index].lecture_id;
               // console.log("lecture_id: " + lecture_id);
               let lecture_video_current = lectures[index].lecture_video_current;
               let lecture_status = lectures[index].lecture_status;
+              if(lecture_status==1){
+                lecture_status_count += 1;
+              }
               sql_statement = "insert into learnings (lecture_video_current,lecture_status,user_id,course_id,lecture_id) values (?,?,?,?,?)"
               para = [lecture_video_current,lecture_status,user_id,course_id,lecture_id];
               SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
@@ -47,6 +54,9 @@ let SQL = {
               // console.log("lecture_id: " + lecture_id);
               let lecture_video_current = lectures[index].lecture_video_current;
               let lecture_status = lectures[index].lecture_status;
+              if(lecture_status==1){
+                lecture_status_count += 1;
+              }
               //video觀看時間 > video time in SQL => update
               if(lecture_video_current > rows[index].lecture_video_current){
                 sql_statement = "update learnings set lecture_video_current = ? ,lecture_status = ? where user_id = ? and course_id = ? and lecture_id = ?"
@@ -59,6 +69,21 @@ let SQL = {
               }
             }
           }
+          //判斷課程是否完成 => 存到course_status table
+          let course_status = Math.round(lecture_status_count/lectures.length * 100); //完成百分比
+          if(rows.length == 0){  //第一次存 insert
+            sql_statement = "insert into course_status (user_id,course_id,course_status) values (?,?,?)";
+            para = [user_id,course_id,course_status];
+          }else{
+            sql_statement = "update course_status set course_status = ? where user_id = ? and course_id = ?";
+            para = [course_status,user_id,course_id];
+          }
+          console.log(sql_statement,para);
+          SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
+            if(err){
+              console.log("update err: " + err);
+            }
+          })
         })
         let data = {
           "ok": true
