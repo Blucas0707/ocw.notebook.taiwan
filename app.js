@@ -7,8 +7,8 @@ const api_user = require("./Models/users/API_USER");
 const api_courses = require("./Models/courses/API_COURSES");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 const api_notes = require("./Models/notes/API_NOTES");
-const api_learnings = require("./Models/learnings/API_learnings");
-const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
+const api_learnings = require("./Models/learnings/API_LEARNINGS");
+const api_mylearnings = require("./Models/mylearnings/API_MYLEARNINGS");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
