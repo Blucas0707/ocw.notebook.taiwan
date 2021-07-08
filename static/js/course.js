@@ -292,7 +292,7 @@ let views = {
           let div_note_time_current = document.createElement("div");
           div_note_time_current.className = "note-time-current";
           div_note_time_current.innerHTML = result.data[index].note_current;
-
+          console.log(div_note_time_current.innerHTML);
           div_note_time_box.appendChild(div_note_time);
           div_note_time_box.appendChild(div_note_time_current);
 
@@ -649,7 +649,7 @@ let views = {
       let hour,min,sec;
 
       hour = (parseInt(video_playLength / 3600)).toString().padStart(2,"0");
-      min = (parseInt(video_playLength / 60)).toString().padStart(2,"0");
+      min = (parseInt((video_playLength - hour*3600) / 60)).toString().padStart(2,"0");
       sec = parseInt((video_playLength - min*60 - hour*3600)).toString().padStart(2,"0");
       // console.log(video_playLength,hour,min,sec);
       note_video_current.innerHTML = "at "+hour+":"+min+":"+sec;
@@ -786,7 +786,7 @@ let controllers = {
             let time_now = new Date();
             let note_record_time = time_now.getFullYear()+"/"+(time_now.getMonth()+1).toString().padStart(2,"0")+"/"+(time_now.getDate()).toString().padStart(2,"0")+ " "+(time_now.getHours()).toString().padStart(2,"0")+":"+(time_now.getMinutes()).toString().padStart(2,"0")+":"+(time_now.getSeconds()).toString().padStart(2,"0");
             let note_video_current = document.querySelector("#note-video-current").innerHTML.substr(3);
-            // console.log(note_record_time);
+            // console.log(note_video_current);
             models.notes.postNotes(note,note_record_time,note_video_current).then((result)=>{
               // console.log(result);
               // console.log("models back:" + JSON.stringify(result));
@@ -817,6 +817,7 @@ let controllers = {
       return new Promise((resolve, reject)=>{
         models.notes.getNotes().then((result)=>{
           views.notes.renderNotes(result);
+          console.log(result);
           controllers.click.clickNoteCurrent();
         });
       })
