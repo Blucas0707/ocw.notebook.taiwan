@@ -60,7 +60,7 @@ let models = {
             models.courses.allCourse_nextPages[3] = result.nextPage;
           }
           // console.log(models.courses.allCourse_data);
-          console.log(result);
+          // console.log(result);
           resolve([result,university]);
         });
       });
@@ -478,7 +478,11 @@ let controllers = {
           let allCourse_university = allCourse_university_list[index];
           next_btn.addEventListener("click",()=>{
             models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
-              // console.log(models.courses.allCourse_data);
+              //data < 4 => 最後一頁,隱藏next btn
+              if(models.courses.allCourse_datalist[index].data.length < 4){
+                next_btn.style.display = "none";
+              }
+
               if(models.courses.allCourse_nextPages[index] != null){
                 //最後not null page 存到temp
                 models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
@@ -510,12 +514,19 @@ let controllers = {
           let previous_btn = previous_btns[index];
           let allCourse_university = allCourse_university_list[index];
           previous_btn.addEventListener("click",()=>{
-            if(models.courses.allCourse_nextPages[index] == 0 || models.courses.allCourse_nextPages[index] == 1){
+
+            //第一頁 隱藏previous btn
+            if(models.courses.allCourse_nextPages[index]>1){
+              models.courses.allCourse_nextPages[index] -= 2;
+            }else{
+              models.courses.allCourse_nextPages[index] = 0;
+            }
+            if(models.courses.allCourse_nextPages[index] == 0){
               let previous_btns = document.querySelectorAll(".previous-arrow")[index].style.display = "none";
             }
-            models.courses.allCourse_nextPages[index] -= 2;
+
             models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
-              console.log(models.courses.allCourse_data,models.courses.allCourse_nextPages[index]);
+              // console.log(models.courses.allCourse_data,models.courses.allCourse_nextPages[index]);
               if(models.courses.allCourse_nextPages[index] != null){
                 //最後not null page 存到temp
                 models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
