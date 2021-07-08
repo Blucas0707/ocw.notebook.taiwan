@@ -343,8 +343,8 @@ form.search input {
 
 
 .course-content {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   min-height: 350px;
   /* align-items: center; */
   /* overflow: scroll; */
@@ -362,9 +362,10 @@ form.search input {
 
 .course-content-main {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   /* align-items: center; */
   overflow: scroll;
+  padding-left: 20px;
 }
 .course-class {
   /* display: none; */
