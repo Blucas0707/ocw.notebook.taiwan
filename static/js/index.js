@@ -285,9 +285,9 @@ let views = {
         else{
           div_allCourse = document.querySelector("#allCourse_NYTU");
         }
-        div_allCourse.style.opacity = 0;
+        // div_allCourse.style.opacity = 0;
         div_allCourse.appendChild(div_course_class);
-        views.fadein(div_allCourse);
+        // views.fadein(div_allCourse);
       }
 
       //點選課程
@@ -568,7 +568,7 @@ let controllers = {
         // //隱藏Loading img box
         // elem.previousElementSibling.style.display = "none";
         views.courses.renderAllCourses_list(result,university); //渲染畫面
-        views.fadein(elem);
+        // views.fadein(elem);
       });
     },
     allCourse_list:function(){ // All台清交
