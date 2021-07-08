@@ -647,6 +647,15 @@ let controllers = {
           if(models.lectures.allLecture_status.lectures[index] != undefined){ //SQL中有data
             let video_current_time = models.lectures.allLecture_status.lectures[index].lecture_video_current;
             lecture_video.currentTime = video_current_time;
+            //For iphone
+            if( lecture_video.currentTime < 1 ) {
+                lecture_video.play();
+            }
+            else {
+                lecture_video.load();
+                lecture_video.pause();
+                setTimeout(lecture_video.play, 500);
+            }
           }
 
           lecture_video.addEventListener("loadeddata",()=>{ //video loaded
