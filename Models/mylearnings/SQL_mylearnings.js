@@ -27,10 +27,12 @@ let SQL = {
             "data":[]
         };
       let sql_statement;
-      if(learning_status==0) { //進度尚未開始
+      if(learning_status==0 || learning_status==100) { //進度尚未開始 or 已完成
         sql_statement = "select a.* , b.course_name, b.course_category, b.course_teacher,b.course_description,b.course_cover from Learning.course_status as a NATURAL JOIN Course.courses as b  where a.user_id = ? and a.course_status = ? and b.course_category like ? order by a.course_id ASC limit ?,12;";
-      }else{ //取全部進度 or 已開始進度
+      }else if(learning_status==-1){ //全部
         sql_statement = "select a.* , b.course_name, b.course_category, b.course_teacher,b.course_description,b.course_cover from Learning.course_status as a NATURAL JOIN Course.courses as b  where a.user_id = ? and a.course_status > ? and b.course_category like ? order by a.course_id ASC limit ?,12;";
+      }else{ //進行中
+        sql_statement = "select a.* , b.course_name, b.course_category, b.course_teacher,b.course_description,b.course_cover from Learning.course_status as a NATURAL JOIN Course.courses as b  where a.user_id = ? and a.course_status > ? and a.course_status < 100 and b.course_category like ? order by a.course_id ASC limit ?,12;";
       }
       let para = [user_id,learning_status,learning_category,offset];
       // console.log(sql_statement,para);

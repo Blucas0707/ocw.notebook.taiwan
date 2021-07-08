@@ -479,7 +479,10 @@ let controllers = {
           next_btn.addEventListener("click",()=>{
             models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
               //data < 4 => 最後一頁,隱藏next btn
-              if(models.courses.allCourse_datalist[index].data.length < 4){
+              if(models.courses.allCourse_datalist[index].data == null){
+                next_btn.style.display = "none";
+              }
+              else if (models.courses.allCourse_datalist[index].data.length < 4){
                 next_btn.style.display = "none";
               }
 
@@ -551,6 +554,30 @@ let controllers = {
     },
   },
   courses:{
+    chooseCategory:function(){
+      let category_list = ["","文史哲藝","法社管理","理工電資","生農醫衛","百家學堂"];
+      let course_category_list = document.querySelectorAll(".course-category");
+      for(let index=0;index<course_category_list.length;index++){
+        let course_category = course_category_list[index];
+        course_category.addEventListener("click",()=>{
+          //清空上次選的顏色
+          let last_index = category_list.indexOf(models.courses.allCourse_category);
+          course_category_list[last_index].style.backgroundColor = "white";
+          //改變這次所選的背景色
+          course_category.style.backgroundColor = "#ffffe6";
+          course_category.style.color = "black";
+
+          models.courses.allCourse_category = category_list[index];
+          models.courses.allCourse_nextPages[0] = 0;
+          models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
+            //clear sub elem
+            let allCourse_div = document.querySelector("#allCourse");
+            views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
+            views.courses.renderAllCourses_list(result,university);
+          })
+        });
+      }
+    },
     allCourse:function(){
       models.courses.getAllCourse().then(()=>{
         views.courses.renderAllCourses();
@@ -669,6 +696,7 @@ let controllers = {
     controllers.courses.allCourse_list();
     controllers.actions.clickNext_allCourse_list();
     controllers.actions.clickPrevious_allCourse_list();
+    controllers.courses.chooseCategory();
 
   },
 };

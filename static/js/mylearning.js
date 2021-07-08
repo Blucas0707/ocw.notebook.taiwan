@@ -3,7 +3,7 @@ let models = {
     allLearning_nextPage:0,
     allLearning_tempPage:0,
     allLearning_category:"",
-    allLearning_status:-1, //-1:all, 0:not start, 1:started
+    allLearning_status:-1, //-1:all, 0:not start, 1:in progress, 100:done
     allLearning_data:null,
     complete_course_count:0,
     getLearningData:function(){
@@ -189,6 +189,38 @@ let views = {
 
 let controllers = {
   click:{
+    clickCategory:function(){
+      let course_category = document.querySelector("#learning-category");
+      course_category.addEventListener("change",()=>{
+        models.learnings.allLearning_category = course_category.value;
+        models.learnings.allLearning_nextPage = 0;
+        models.learnings.complete_course_count = 0;
+        console.log(models.learnings.allLearning_category,models.learnings.allLearning_nextPage);
+        models.learnings.getLearningData().then(()=>{
+          //clear sub elem
+          let course_content_main = document.querySelector(".course-content-main");
+          views.clearSubElem(course_content_main);
+          //renderData
+          views.learnings.renderData();
+        });
+      })
+    },
+    clickProgess:function(){
+      let progress_status = document.querySelector("#learning-status");
+      progress_status.addEventListener("change",()=>{
+        models.learnings.allLearning_status = progress_status.value;
+        models.learnings.allLearning_nextPage = 0;
+        models.learnings.complete_course_count = 0;
+        console.log(models.learnings.allLearning_status,models.learnings.allLearning_nextPage);
+        models.learnings.getLearningData().then(()=>{
+          //clear sub elem
+          let course_content_main = document.querySelector(".course-content-main");
+          views.clearSubElem(course_content_main);
+          //renderData
+          views.learnings.renderData();
+        });
+      })
+    },
     clickNextPage:function(){
       let nextpage_btn = document.querySelector(".next-arrow");
       nextpage_btn.addEventListener("click",()=>{
@@ -303,6 +335,8 @@ let controllers = {
       controllers.learnings.getAllLearnings();
       controllers.click.clickNextPage();
       controllers.click.clickPreviousPage();
+      controllers.click.clickProgess();
+      controllers.click.clickCategory();
       // controllers.initialfadein().then(()=>{
       //   controllers.learnings.getAllLearnings();
       // })
