@@ -648,14 +648,24 @@ let controllers = {
             let video_current_time = models.lectures.allLecture_status.lectures[index].lecture_video_current;
             lecture_video.currentTime = video_current_time;
             //For iphone
-            if( lecture_video.currentTime < 1 ) {
-                lecture_video.play();
-            }
-            else {
-                lecture_video.load();
-                lecture_video.pause();
-                setTimeout(lecture_video.play, 500);
-            }
+            lecture_video.addEventListener("loadeddata",function setVideotime(){
+              console.log(lecture_video.currentTime);
+              if(lecture_video.currentTime == 0) {
+                  console("11111");
+                  lecture_video.play();
+                  lecture_video.removeEventListener("loadeddata",setVideotime);
+              }
+              else {
+                  // lecture_video.load();
+                  lecture_video.pause();
+                  lecture_video.currentTime = video_current_time;
+                  lecture_video.removeEventListener("loadeddata",setVideotime);
+                  console.log("22222");
+                  lecture_video.play();
+                  // setTimeout(lecture_video.play, 500);
+              }
+            })
+
           }
 
           lecture_video.addEventListener("loadeddata",()=>{ //video loaded
