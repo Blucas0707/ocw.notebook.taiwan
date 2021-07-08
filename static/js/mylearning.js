@@ -1,6 +1,7 @@
 let models = {
   learnings:{
     allLearning_nextPage:0,
+    allLearning_tempPage:0,
     allLearning_category:"",
     allLearning_status:-1, //-1:all, 0:not start, 1:started
     allLearning_data:null,
@@ -159,14 +160,101 @@ let views = {
     mylearning_btn.addEventListener("click",()=>{
       window.location.replace("/mylearning");
     });
-  }
+  },
+  fadein:function(elem){
+    return new Promise((resolve,reject)=>{
+      let speed = 2;
+      let num = 0;
+      let timer = setInterval(()=>{
+        // views.isFadein = false;
+        num += speed;
+        elem.style.opacity = (num / 1000);
+        // console.log(main.style.opacity);
+        if(num >= 1000){
+          clearInterval(timer);
+          // views.isFadein = true;
+          // resolve(true);
+        }
+      },10);
+      resolve(true);
+    })
+  },
+  clearSubElem:function(elem){
+
+    while(elem.hasChildNodes()){ //elem child存在
+      elem.removeChild(elem.firstChild); //刪除子節點
+    };
+  },
 };
 
 let controllers = {
+  click:{
+    clickNextPage:function(){
+      let nextpage_btn = document.querySelector(".next-arrow");
+      nextpage_btn.addEventListener("click",()=>{
+        models.learnings.getLearningData().then(()=>{ //先取得data 來判斷是否為null
+          // console.log(models.learnings.allLearning_nextPage);
+          if(models.learnings.allLearning_nextPage != null){
+            //最後not null page 存到temp
+            models.learnings.allLearning_tempPage = models.learnings.allLearning_nextPage;
+            console.log("not null");
+            //clear sub elem
+            let course_content_main = document.querySelector(".course-content-main");
+            views.clearSubElem(course_content_main);
+            // controllers.learnings.getAllLearnings();
+            views.learnings.renderData();
+            //顯示previous btn
+            document.querySelector(".previous-arrow").style.display= "flex";
+          }else{
+            //隱藏Next button
+            nextpage_btn.style.display = "none";
+            models.learnings.allLearning_nextPage = models.learnings.allLearning_tempPage;
+          }
+        })
+      })
+    },
+    clickPreviousPage:function(){
+      let previouspage_btn = document.querySelector(".previous-arrow");
+      previouspage_btn.addEventListener("click",()=>{
+        models.learnings.allLearning_nextPage -= 2;
+        models.learnings.getLearningData().then(()=>{ //先取得data 來判斷是否為null
+          // console.log(models.learnings.allLearning_nextPage);
+          if(models.learnings.allLearning_nextPage != null){
+            //最後not null page 存到temp
+            models.learnings.allLearning_tempPage = models.learnings.allLearning_nextPage;
+            console.log("not null");
+            //clear sub elem
+            let course_content_main = document.querySelector(".course-content-main");
+            views.clearSubElem(course_content_main);
+            // controllers.learnings.getAllLearnings();
+            views.learnings.renderData();
+            //顯示next btn
+            document.querySelector(".next-arrow").style.display= "flex";
+          }else{
+            //隱藏Previous button
+            previouspage_btn.style.display = "none";
+            models.learnings.allLearning_nextPage = models.learnings.allLearning_tempPage;
+          }
+        })
+      })
+    }
+
+  },
+  initialfadein:function(){
+    return new Promise((resolve,reject)=>{
+      let html = document.querySelector("html");
+      views.fadein(html).then(()=>{
+        resolve(true);
+      });
+    })
+  },
   learnings:{
     getAllLearnings:function(){
       models.learnings.getLearningData().then(()=>{
-        views.learnings.renderData();
+        controllers.initialfadein().then(()=>{
+          views.learnings.renderData();
+        })
+
       });
     },
     chooseCourse:function(){
@@ -213,6 +301,11 @@ let controllers = {
     controllers.member.checkLogin().then(()=>{
       controllers.member.logout();
       controllers.learnings.getAllLearnings();
+      controllers.click.clickNextPage();
+      controllers.click.clickPreviousPage();
+      // controllers.initialfadein().then(()=>{
+      //   controllers.learnings.getAllLearnings();
+      // })
     });
   },
 };

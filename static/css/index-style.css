@@ -172,6 +172,13 @@ a,a:link,a:visited {
   border-radius: 7px;
 }
 
+.nav-search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 form.search {
   /* height: 46px; */
   width: 100%;
@@ -455,8 +462,6 @@ form.search input {
 .arrow-box:hover {
   background-color: #ffffef;
   cursor: pointer;
-
-  /* opacity: 0.8; */
 }
 
 /* .arrow-svg {

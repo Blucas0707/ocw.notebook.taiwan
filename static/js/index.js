@@ -1,6 +1,7 @@
 let models = {
   courses:{
     allCourse_nextPage:0,
+    allCourse_tempPage:0,
     allCourse_category:"",
     allCourse_university:"",
     allCourse_data:null,
@@ -18,6 +19,7 @@ let models = {
       });
     },
     allCourse_nextPages:[0,0,0,0], // All/台/清/交
+    allCourse_tempPages:[0,0,0,0], // All/台/清/交
     allCourse_datalist:[null,null,null,null], // All/台/清/交
     getCourses:function(category,university){
       return new Promise((resolve, reject)=>{
@@ -43,15 +45,19 @@ let models = {
         }).then((result) => {
           if(university == ""){
             models.courses.allCourse_datalist[0] = result;
+            models.courses.allCourse_nextPages[0] = result.nextPage;
           }
           else if(university == "台灣大學"){
             models.courses.allCourse_datalist[1] = result;
+            models.courses.allCourse_nextPages[1] = result.nextPage;
           }
           else if (university == "清華大學") {
             models.courses.allCourse_datalist[2] = result;
+            models.courses.allCourse_nextPages[2] = result.nextPage;
           }
           else{
             models.courses.allCourse_datalist[3] = result;
+            models.courses.allCourse_nextPages[3] = result.nextPage;
           }
           // console.log(models.courses.allCourse_data);
           console.log(result);
@@ -169,17 +175,17 @@ let views = {
   fadeout:function(elem){
     let speed = 10;
     let num = 1000;
-      let timer = setInterval(()=>{
-        // views.isFadeout = false;
-        num -= speed;
-        elem.style.opacity = (num / 1000);
-        // console.log(main.style.opacity);
-        if(num <= 0){
-          clearInterval(timer);
-          views.isFadeout = true;
-          resolve(true);
-        }
-      },10);
+    let timer = setInterval(()=>{
+      // views.isFadeout = false;
+      num -= speed;
+      elem.style.opacity = (num / 1000);
+      // console.log(main.style.opacity);
+      if(num <= 0){
+        clearInterval(timer);
+        views.isFadeout = true;
+        resolve(true);
+      }
+    },10);
   },
   fadein:function(elem){
     let speed = 10;
@@ -219,11 +225,6 @@ let views = {
   },
   courses:{
     clearCourses:function(elem){
-      // //顯示Loading img box
-      // elem.previousElementSibling.style.display = "flex";
-      //Fade out
-      // views.fadeout(elem);
-
       while(elem.hasChildNodes()){ //elem child存在
         elem.removeChild(elem.firstChild); //刪除子節點
       };
@@ -471,32 +472,68 @@ let controllers = {
     clickNext_allCourse_list:function(){
       return new Promise((resolve,reject)=>{
         let next_btns = document.querySelectorAll(".next-arrow");
+        let allCourse_university_list =["","台灣大學","清華大學","陽明交通大學"];
         for(let index=0;index<next_btns.length;index++){
           let next_btn = next_btns[index];
+          let allCourse_university = allCourse_university_list[index];
           next_btn.addEventListener("click",()=>{
-            console.log(models.courses.allCourse_nextPages[index]);
-            models.courses.allCourse_nextPages[index]++;
-            let allCourse_div = document.querySelectorAll(".course-content-main")[index];
-            views.click.allCourse(index); //顯示或隱藏 Next, Previous btn
-            views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
-            controllers.courses.updateCourse(index,allCourse_div);
-            resolve(true);
+            models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
+              // console.log(models.courses.allCourse_data);
+              if(models.courses.allCourse_nextPages[index] != null){
+                //最後not null page 存到temp
+                models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
+                // console.log("not null");
+                //clear sub elem
+                let allCourse_div = document.querySelectorAll(".course-content-main")[index];
+                views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
+                views.courses.renderAllCourses_list(result,university);
+                //顯示previous btn
+                // document.querySelector(".previous-arrow").style.display= "flex";
+                let previous = document.querySelectorAll(".previous-arrow")[index];
+                previous.style.display= "flex";
+              }else{
+                //隱藏Next button
+                next_btn.style.display = "none";
+                models.courses.allCourse_nextPages[index] = models.courses.allCourse_tempPages[index];
+              }
+            });
           });
         }
       })
     },
     clickPrevious_allCourse_list:function(){
       return new Promise((resolve,reject)=>{
-        let next_btns = document.querySelectorAll(".previous-arrow");
-        for(let index=0;index<next_btns.length;index++){
-          let next_btn = next_btns[index];
-          next_btn.addEventListener("click",()=>{
-            models.courses.allCourse_nextPages[index]--;
-            let allCourse_div = document.querySelectorAll(".course-content-main")[index];
-            views.click.allCourse(index);
-            views.courses.clearCourses(allCourse_div);
-            controllers.courses.updateCourse(index,allCourse_div);
-            resolve(true);
+
+        let previous_btns = document.querySelectorAll(".previous-arrow");
+        let allCourse_university_list =["","台灣大學","清華大學","陽明交通大學"];
+        for(let index=0;index<previous_btns.length;index++){
+          let previous_btn = previous_btns[index];
+          let allCourse_university = allCourse_university_list[index];
+          previous_btn.addEventListener("click",()=>{
+            if(models.courses.allCourse_nextPages[index] == 0 || models.courses.allCourse_nextPages[index] == 1){
+              let previous_btns = document.querySelectorAll(".previous-arrow")[index].style.display = "none";
+            }
+            models.courses.allCourse_nextPages[index] -= 2;
+            models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
+              console.log(models.courses.allCourse_data,models.courses.allCourse_nextPages[index]);
+              if(models.courses.allCourse_nextPages[index] != null){
+                //最後not null page 存到temp
+                models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
+                // console.log("not null");
+                //clear sub elem
+                let allCourse_div = document.querySelectorAll(".course-content-main")[index];
+                views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
+                views.courses.renderAllCourses_list(result,university);
+                //顯示next btn
+                // document.querySelector(".next-arrow").style.display= "flex";
+                let next = document.querySelectorAll(".next-arrow")[index];
+                next.style.display= "flex";
+              }else{
+                //隱藏previous_btn
+                previous_btn.style.display = "none";
+                models.courses.allCourse_nextPages[index] = models.courses.allCourse_tempPages[index];
+              }
+            });
           });
         }
       })

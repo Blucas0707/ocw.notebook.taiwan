@@ -604,7 +604,21 @@ let views = {
       video_ratio.innerHTML = playRatio + "%";
     });
   },
-
+  fadeout:function(elem){
+    let speed = 10;
+    let num = 1000;
+    let timer = setInterval(()=>{
+      // views.isFadeout = false;
+      num -= speed;
+      elem.style.opacity = (num / 1000);
+      // console.log(main.style.opacity);
+      if(num <= 0){
+        clearInterval(timer);
+        // views.isFadeout = true;
+        resolve(true);
+      }
+    },10);
+  },
 
 };
 
@@ -788,9 +802,13 @@ let controllers = {
       // return '您確定要離開嗎?';
 
       if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
-        console.log(models.user.isLogin);
+        // console.log(models.user.isLogin);
         console.log("update Lecture status");
         models.lectures.updateLecture_status();
+
+        // window.onunload = function(){
+        //     views.fadeout(document.querySelector("html"));
+        // }
       }
       // return
     };

@@ -4,10 +4,10 @@ var session = require('express-session')
 // const bodyParser = require("body-parser");
 
 const api_user = require("./Models/users/API_USER");
-const api_courses = require("./Models/courses/API_COURSES");
+const api_courses = require("./Models/courses/API_courses");
 const api_lectures = require("./Models/lectures/API_LECTURES");
 const api_notes = require("./Models/notes/API_NOTES");
-const api_learnings = require("./Models/learnings/API_LEARNINGS");
+const api_learnings = require("./Models/learnings/API_learnings");
 const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
 
 const app=express();
@@ -96,7 +96,7 @@ app.post("/api/note", function(req, res){
 });
 
 //學習進度Learning API
-//更新學習進度
+//更新課堂學習進度
 app.patch("/api/learning", function(req, res){
   // console.log(req.body);
   api_learnings.updateLecture_status(req.body).then((result)=>{
@@ -148,9 +148,9 @@ app.get("/api/mylearnings", function(req, res){
   let page = (req.query.page) ? (req.query.page):("0");
   let learning_status = (req.query.status) ? (req.query.status):("0");
   let learning_category = (req.query.category) ? (req.query.category):("%");
-  console.log("mylearnings:" + user_id,page,learning_status,learning_category);
+  // console.log("mylearnings:" + user_id,page,learning_status,learning_category);
   api_mylearnings.getMyLearnings(user_id,page,learning_status,learning_category).then((result)=>{
-    console.log("app: " + result);
+    // console.log("app: " + result);
     res.send(200,result);
   });
 

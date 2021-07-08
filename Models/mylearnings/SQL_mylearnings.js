@@ -63,7 +63,8 @@ let SQL = {
             resolve(data_dict);
           }else{
             let data = {
-              "date":null
+              "nextPage": null,
+              "data":null
             };
             resolve(data);
           }

@@ -22,9 +22,13 @@ let SQL = {
         //先判斷使用者學習紀錄是否存在=> update or insert
         //先取出該user, 該course 的所有lecture 資料
         let sql_statement = "select * from learnings where course_id = ? and user_id = ? order by lecture_id ASC";
+        // let sql_statement = "select count(*) from course_status where course_id = ? and user_id = ?";
         let para = [course_id,user_id];
+        console.log(sql_statement);
         SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
           // console.log("data_inSQL 1:" + rows[0]);
+          // console.log("updateLecture_status: " + rows);
+          // console.log("updateLecture_status: " + rows[0]["count(*)"]);
 
           //判斷課程是否完成
           let lecture_status_count = 0;

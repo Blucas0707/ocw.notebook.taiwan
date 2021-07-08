@@ -3,7 +3,7 @@
   padding: 0;
 }
 html {
-  opacity: 1;
+  opacity: 0;
 }
 
 /* nav */
@@ -51,6 +51,7 @@ a,a:link,a:visited {
   border: 1px solid gray;
   border-radius: 7px;
 }
+
 
 form.search {
   /* height: 46px; */
@@ -245,7 +246,7 @@ form.search input {
 }
 
 .course-content {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   min-height: 350px;
   margin:20px 0;
@@ -255,12 +256,16 @@ form.search input {
 
 .course-content-loading {
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .course-loading-img {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 200px;
+  width: 200px;
 }
 
 .course-content-main {
@@ -352,25 +357,52 @@ form.search input {
   color: grey;
 }
 
+.course-content-page {
+  position: relative;
+  text-align: center;
+}
 .next-arrow img, .previous-arrow img {
-  width: 50px;
-  height:50px;
+  width: 50%;
   background-color: white;
   border-radius: 999rem;
 }
 
+
 .next-arrow, .previous-arrow {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
   position: absolute;
-  top: 50%;
+  bottom: 0;
+  /* border-radius: 999rem;
+  border: 1px solid black; */
 }
+
 
 .previous-arrow {
   display: none;
-  left: -25px;
+  left: 45%;
 }
 
 .next-arrow {
-  right: -25px;
+  right: 45%;
+}
+
+.arrow-box {
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    /* border: 1px solid black; */
+    border-radius: 999rem;
+    background-color: white;
+    /* opacity: 0.8; */
+    box-shadow: 0px 2px 5px grey;
+}
+
+.arrow-box:hover {
+    cursor: pointer;
 }
 
 .nodata {
@@ -425,6 +457,9 @@ footer {
 @media (max-width: 1200px) {
   .course-content {
     flex-wrap: wrap;
+  }
+  .cover-greeting {
+    margin-left: 20px;
   }
 }
 
