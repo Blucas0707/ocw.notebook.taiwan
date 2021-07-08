@@ -1,6 +1,6 @@
 let SQL = require("./SQL_lectures");
 
-// const database = "Course";
+//// const database = "Course";
 // let statement = 'select * from lectures limit 1;'
 
 let api_lectures = {

@@ -1,8 +1,8 @@
 let SQL = require("./SQL_mylearnings");
 
 const database = "Learning";
-// let statement = 'select * from lectures limit 1;'
-
+//// let statement = 'select * from lectures limit 1;'
+//
 let api_mylearnings = {
   //取得User 學習紀錄
   getMyLearnings:function(user_id,page,learning_status,learning_category){
