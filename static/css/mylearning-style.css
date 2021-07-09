@@ -383,11 +383,11 @@ form.search input {
 
 .previous-arrow {
   display: none;
-  left: 45%;
+  left: 40%;
 }
 
 .next-arrow {
-  right: 45%;
+  right: 40%;
 }
 
 .arrow-box {

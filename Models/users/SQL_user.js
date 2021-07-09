@@ -51,6 +51,46 @@ let SQL = {
         })
       });
     },
+    GoogleLogin:function(name,email,password){
+      // check user eisted
+      let isUserExisted = null;
+      let sql_statement = "select count(*) from users where user_email = ? and user_password = ? ";
+      let para = [email, password];
+      let promisePool = SQL.pool.promise();
+      return new Promise((resolve, reject)=>{
+        promisePool.query(sql_statement,para).then(([rows, fields])=>{
+          console.log(rows[0]["count(*)"])
+          if(rows[0]["count(*)"] == 1){ //user existed
+              let data = {
+                "ok": true
+              };
+              // console.log("data:" + data);
+              resolve(data);
+            }
+          else{
+            //存入sql
+            sql_statement = "insert into users (user_name, user_email, user_password)  values (?,?,?)";
+            para = [name,email,password];
+            promisePool.query(sql_statement, para).then(([rows, fields])=>{
+              // console.log(rows);
+              let data = {
+                "ok": true
+              };
+              // console.log("data:" + data);
+              resolve(data);
+            })
+          }
+          // console.log(this.isUserExisted);
+        }).catch(()=>{
+          let data = {
+            "error": true,
+            "message": "伺服器內部錯誤"
+          };
+          // console.log("data:" + data);
+          resolve(data);
+        })
+      });
+    },
     register:function(name,email,password){
       // check user eisted
       let isUserExisted = null;
@@ -100,10 +140,11 @@ let SQL = {
       let isUserExisted = null;
       let sql_statement = "select * from users where user_email = ? and user_password = ? limit 1 ";
       let para = [email,password];
+      console.log(sql_statement,para);
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows);
+          console.log("CheckLogin: ",rows);
           if(rows[0]["user_id"] && rows[0]["user_name"] && rows[0]["user_email"]){ //user existed
             let data = {
               "data":{
@@ -122,7 +163,7 @@ let SQL = {
           }
           console.log(this.isUserExisted);
         }).catch((err)=>{
-          // console.log(err);
+          console.log(err);
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"

@@ -74,6 +74,12 @@ html {
   padding-left:15px;
 }
 
+.g-signin2 {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
 .login-btn, .register-btn {
   display: flex;
   width: 310px;

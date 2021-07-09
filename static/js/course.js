@@ -148,6 +148,9 @@ let models = {
     },
   },
   user:{
+    isGoogleLogin:null,
+    loginSuccess:null,
+    useGoogleLogin:false,
     loginSuccess:null,
     Login:function(){
       return new Promise((resolve, reject)=>{
@@ -179,6 +182,30 @@ let models = {
           }
           // console.log(result);
           // console.log(models.user.loginSuccess);
+          resolve(true);
+        });
+      });
+    },
+    GoogleLogin:function(id_token){
+      return new Promise((resolve, reject)=>{
+        models.user.loginSuccess = null;
+        return fetch('/api/google/login/' + id_token,{
+          method:'POST',
+          headers: {
+            'Content-Type':'application/x-www-form-urlencoded',
+          },
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          result = JSON.parse(result);
+          if(result.ok){
+            models.user.loginSuccess = true;
+            models.user.isGoogleLogin = true;
+            console.log(models.user.isGoogleLogin);
+          }else{
+            models.user.loginSuccess = false;
+            models.user.isGoogleLogin = false;
+          }
           resolve(true);
         });
       });
@@ -567,6 +594,12 @@ let views = {
     let login_btn = document.querySelector("#login-btn");
     login_btn.addEventListener("click",()=>{
 
+      //Goole logout
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+
       //顯示隱藏層
       let hideall = document.querySelector(".hideall");
       hideall.style.display="block";  //顯示隱藏層
@@ -883,6 +916,11 @@ let controllers = {
       return new Promise((resolve, reject)=>{
         let logout_btn = document.querySelector("#logout-btn");
         logout_btn.addEventListener("click", ()=>{
+          //Goole logout
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
           models.user.Logout().then(()=>{
             views.user.Logout();
             resolve(true);
@@ -907,7 +945,14 @@ let controllers = {
             views.user.loginStatus();
           });
         });
-    }
+    },
+    googlelogin:function(){
+      let google_login_btn = document.querySelector(".g-signin2");
+      google_login_btn.addEventListener("click", ()=>{
+        console.log("google click");
+        models.user.useGoogleLogin = true;
+      });
+    },
   },
   leavePage:function(){
     window.onbeforeunload = function(){
@@ -918,11 +963,7 @@ let controllers = {
         console.log("update Lecture status");
         models.lectures.updateLecture_status();
 
-        // window.onunload = function(){
-        //     views.fadeout(document.querySelector("html"));
-        // }
       }
-      // return
     };
   },
   init:function(){
@@ -948,3 +989,28 @@ views.videoTimer();
 controllers.notes.notesAlert();
 // controllers.click.clickNoteCurrent();
 // views.notes.renderNoteCurrentTime();
+function ClickLogin(){
+  models.user.useGoogleLogin=true;
+};
+function onSignIn(googleUser) {
+  // console.log("onsigin:", models.user.useGoogleLogin);
+  if(models.user.useGoogleLogin){
+    // console.log(googleUser);
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    // console.log('Full Name: ' + profile.getName());
+    // console.log('Given Name: ' + profile.getGivenName());
+    // console.log('Family Name: ' + profile.getFamilyName());
+    // console.log("Image URL: " + profile.getImageUrl());
+    // console.log("Email: " + profile.getEmail());
+
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    // console.log("ID Token: " + id_token);
+    console.log("Done!");
+    models.user.GoogleLogin(id_token).then(()=>{
+      window.location.reload();
+    });
+  }
+};

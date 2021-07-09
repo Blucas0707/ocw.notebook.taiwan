@@ -19,7 +19,7 @@ let SQL = {
   }),
   Note:{
     getnotes:function(course_id,lecture_id,user_id){
-      let sql_statement = "select * from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_video_current DESC";
+      let sql_statement = "select * from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC";
       let para = [course_id,lecture_id,user_id];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
@@ -65,7 +65,7 @@ let SQL = {
       return new Promise((resolve, reject)=>{
         // promisePool.query("set time_zone = '+8:00'");
         promisePool.query(sql_statement,para).then(()=>{
-          sql_statement = "select * from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_video_current DESC limit 1"
+          sql_statement = "select * from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC limit 1"
           promisePool.query(sql_statement,para).then((rows)=>{
             console.log(rows[0][0],rows[0][0].note);
             let data ={

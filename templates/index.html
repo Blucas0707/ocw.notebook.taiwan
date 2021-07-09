@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com">
     <link rel="icon" href="/img/favicon.ico">
   </head>
   <body class="body">
@@ -23,7 +23,8 @@
       </div>
       <!-- <form id="login-form" method="PATCH" > -->
       <div class="login-input-box">
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+        <div class="g-signin2" onclick="ClickLogin()" data-onsuccess="onSignIn" data-theme="dark" data-prompt="select_account"></div>
         <input type="text" name="email" placeholder="輸入電子信箱" class="login-email">
         <input type="password" name="password" placeholder="輸入密碼" class="login-password">
       </div>

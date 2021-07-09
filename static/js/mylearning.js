@@ -9,13 +9,13 @@ let models = {
     getLearningData:function(){
       return new Promise((resolve, reject)=>{
         let url = "/api/mylearnings" + "?page=" + models.learnings.allLearning_nextPage + "&status=" + models.learnings.allLearning_status + "&category=" + models.learnings.allLearning_category;
-        console.log(url);
+        // console.log(url);
         return fetch(url).then((response) => {
           return response.json();
         }).then((result) => {
           models.learnings.allLearning_data = result;
           models.learnings.allLearning_nextPage = result.nextPage;
-          console.log(result);
+          // console.log(result);
           resolve(true);
         });
       });
@@ -135,7 +135,7 @@ let views = {
       //選取課程
       controllers.learnings.chooseCourse();
       //show 完成數
-      document.querySelector(".static-count").innerHTML = models.learnings.complete_course_count;
+      // document.querySelector(".static-count").innerHTML = models.learnings.complete_course_count;
     },
   },
   user:{
@@ -211,7 +211,7 @@ let controllers = {
         models.learnings.allLearning_status = progress_status.value;
         models.learnings.allLearning_nextPage = 0;
         models.learnings.complete_course_count = 0;
-        console.log(models.learnings.allLearning_status,models.learnings.allLearning_nextPage);
+        // console.log(models.learnings.allLearning_status,models.learnings.allLearning_nextPage);
         models.learnings.getLearningData().then(()=>{
           //clear sub elem
           let course_content_main = document.querySelector(".course-content-main");
@@ -227,9 +227,11 @@ let controllers = {
         models.learnings.getLearningData().then(()=>{ //先取得data 來判斷是否為null
           // console.log(models.learnings.allLearning_nextPage);
           if(models.learnings.allLearning_nextPage != null){
+            //顯示頁碼
+            document.querySelector(".course-content-page-number").innerHTML = models.learnings.allLearning_nextPage;
+
             //最後not null page 存到temp
             models.learnings.allLearning_tempPage = models.learnings.allLearning_nextPage;
-            console.log("not null");
             //clear sub elem
             let course_content_main = document.querySelector(".course-content-main");
             views.clearSubElem(course_content_main);
@@ -252,9 +254,10 @@ let controllers = {
         models.learnings.getLearningData().then(()=>{ //先取得data 來判斷是否為null
           // console.log(models.learnings.allLearning_nextPage);
           if(models.learnings.allLearning_nextPage != null){
+            //顯示頁碼
+            document.querySelector(".course-content-page-number").innerHTML = models.learnings.allLearning_nextPage;
             //最後not null page 存到temp
             models.learnings.allLearning_tempPage = models.learnings.allLearning_nextPage;
-            console.log("not null");
             //clear sub elem
             let course_content_main = document.querySelector(".course-content-main");
             views.clearSubElem(course_content_main);

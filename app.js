@@ -165,6 +165,7 @@ app.get("/api/user", function(req, res){
   //取得Session
   let email = req.session.email;
   let password = req.session.password;
+  console.log(email,password);
   let data = {
     "email":email,
     "password":password
@@ -172,7 +173,8 @@ app.get("/api/user", function(req, res){
   // console.log("email：" + email,"password：" +password);
   if(email && password){ //session 存在
     api_user.checkLogin(data).then((result)=>{
-      // console.log("user get result: "+result);
+      // console.log("data:" + data);
+      console.log("user get result: "+result);
       // console.log(JSON.parse(result).data.id);
       req.session.user_id = JSON.parse(result).data.id;
       // console.log(req.session.user_id);
@@ -221,7 +223,38 @@ app.patch("/api/user", function(req, res){
     res.json(result);
   })
 });
+//使用者登入 Google
+const {OAuth2Client} = require('google-auth-library');
+app.post("/api/google/login/:id_token", function(req, res){
+  let token = req.params.id_token;
+  let CLIENT_ID = "202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com";
+  const client = new OAuth2Client(CLIENT_ID);
+  async function verify() {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+    console.log(payload);
+    return payload;
+  }
+  verify().then((data,token)=>{
+    api_user.GoogleLogin(data).then((result)=>{
+      let login_result = JSON.parse(result);
+      if(login_result.ok){
+        //登入成功後，存到Session
+        req.session.email = data.email.toString();
+        req.session.password = data.sub.toString();
+        // console.log(req.session.email, req.session.password);
+      }
+      res.json(result);
+    })
 
+  }).catch(console.error);
+});
 
 //TEST only
 // Route NTU

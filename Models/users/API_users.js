@@ -46,7 +46,20 @@ let api_user = {
         })
       }
     });
+  },
+  //登入Google PATCH
+  GoogleLogin:function(data){
+    return new Promise((resolve, reject)=>{
+      let name = data.name.toString();
+      let email = data.email.toString();
+      let password = data.sub.toString();
+      // save in sql
+      SQL.User.GoogleLogin(name,email,password).then((result)=>{
+        // console.log("result: " + JSON.stringify(result));
+        resolve(JSON.stringify(result));
+      })
 
+    });
   },
   //取得 GET
   checkLogin:function(data){
