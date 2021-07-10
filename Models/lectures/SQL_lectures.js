@@ -24,7 +24,7 @@ let SQL = {
         "total":"",
         "data":[]
       };
-      let sql_statement = "select courses.course_name,lectures.* from lectures inner join courses on lectures.course_id = courses.course_id where lectures.course_id = ?";
+      let sql_statement = "select courses.course_name,lectures.lecture_id,lectures.lecture_name,lectures.lecture_video,lectures.lecture_duration,lectures.lecture_note,lectures.lecture_reference from lectures inner join courses on lectures.course_id = courses.course_id where lectures.course_id = ?";
       let para = [course_id];
 
       let promisePool = SQL.pool.promise();

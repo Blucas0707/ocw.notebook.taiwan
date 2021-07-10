@@ -138,7 +138,7 @@ let SQL = {
     checkLogin:function(email,password){
       // check user eisted
       let isUserExisted = null;
-      let sql_statement = "select * from users where user_email = ? and user_password = ? limit 1 ";
+      let sql_statement = "select user_id,user_name,user_email from users where user_email = ? and user_password = ? limit 1 ";
       let para = [email,password];
       console.log(sql_statement,para);
       let promisePool = SQL.pool.promise();

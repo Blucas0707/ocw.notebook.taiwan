@@ -21,7 +21,7 @@ let SQL = {
         //V2
         //先判斷使用者學習紀錄是否存在=> update or insert
         //先取出該user, 該course 的所有lecture 資料
-        let sql_statement = "select * from learnings where course_id = ? and user_id = ? order by lecture_id ASC";
+        let sql_statement = "select user_id,lecture_id,lecture_video_current,lecture_status from learnings where course_id = ? and user_id = ? order by lecture_id ASC";
         // let sql_statement = "select count(*) from course_status where course_id = ? and user_id = ?";
         let para = [course_id,user_id];
         console.log(sql_statement);
@@ -129,7 +129,7 @@ let SQL = {
       let date = new Date();
       // console.log("start: " + date);
       //找出該user 該課程 該課堂 的video 進度
-      let sql_statement = "select * from learnings where user_id = ? and course_id = ? order by lecture_id ASC";
+      let sql_statement = "select lecture_id,lecture_video_current,lecture_status from learnings where user_id = ? and course_id = ? order by lecture_id ASC";
       let para = [user_id,course_id];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{

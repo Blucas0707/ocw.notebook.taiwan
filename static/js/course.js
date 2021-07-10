@@ -291,6 +291,8 @@ let views = {
       alert.innerHTML = "(" + (1000 - notecount) + "/1000)";
       if(1000 - notecount < 0 ){
         alert.style.color = "red";
+      }else{
+        alert.style.color = "black";
       }
     },
     renderNotes:function(result){
@@ -816,6 +818,8 @@ let controllers = {
           let note = document.querySelector("#note-input-content").value;
           // console.log(note);
           if(note.toString().length != 0 && note.toString().length <= 1000){
+            //字數顯示
+            views.notes.renderNotesCount(0);
             let time_now = new Date();
             let note_record_time = time_now.getFullYear()+"/"+(time_now.getMonth()+1).toString().padStart(2,"0")+"/"+(time_now.getDate()).toString().padStart(2,"0")+ " "+(time_now.getHours()).toString().padStart(2,"0")+":"+(time_now.getMinutes()).toString().padStart(2,"0")+":"+(time_now.getSeconds()).toString().padStart(2,"0");
             let note_video_current = document.querySelector("#note-video-current").innerHTML.substr(3);
@@ -843,8 +847,7 @@ let controllers = {
           controllers.notes.noteIsOverload = true;
         }
         views.notes.renderNotesCount(notes_count);
-      })
-
+      });
     },
     getNotes:function(){
       return new Promise((resolve, reject)=>{

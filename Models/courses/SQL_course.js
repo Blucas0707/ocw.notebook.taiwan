@@ -24,8 +24,19 @@ let SQL = {
             "nextPage": next_page,
             "data":[]
         };
-      let sql_statement = "select * from (select * from courses order by course_establish DESC) as T where course_category like ? and course_university like ? limit ?,4";
-      let para = [category, university, offset];
+      let sql_statement,para;
+      if(category=="%" && university== "%"){
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses order by course_establish DESC limit ?,4";
+        para = [offset];
+      }else if (category=="%") {
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_university = ? order by course_establish DESC limit ?,4";
+        para = [university,offset];
+      }else if (university== "%") {
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_category = ? order by course_establish DESC limit ?,4";
+        para = [category,offset];
+      }
+      // let sql_statement = "select * from (select * from courses order by course_establish DESC) as T where course_category like ? and course_university like ? limit ?,4";
+      // let para = [category, university, offset];
       // console.log(para);
       // console.log(para);
       // console.log(page);
@@ -47,14 +58,14 @@ let SQL = {
                 new_dict["course_id"] = rows[index]["course_id"]
                 new_dict["course_university"] = rows[index]["course_university"]
                 new_dict["course_category"] = rows[index]["course_category"]
-                new_dict["course_semester"] = rows[index]["course_semester"]
-                new_dict["course_department"] = rows[index]["course_department"]
-                new_dict["course_establish"] = rows[index]["course_establish"]
+                // new_dict["course_semester"] = rows[index]["course_semester"]
+                // new_dict["course_department"] = rows[index]["course_department"]
+                // new_dict["course_establish"] = rows[index]["course_establish"]
                 new_dict["course_name"] = rows[index]["course_name"]
                 new_dict["course_cover"] = rows[index]["course_cover"]
                 new_dict["course_teacher"] = rows[index]["course_teacher"]
                 new_dict["course_description"] = rows[index]["course_description"]
-                new_dict["course_link"] = rows[index]["course_link"]
+                // new_dict["course_link"] = rows[index]["course_link"]
                 data_dict["data"].push(new_dict);
             }
           }
