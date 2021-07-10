@@ -34,6 +34,8 @@ let SQL = {
           let lecture_status_count = 0;
 
           if(rows.length == 0){ //SQL 沒有資料，user 沒上過
+            sql_statement = "insert into learnings (lecture_video_current,lecture_status,user_id,course_id,lecture_id) values ";
+            para = [];
             for(let index=0;index<lectures.length;index++){
               let lecture_id = lectures[index].lecture_id;
               // console.log("lecture_id: " + lecture_id);
@@ -42,14 +44,22 @@ let SQL = {
               if(lecture_status==1){
                 lecture_status_count += 1;
               }
-              sql_statement = "insert into learnings (lecture_video_current,lecture_status,user_id,course_id,lecture_id) values (?,?,?,?,?)"
-              para = [lecture_video_current,lecture_status,user_id,course_id,lecture_id];
-              SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
-                if(err){
-                  console.log("insert err: " + err);
-                }
-              })
+              sql_statement += "(?,?,?,?,?),"
+              // let temp_para = lecture_video_current,lecture_status,user_id,course_id,lecture_id;
+              para.push(lecture_video_current);
+              para.push(lecture_status);
+              para.push(user_id);
+              para.push(course_id);
+              para.push(lecture_id);
             }
+            sql_statement = sql_statement.substr(0,sql_statement.length-1);
+            console.log(sql_statement);
+            console.log(para);
+            SQL.pool.query(sql_statement,para,(err,rows,fields)=>{
+              if(err){
+                console.log("insert err: " + err);
+              }
+            })
           }else{//SQL有資料，user有上過
             for(let index=0;index<lectures.length;index++){
               let data_inSQL = rows[index].lecture_video_current;
