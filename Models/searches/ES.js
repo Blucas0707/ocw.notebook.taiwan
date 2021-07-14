@@ -45,7 +45,7 @@ let ES = {
     return new Promise((resolve,reject)=>{
       var client = new AWS.HttpClient();
       client.handleRequest(request, null, function(response) {
-        console.log(response.statusCode + ' ' + response.statusMessage);
+        // console.log(response.statusCode + ' ' + response.statusMessage);
         var responseBody = '';
         response.on('data', function (chunk) {
           responseBody += chunk;
