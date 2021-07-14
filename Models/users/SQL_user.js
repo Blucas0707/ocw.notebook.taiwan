@@ -16,21 +16,24 @@ let SQL = {
     queueLimit: 0
   }),
   User:{
-    login:function(email,password){
+    login:function(email){
       // check user eisted
       let isUserExisted = null;
-      let sql_statement = "select count(*) from users where user_email = ? and user_password = ? ";
-      let para = [email, password];
+      let sql_statement = "select user_password from users where user_email = ?";
+      let para = [email];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows[0]["count(*)"])
-          if(rows[0]["count(*)"] == 1){ //user existed
-              let data = {
-                "ok": true
-              };
+          // console.log(sql_statement);
+          // console.log(para);
+          // console.log("password:" + rows[0]["user_password"]);
+          let hashPassword = rows[0]["user_password"];
+          if(hashPassword){ //user existed
+              // let data = {
+              //   "ok": true
+              // };
               // console.log("data:" + data);
-              resolve(data);
+              resolve(hashPassword);
             }
           else{
             let data = {
@@ -59,7 +62,7 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          console.log(rows[0]["count(*)"])
+          // console.log(rows[0]["count(*)"])
           if(rows[0]["count(*)"] == 1){ //user existed
               let data = {
                 "ok": true
@@ -92,6 +95,7 @@ let SQL = {
       });
     },
     register:function(name,email,password){
+      // console.log("register:", password);
       // check user eisted
       let isUserExisted = null;
       let sql_statement = "select count(*) from users where user_email = ? limit 1 ";
@@ -135,22 +139,23 @@ let SQL = {
         })
       });
     },
-    checkLogin:function(email,password){
+    checkLogin:function(email){
       // check user eisted
       let isUserExisted = null;
-      let sql_statement = "select user_id,user_name,user_email from users where user_email = ? and user_password = ? limit 1 ";
-      let para = [email,password];
-      console.log(sql_statement,para);
+      let sql_statement = "select user_id,user_name,user_email,user_password from users where user_email = ? limit 1 ";
+      let para = [email];
+      // console.log(sql_statement,para);
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          console.log("CheckLogin: ",rows);
+          // console.log("CheckLogin: ",rows);
           if(rows[0]["user_id"] && rows[0]["user_name"] && rows[0]["user_email"]){ //user existed
             let data = {
               "data":{
                 "id": rows[0]["user_id"],
                 "name": rows[0]["user_name"],
-                "email": rows[0]["user_email"]
+                "email": rows[0]["user_email"],
+                "password":rows[0]["user_password"]
               }
             };
             // console.log("data:" + data);
@@ -161,7 +166,7 @@ let SQL = {
             // console.log("data:" + data);
             resolve(data);
           }
-          console.log(this.isUserExisted);
+          // console.log(this.isUserExisted);
         }).catch((err)=>{
           console.log(err);
           let data = {

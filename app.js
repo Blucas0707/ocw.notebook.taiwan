@@ -192,7 +192,7 @@ app.get("/api/user", function(req, res){
   //取得Session
   let email = req.session.email;
   let password = req.session.password;
-  console.log(email,password);
+  console.log("checklogin" +email+password);
   let data = {
     "email":email,
     "password":password
@@ -232,7 +232,7 @@ app.delete("/api/user", function(req, res){
 app.post("/api/user", function(req, res){
   // console.log(req.body);
   api_user.Register(req.body).then((result)=>{
-    // console.log(result);
+    console.log(result);
     res.json(result);
   })
 });

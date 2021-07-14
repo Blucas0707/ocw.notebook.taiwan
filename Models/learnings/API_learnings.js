@@ -7,10 +7,11 @@ let api_learnings = {
   //更新 Lecture status
   updateLecture_status:function(data){
     return new Promise((resolve, reject)=>{
+      console.log(data);
       let user_id = data.user_id.toString();
       let course_id = data.course_id.toString();
       let lectures = data.lectures;
-      console.log(user_id,course_id);
+      console.log(user_id,course_id,lectures);
       if(user_id != 0){
         // save in sql
         SQL.Learnings.updateLecture_status_SQL(user_id,course_id,lectures).then((result)=>{

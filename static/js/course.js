@@ -15,7 +15,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log("delete:" + result);
+          // console.log("delete:" + result);
           // console.log(typeof(result));
           // console.log(models.user.loginSuccess);
           resolve(result);
@@ -45,6 +45,7 @@ let models = {
       let course_id = models.course_id;
       let lecture_id = models.lecture_id;
       let user_id = models.user_id;
+      // console.log(course_id,lecture_id,user_id);
       return new Promise((resolve, reject)=>{
         let note = document.querySelector("#note-input-content").value;
         let data = {
@@ -65,7 +66,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log(result);
+          // console.log(result);
           resolve(result);
         });
       })
@@ -777,7 +778,7 @@ let controllers = {
           let sec = parseInt(video_currents[2]);
           let video_current = hour + min + sec;
 
-          console.log(hour,min,sec,video_current);
+          // console.log(hour,min,sec,video_current);
           //設定影片時間
 
           let video = document.querySelector(".lecture-video");

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Blucas0707/ocw.notebook.taiwan#readme",
   "dependencies": {
+    "argon2": "^0.28.2",
     "aws-sdk": "^2.945.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
