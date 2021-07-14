@@ -519,6 +519,15 @@ let views = {
       div_search_box.className = "search-box";
       div_search_box.id = search_results[index]._id; //course_name
       search_list.appendChild(div_search_box);
+      //滑鼠靠近反灰
+      div_search_box.addEventListener("mouseover",()=>{
+        div_search_box.style.backgroundColor = "#cccccc";
+      })
+      //滑鼠離開反白
+      div_search_box.addEventListener("mouseout",()=>{
+        div_search_box.style.backgroundColor = "white";
+      })
+      //點擊後，導向課程頁面
       div_search_box.addEventListener("click",()=>{
         window.location.assign("course/"+div_search_box.id);
       })
