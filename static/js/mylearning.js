@@ -91,6 +91,7 @@ let views = {
       // console.log(result);
       // console.log(result===null);
       if(result != null){
+        document.querySelector(".course-border").style.border = "1px solid #dcdacb";
         let dataLength = result.length;
         for(let index=0;index<dataLength;index++){
           course_id = result[index].course_id;
@@ -164,6 +165,7 @@ let views = {
         document.querySelector(".course-content-page").style.display = "none";
         document.querySelector(".course-content-main").innerHTML = "無紀錄";
         document.querySelector(".course-content-main").style.fontSize = "2rem";
+        document.querySelector(".course-border").style.border = "none";
       }
       //show 完成數
       // document.querySelector(".static-count").innerHTML = models.learnings.complete_course_count;
