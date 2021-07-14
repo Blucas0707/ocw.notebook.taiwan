@@ -3,6 +3,25 @@ let models = {
   course_id:location.pathname.split("course/")[1],
   user_id:null,
   notes:{
+    deleteNote:function(note_id){
+      return new Promise((resolve, reject)=>{
+        // let course_id = models.course_id;
+        // console.log("/api/note/"+ models.course_id+ "/"+ models.lecture_id);
+        return fetch("/api/note/"+ note_id,{
+          method:'delete',
+          headers: {
+            "Content-type":"application/json",
+          },
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          console.log("delete:" + result);
+          // console.log(typeof(result));
+          // console.log(models.user.loginSuccess);
+          resolve(result);
+        });
+      });
+    },
     getNotes:function(){
       return new Promise((resolve, reject)=>{
         // let course_id = models.course_id;
@@ -15,7 +34,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
+          console.log(result);
           // console.log(typeof(result));
           // console.log(models.user.loginSuccess);
           resolve(result);
@@ -321,9 +340,20 @@ let views = {
           let div_note_time_current = document.createElement("div");
           div_note_time_current.className = "note-time-current";
           div_note_time_current.innerHTML = result.data[index].note_current;
-          console.log(div_note_time_current.innerHTML);
+          // console.log(div_note_time_current.innerHTML);
+
+          //新增div note-delete under note-time-box
+          let div_note_delete = document.createElement("div");
+          div_note_delete.className = "note-delete";
+          div_note_delete.id = result.data[index].note_id;
+          //新增img note-delete under div note-delete
+          let img_note_delete = document.createElement("img");
+          img_note_delete.src = "/img/trash.svg";
+          div_note_delete.appendChild(img_note_delete);
+
           div_note_time_box.appendChild(div_note_time);
           div_note_time_box.appendChild(div_note_time_current);
+          div_note_time_box.appendChild(div_note_delete);
 
           // console.log(result.data[index].note_time);
           //新增div note-content under note-show-list
@@ -364,8 +394,19 @@ let views = {
       div_note_time_current.className = "note-time-current";
       div_note_time_current.innerHTML = result.data[0].note_current;
 
+      //新增div note-delete under note-time-box
+      let div_note_delete = document.createElement("div");
+      div_note_delete.className = "note-delete";
+      div_note_delete.id = result.data[0].note_id;
+      //新增img note-delete under div note-delete
+      let img_note_delete = document.createElement("img");
+      img_note_delete.src = "/img/trash.svg";
+      div_note_delete.appendChild(img_note_delete);
+
       div_note_time_box.appendChild(div_note_time);
       div_note_time_box.appendChild(div_note_time_current);
+      div_note_time_box.appendChild(div_note_delete);
+
       // console.log(result.data[index].note_time);
       //新增div note-content under note-show-list
       let div_note_content = document.createElement("div");
@@ -712,6 +753,19 @@ let views = {
 
 let controllers = {
   click:{
+    clickNoteDelete:function(){
+      let note_delete_list = document.querySelectorAll(".note-delete");
+      for(let index=0;index<note_delete_list.length;index++){
+        let note_delete = note_delete_list[index];
+        note_delete.addEventListener("click",()=>{
+          let note_id = note_delete.id;
+          console.log(note_id);
+          models.notes.deleteNote(note_id);
+          //移除 note-show-list
+          note_delete.parentElement.parentElement.remove();
+        })
+      }
+    },
     clickNoteCurrent:function(){
       let note_current_list = document.querySelectorAll(".note-time-current");
       for(let index=0;index<note_current_list.length;index++){
@@ -830,6 +884,7 @@ let controllers = {
               document.querySelector("#note-input-content").value = "";
               views.notes.renderupdateNote(result);
               controllers.click.clickNoteCurrent();
+              controllers.click.clickNoteDelete();
               resolve(result);
             })
           }
@@ -855,6 +910,7 @@ let controllers = {
           views.notes.renderNotes(result);
           console.log(result);
           controllers.click.clickNoteCurrent();
+          controllers.click.clickNoteDelete();
         });
       })
     }

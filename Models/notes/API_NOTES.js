@@ -34,6 +34,18 @@ let api_notes = {
 
     });
   },
+  //刪除 Delete
+  deleteNote:function(note_id){
+    return new Promise((resolve, reject)=>{
+        // 取得notes by course_id, lecture_id & user_id
+        SQL.Note.deleteNote(note_id).then((result)=>{
+          // console.log("result: " + JSON.stringify(result));
+          // resolve(JSON.stringify(result));
+          resolve(result);
+        })
+
+    });
+  },
 };
 // api_user.Get();
 module.exports = api_notes;

@@ -30,6 +30,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'/templates/'+'index.html'));
 });
 
+// 搜尋頁
+app.get("/search", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'search.html'));
+});
+
 // 課程頁
 app.get("/course/:course_id", function(req, res){
   res.sendFile(path.join(__dirname,'/templates/'+'course.html'));
@@ -94,7 +99,15 @@ app.post("/api/note", function(req, res){
   });
 
 });
-
+// 刪除筆記
+app.delete("/api/note/:note_id", function(req, res){
+  let note_id = req.params.note_id;
+  // console.log("note:" + course_id,lecture_id,user_id);
+  api_notes.deleteNote(note_id).then((result)=>{
+    // console.log(result);
+    res.send(200,result);
+  });
+});
 //學習進度Learning API
 //更新課堂學習進度
 app.patch("/api/learning", function(req, res){

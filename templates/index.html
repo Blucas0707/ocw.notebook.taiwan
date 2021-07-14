@@ -57,10 +57,16 @@
         <div class="nav-title"><a href="/">OCW Notebook</a></div>
         <div class="nav-search">
           <div class="nav-search-box">
-            <form class="search" name ="search-keyword">
-              <input type="search" placeholder="輸入課程關鍵字" name="keyword" id="keyword" class="search">
+            <form class="search" action="/search" name ="search-keyword">
+              <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search">
             </form>
             <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
+            <div class="search-list">
+              <!-- <div class="search-box">台灣的水文</div>
+              <div class="search-box">台灣語言研究論文寫作</div>
+              <div class="search-box">台灣電影：本土論述與國際風格 Taiwan Cinema:Local Discourse and International Style</div>
+              <div class="search-box">台灣歌謠與文化</div> -->
+            </div>
           </div>
         </div>
         <div class="nav-login">

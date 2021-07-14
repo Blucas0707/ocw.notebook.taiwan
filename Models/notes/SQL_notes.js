@@ -18,8 +18,30 @@ let SQL = {
     // dateStrings: true,
   }),
   Note:{
+    deleteNote:function(note_id){
+      let sql_statement = "delete from notes where note_id = ? ";
+      let para = [note_id];
+      let promisePool = SQL.pool.promise();
+      return new Promise((resolve, reject)=>{
+        promisePool.query(sql_statement,para).then(([rows, fields])=>{
+          // console.log(rows);
+          let data ={
+            "ok":true
+          };
+          resolve(data);
+        }).catch((err)=>{
+          console.log(err);
+          let data = {
+            "error": true,
+            "message": "伺服器內部錯誤"
+          };
+          // console.log("data:" + data);
+          resolve(data);
+        })
+      });
+    },
     getnotes:function(course_id,lecture_id,user_id){
-      let sql_statement = "select note,note_video_current,note_record_time from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC";
+      let sql_statement = "select note_id,note,note_video_current,note_record_time from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC";
       let para = [course_id,lecture_id,user_id];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
@@ -32,7 +54,7 @@ let SQL = {
             resolve(data);
           }else{
             for(let index=0;index<rows.length;index++){
-              let note_id = index + 1;
+              let note_id = rows[index].note_id;
               let note = rows[index].note;
               let note_current = rows[index].note_video_current;
               let note_time = rows[index].note_record_time;
@@ -65,13 +87,13 @@ let SQL = {
       return new Promise((resolve, reject)=>{
         // promisePool.query("set time_zone = '+8:00'");
         promisePool.query(sql_statement,para).then(()=>{
-          sql_statement = "select note,note_video_current,note_record_time from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC limit 1"
+          sql_statement = "select note_id,note,note_video_current,note_record_time from notes where course_id = ? and lecture_id = ? and user_id = ? order by note_record_time DESC limit 1"
           promisePool.query(sql_statement,para).then((rows)=>{
             console.log(rows[0][0],rows[0][0].note);
             let data ={
               "data":[],
             };
-            let note_id = 1;
+            let note_id = rows[0][0].note_id;
             let note = rows[0][0].note;
             let note_current = rows[0][0].note_video_current;
             let note_time = rows[0][0].note_record_time;
