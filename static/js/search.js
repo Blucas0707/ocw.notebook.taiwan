@@ -712,7 +712,7 @@ let controllers = {
         let keyword = document.querySelector("#keyword").value;
         if(keyword !=""){
           // models.courses.searchKeyword(keyword);
-          window.location.assign("/search?keyword=", keyword);
+          window.location.assign("/search?keyword=" + keyword);
         }else{
           alert("關鍵字不得為空！");
         }

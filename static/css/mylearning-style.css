@@ -52,6 +52,13 @@ a,a:link,a:visited {
   border-radius: 7px;
 }
 
+.nav-search-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
 form.search {
   /* height: 46px; */
@@ -71,6 +78,29 @@ form.search input {
   font-size: 16px;
   line-height: 13px;
   text-indent: 15px;
+}
+
+.search-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 54px;
+  background-color: white;
+  width: 100%;
+  opacity: 0.8;
+  border-radius: 0 0 5px 5px;
+}
+
+.search-box {
+  margin:5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 1rem;
+}
+
+.search-box:hover {
+  cursor: pointer;
 }
 
 .keyin_Keyword {
