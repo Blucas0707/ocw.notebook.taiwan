@@ -19,7 +19,8 @@ let ES = {
       "query": {
         "query_string": {
           "query": keyword,
-          "default_field": "course_name"
+          "default_field": "course_name",
+          "default_operator": "AND"
         }
       }
     };
