@@ -67,13 +67,13 @@ let models = {
     },
     searchKeyword:function(keyword){
       return new Promise((resolve, reject)=>{
-        let url = "https://search-courses-ptaras3nil34n6zdm7mfwnljhe.us-east-2.es.amazonaws.com/courses/_search?analyzer=ik_max_word&default_operator=AND&q=course_name:" + keyword;
+        let url = "/api/search?keyword=" + keyword;
         return fetch(url,{
           method:"GET",
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log(result);
+          // console.log(result);
           // console.log(result.hits.hits);
           resolve(result);
         });

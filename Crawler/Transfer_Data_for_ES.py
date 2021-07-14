@@ -55,37 +55,37 @@ class SQL:
 ES = SQL()
 ES.getData()
 
-{
-  "mappings": {
-      "properties": {
-        "course_name": {
-          "type": "text",
-          "analyzer": "ik_max_word",
-          "search_analyzer": "ik_max_word"
-        },
-        "course_teacher": {
-          "type": "text",
-          "analyzer": "ik_max_word",
-          "search_analyzer": "ik_max_word"
-        },
-        "course_category": {
-          "type": "text",
-          "analyzer": "ik_max_word",
-          "search_analyzer": "ik_max_word"
-        },
-        "course_university": {
-          "type": "text",
-          "analyzer": "ik_max_word",
-          "search_analyzer": "ik_max_word"
-        },
-	    "course_description": {
-          "type": "text",
-          "analyzer": "ik_max_word",
-          "search_analyzer": "ik_max_word"
-        },
-        "course_cover": {
-          "type": "text",
-        }
-      }
-  }
-}
+# {
+#   "mappings": {
+#       "properties": {
+#         "course_name": {
+#           "type": "text",
+#           "analyzer": "ik_max_word",
+#           "search_analyzer": "ik_max_word"
+#         },
+#         "course_teacher": {
+#           "type": "text",
+#           "analyzer": "ik_max_word",
+#           "search_analyzer": "ik_max_word"
+#         },
+#         "course_category": {
+#           "type": "text",
+#           "analyzer": "ik_max_word",
+#           "search_analyzer": "ik_max_word"
+#         },
+#         "course_university": {
+#           "type": "text",
+#           "analyzer": "ik_max_word",
+#           "search_analyzer": "ik_max_word"
+#         },
+# 	    "course_description": {
+#           "type": "text",
+#           "analyzer": "ik_max_word",
+#           "search_analyzer": "ik_max_word"
+#         },
+#         "course_cover": {
+#           "type": "text",
+#         }
+#       }
+#   }
+# }

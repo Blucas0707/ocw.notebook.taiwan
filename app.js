@@ -1,14 +1,18 @@
 const express = require("express");
 const path = require("path");
 var session = require('express-session')
+var AWS = require('aws-sdk');
+var region = 'us-east-2'; // e.g. us-west-1
+var domain = 'search-courses-ptaras3nil34n6zdm7mfwnljhe.us-east-2.es.amazonaws.com'; // e.g. search-domain.region.es.amazonaws.com
+var index = "courses";
 // const bodyParser = require("body-parser");
-
 const api_user = require("./Models/users/API_users");
 const api_courses = require("./Models/courses/API_courses");
 const api_lectures = require("./Models/lectures/API_lectures");
 const api_notes = require("./Models/notes/API_notes");
 const api_learnings = require("./Models/learnings/API_learnings");
 const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
+const api_searches = require("./Models/searches/API_searches");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -46,6 +50,16 @@ app.get('/mylearning', function (req, res) {
 });
 
 //API
+//關鍵字搜索
+app.get("/api/search", function(req, res){
+  let keyword = req.query.keyword;
+  // console.log(course_id);
+  api_searches.searchKeyword(keyword).then((result)=>{
+    // console.log(result);
+    res.send(200,result);
+  });
+});
+
 //課程Course API
 app.get("/api/courses", function(req, res){
   let page = (req.query.page) ? (req.query.page):("0");
