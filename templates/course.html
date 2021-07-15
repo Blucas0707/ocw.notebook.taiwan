@@ -51,11 +51,10 @@
       <div class="register-login">已經有帳戶了？點此登入</div>
     </div>
 
-    <div class="nav-bar">
+    <!-- <div class="nav-bar">
       <div class="nav-bar-items">
         <div class="nav-title"><a href="/">OCW Notebook</a></div>
         <div class="nav-search">
-          <!-- <div class="course-title"></div> -->
         </div>
         <div class="nav-login">
           <div id="login-btn" class="nav-login-box">登入</div>
@@ -63,7 +62,32 @@
           <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
           <div id="logout-btn" class="nav-login-box">登出</div>
         </div>
-
+      </div>
+    </div> -->
+    <div class="nav-bar">
+      <div class="nav-bar-items">
+        <div class="nav-title"><a href="/">OCW Notebook</a></div>
+        <div class="nav-search">
+          <div class="nav-search-box">
+            <form class="search" action="/search" name ="search-keyword">
+              <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search">
+            </form>
+            <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
+            <div class="search-list">
+            </div>
+          </div>
+        </div>
+        <div class="nav-login">
+          <div id="hamburger_menu" class="nav-login-menu">
+            <img src="/img/hamburger_menu.svg" alt="" class="img-hamburger-menu">
+            <div class="nav-login-menu-box">
+              <div id="login-btn" class="nav-login-box">登入</div>
+              <div id="register-btn" class="nav-login-box">註冊</div>
+              <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
+              <div id="logout-btn" class="nav-login-box">登出</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

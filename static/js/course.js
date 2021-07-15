@@ -302,9 +302,33 @@ let models = {
       })
     },
   },
+  courses:{
+    searchKeyword:function(keyword){
+      return new Promise((resolve, reject)=>{
+        // let url = "https://search-courses-ptaras3nil34n6zdm7mfwnljhe.us-east-2.es.amazonaws.com/courses/_search?analyzer=ik_max_word&default_operator=AND&q=course_name:" + keyword;
+        let url = "/api/search?keyword=" + keyword;
+        return fetch(url,{
+          method:"GET",
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          // console.log(result);
+          // console.log(result.hits.hits);
+          resolve(result);
+        });
+      });
+    },
+  },
 };
 
 let views = {
+  courses:{
+    clearCourses:function(elem){
+      while(elem.hasChildNodes()){ //elem child存在
+        elem.removeChild(elem.firstChild); //刪除子節點
+      };
+    },
+  },
   notes:{
     renderNotesCount:function(notecount){
       let alert = document.querySelector("#note-alert");
@@ -748,11 +772,91 @@ let views = {
       }
     },10);
   },
-
+  showMenu:function(){
+    let menu_box = document.querySelector(".nav-login-menu-box");
+    if(controllers.actions.isMenushow === false){
+        menu_box.style.display = "block";
+        controllers.actions.isMenushow = true;
+    }else{
+      menu_box.style.display = "none";
+      controllers.actions.isMenushow = false;
+    }
+  },
+  showSearch:function(result){
+    let search_results = result.hits.hits;
+    // console.log(search_results[0]);
+    // console.log(search_results[0]._source);
+    let search_list = document.querySelector(".search-list");
+    // clear
+    views.courses.clearCourses(search_list);
+    for(let index=0;index<search_results.length;index++){
+      //新增 div search-box under div search-list
+      let div_search_box = document.createElement("div");
+      div_search_box.innerHTML = search_results[index]._source.course_name; //course_name
+      div_search_box.className = "search-box";
+      div_search_box.id = search_results[index]._id; //course_name
+      search_list.appendChild(div_search_box);
+      //滑鼠靠近反灰
+      div_search_box.addEventListener("mouseover",()=>{
+        div_search_box.style.backgroundColor = "#cccccc";
+      })
+      //滑鼠離開反白
+      div_search_box.addEventListener("mouseout",()=>{
+        div_search_box.style.backgroundColor = "white";
+      })
+      //點擊後，導向課程頁面
+      div_search_box.addEventListener("click",()=>{
+        window.location.assign(window.location.href.substr(0,window.location.href.length-6)+div_search_box.id);
+      })
+    }
+    search_list.style.display = "block";
+  },
 
 };
 
 let controllers = {
+  courses:{
+    searchBar:function(){
+      let search_bar = document.querySelector("#keyword");
+      search_bar.addEventListener("input",()=>{
+        let keyword = search_bar.value;
+        if(keyword != ""){
+          models.courses.searchKeyword(keyword).then((result)=>{
+            views.showSearch(result);
+            //點擊其他地方=> 隱藏搜尋結果
+            document.querySelector("html").addEventListener("click",()=>{
+              document.querySelector(".search-list").style.display = "none";
+            })
+          })
+        }else{
+          document.querySelector(".search-list").style.display = "none";
+        }
+
+      })
+    },
+    searchKeyword:function(){
+      let search_btn = document.querySelector(".keyin_Keyword");
+      search_btn.addEventListener("click",()=>{
+        let keyword = document.querySelector("#keyword").value;
+        if(window.outerWidth >= 1200){
+          if(keyword !=""){
+            // models.courses.searchKeyword(keyword);
+            window.location.assign("/search?keyword=" + keyword);
+          }
+          else{
+            alert("關鍵字不得為空！");
+          }
+        }else{
+          let search_box = document.querySelector("#keyword");
+          if(search_box.style.display === "none"){
+            search_box.style.display = "flex";
+          }else{
+            search_box.style.display = "none";
+          }
+        }
+      })
+    },
+  },
   click:{
     clickNoteDelete:function(){
       let note_delete_list = document.querySelectorAll(".note-delete");
@@ -864,6 +968,8 @@ let controllers = {
       cancel_btn.addEventListener("click",()=>{
         let notebox = document.querySelector("#note-input-content");
         notebox.value = "";
+        //字數顯示
+        views.notes.renderNotesCount(0);
       });
     },
     postNotes:function(){
@@ -955,6 +1061,13 @@ let controllers = {
     },
   },
   actions:{
+    isMenushow:false,
+    clickMenu:function(){
+      let menu_btn = document.querySelector(".img-hamburger-menu");
+      menu_btn.addEventListener("click",()=>{
+        views.showMenu();
+      });
+    },
     clickMyLearning:function(){
       let mylearning_btn = document.querySelector("#mylearning-btn");
       mylearning_btn.addEventListener("click",()=>{
@@ -1035,6 +1148,9 @@ let controllers = {
       controllers.member.logout();
       controllers.actions.clickMyLearning();
     });
+    controllers.actions.clickMenu();
+    controllers.courses.searchKeyword();
+    controllers.courses.searchBar();
     //display lectures
     controllers.lectures.listLectures();
     controllers.click.cancelNote();

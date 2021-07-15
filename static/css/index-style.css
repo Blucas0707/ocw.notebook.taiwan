@@ -271,7 +271,29 @@ form.search input {
   display: none;
 } */
 
+.nav-login-menu {
+  position: relative;
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
 
+.img-hamburger-menu {
+  display: none;
+  width: 35px;
+  height: 35px;
+}
+
+
+.nav-login-menu-box {
+  /* margin:10px; */
+  display: flex;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+}
 
 .main {
 
@@ -565,7 +587,7 @@ footer {
   }
 }
 
-@media (min-width: 600px) and (max-width:1200px) {
+@media (max-width: 1000px) {
   .cover {
     position:relative;
   }
@@ -588,11 +610,72 @@ footer {
     width: 45%;
   }
 
-
   form.search input {
     /* flex:none; */
     width: 320px;
     /* color:black; */
+  }
+
+  .nav-login{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+  }
+  .nav-title {
+    flex:none;
+    margin-left: 0;
+  }
+  .nav-search {
+    position: absolute;
+    left: 10px;
+    border: 0;
+    margin-left: 0;
+  }
+  .keyin_Keyword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #438899;
+    border: 0;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  .search {
+    position: absolute;
+    top: 30px;
+  }
+  .search-list {
+    top: 108px;
+    min-width: 250px;
+    opacity: 1;
+  }
+  #keyword {
+    display: none;
+  }
+  .nav-login-menu {
+    display: flex;
+    margin: 0;
+  }
+  .nav-login-menu-box {
+    position: absolute;
+    display: none;
+    top: 48px;
+    right: -10px;
+    width: 120px;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+  }
+  .nav-login-box{
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    border: 0;
+  }
+  .img-hamburger-menu{
+    display: flex;
   }
 }
 
@@ -621,5 +704,67 @@ footer {
     /* flex:none; */
     width: 230px;
     /* color:black; */
+  }
+
+  .nav-login{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+  }
+  .nav-title {
+    flex:none;
+    margin-left: 0;
+  }
+  .nav-search {
+    position: absolute;
+    left: 10px;
+    border: 0;
+    margin-left: 0;
+  }
+  .keyin_Keyword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #438899;
+    border: 0;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  .search {
+    position: absolute;
+    top: 30px;
+  }
+  .search-list {
+    top: 108px;
+    min-width: 250px;
+    opacity: 1;
+  }
+  #keyword {
+    display: none;
+  }
+  .nav-login-menu {
+    display: flex;
+    margin: 0;
+  }
+  .nav-login-menu-box {
+    position: absolute;
+    display: none;
+    top: 48px;
+    right: -10px;
+    width: 120px;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+  }
+  .nav-login-box{
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    border: 0;
+  }
+  .img-hamburger-menu{
+    display: flex;
   }
 }

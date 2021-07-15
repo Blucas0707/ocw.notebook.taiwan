@@ -171,11 +171,69 @@ a,a:link,a:visited {
 
 
 .nav-search {
+  /* display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center; */
   display: flex;
   flex: auto;
   justify-content: center;
   align-items: center;
+  margin-left: 100px;
+  border: 1px solid gray;
+  border-radius: 7px;
 
+}
+
+.nav-search-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+form.search {
+  /* height: 46px; */
+  width: 100%;
+}
+
+form.search input {
+  float: left;
+  background-color: white;
+  height: 46px;
+  border: 0;
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 13px;
+  text-indent: 15px;
+}
+
+.search-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 54px;
+  background-color: white;
+  width: 100%;
+  opacity: 0.8;
+  border-radius: 0 0 5px 5px;
+}
+
+.search-box {
+  margin:5px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  /* font-weight: bold; */
+  font-size: 1rem;
+}
+
+.search-box:hover {
+  cursor: pointer;
 }
 
 .keyin_Keyword {
@@ -213,6 +271,31 @@ a,a:link,a:visited {
   padding: 10px 15px;
   border-radius: 5px;
 }
+
+.nav-login-menu {
+  position: relative;
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.img-hamburger-menu {
+  display: none;
+  width: 35px;
+  height: 35px;
+}
+
+
+.nav-login-menu-box {
+  /* margin:10px; */
+  display: flex;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
 
 /* cover */
 
@@ -610,9 +693,146 @@ footer {
   .note-content-box {
     margin-top: 0;
   }
+  /* nav */
+
+  form.search input {
+    /* flex:none; */
+    width: 320px;
+    /* color:black; */
+  }
+  .nav-login{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+  }
+  .nav-title {
+    flex:none;
+    margin-left: 0;
+  }
+  .nav-search {
+    position: absolute;
+    left: 10px;
+    border: 0;
+    margin-left: 0;
+  }
+  .keyin_Keyword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #438899;
+    border: 0;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  .search {
+    position: absolute;
+    top: 30px;
+  }
+  .search-list {
+    top: 108px;
+    min-width: 250px;
+    opacity: 1;
+  }
+  #keyword {
+    display: none;
+  }
+  .nav-login-menu {
+    display: flex;
+    margin: 0;
+  }
+  .nav-login-menu-box {
+    position: absolute;
+    display: none;
+    top: 48px;
+    right: -10px;
+    width: 120px;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+  }
+  .nav-login-box{
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    border: 0;
+  }
+  .img-hamburger-menu{
+    display: flex;
+  }
 }
 @media (max-width: 600px) {
-  .nav-title {
+  /* .nav-title {
     display: none;
+  } */
+  form.search input {
+    /* flex:none; */
+    width: 320px;
+    /* color:black; */
+  }
+  .note-btn {
+    padding: 0 5px;
+  }
+  .nav-login{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+  }
+  .nav-title {
+    flex:none;
+    margin-left: 0;
+  }
+  .nav-search {
+    position: absolute;
+    left: 10px;
+    border: 0;
+    margin-left: 0;
+  }
+  .keyin_Keyword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #438899;
+    border: 0;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+  }
+  .search {
+    position: absolute;
+    top: 30px;
+  }
+  .search-list {
+    top: 108px;
+    min-width: 250px;
+    opacity: 1;
+  }
+  #keyword {
+    display: none;
+  }
+  .nav-login-menu {
+    display: flex;
+    margin: 0;
+  }
+  .nav-login-menu-box {
+    position: absolute;
+    display: none;
+    top: 48px;
+    right: -10px;
+    width: 120px;
+    text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 5px;
+  }
+  .nav-login-box{
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    border: 0;
+  }
+  .img-hamburger-menu{
+    display: flex;
   }
 }

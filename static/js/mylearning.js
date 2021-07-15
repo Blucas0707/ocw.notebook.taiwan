@@ -247,9 +247,28 @@ let views = {
     }
     search_list.style.display = "block";
   },
+  showMenu:function(){
+    let menu_box = document.querySelector(".nav-login-menu-box");
+    if(controllers.actions.isMenushow === false){
+        menu_box.style.display = "block";
+        controllers.actions.isMenushow = true;
+    }else{
+      menu_box.style.display = "none";
+      controllers.actions.isMenushow = false;
+    }
+  },
 };
 
 let controllers = {
+  actions:{
+    isMenushow:false,
+    clickMenu:function(){
+      let menu_btn = document.querySelector(".img-hamburger-menu");
+      menu_btn.addEventListener("click",()=>{
+        views.showMenu();
+      });
+    },
+  },
   courses:{
     searchBar:function(){
       let search_bar = document.querySelector("#keyword");
@@ -273,11 +292,21 @@ let controllers = {
       let search_btn = document.querySelector(".keyin_Keyword");
       search_btn.addEventListener("click",()=>{
         let keyword = document.querySelector("#keyword").value;
-        if(keyword !=""){
-          // models.courses.searchKeyword(keyword);
-          window.location.assign("/search?keyword=" + keyword);
+        if(window.outerWidth >= 1200){
+          if(keyword !=""){
+            // models.courses.searchKeyword(keyword);
+            window.location.assign("/search?keyword=" + keyword);
+          }
+          else{
+            alert("關鍵字不得為空！");
+          }
         }else{
-          alert("關鍵字不得為空！");
+          let search_box = document.querySelector("#keyword");
+          if(search_box.style.display === "none"){
+            search_box.style.display = "flex";
+          }else{
+            search_box.style.display = "none";
+          }
         }
       })
     },
@@ -435,6 +464,7 @@ let controllers = {
       controllers.click.clickCategory();
       controllers.courses.searchKeyword();
       controllers.courses.searchBar();
+      controllers.actions.clickMenu();
       // controllers.initialfadein().then(()=>{
       //   controllers.learnings.getAllLearnings();
       // })
