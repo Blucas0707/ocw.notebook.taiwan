@@ -105,8 +105,8 @@ form.search input {
 
 .keyin_Keyword {
   float: left;
-  min-height: 46px;
-  min-width: 60px;
+  min-height: 38px;
+  min-width: 38px;
   background-color: #438899;
   border: 0;
   border-radius: 0 5px 5px 0;
@@ -544,6 +544,7 @@ footer {
   .nav-title {
     flex:none;
     margin-left: 0;
+    font-size: 1.5rem;
   }
   .nav-search {
     position: absolute;
@@ -558,8 +559,8 @@ footer {
     background-color: #438899;
     border: 0;
     border-radius: 5px;
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
   }
   .search {
     position: absolute;
