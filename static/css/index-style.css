@@ -588,6 +588,9 @@ footer {
 }
 
 @media (max-width: 1000px) {
+  .course-content-main {
+    justify-content: flex-start;
+  }
   .cover {
     position:relative;
   }
@@ -681,6 +684,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .course-content-main {
+    justify-content: flex-start;
+  }
+  
   .nav-bar-items {
     margin: auto 20px;
   }

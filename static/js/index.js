@@ -330,7 +330,6 @@ let views = {
         div_allCourse.appendChild(div_course_class);
         // views.fadein(div_allCourse);
       }
-
       //點選課程
       controllers.courses.chooseCourse();
 
