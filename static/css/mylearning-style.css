@@ -598,4 +598,8 @@ footer {
   .img-hamburger-menu{
     display: flex;
   }
+
+  footer {
+    font-size: 0.8rem;
+  }
 }

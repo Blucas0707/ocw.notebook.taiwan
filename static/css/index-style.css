@@ -681,13 +681,16 @@ footer {
   .img-hamburger-menu{
     display: flex;
   }
+  footer {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 600px) {
   .course-content-main {
     justify-content: flex-start;
   }
-  
+
   .nav-bar-items {
     margin: auto 20px;
   }
@@ -775,5 +778,8 @@ footer {
   }
   .img-hamburger-menu{
     display: flex;
+  }
+  footer {
+    font-size: 0.8rem;
   }
 }
