@@ -1,5 +1,5 @@
 require('dotenv').config({path:__dirname+'/../../.env'});
-// console.log(process.env.RDS_SQL_HOST);
+
 const mysql = require('mysql2');
 //建立SQL物件
 let SQL = {
@@ -24,7 +24,6 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows);
           let data ={
             "ok":true
           };
@@ -46,7 +45,6 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows);
           let data ={
             "data":[],
           };
@@ -66,7 +64,6 @@ let SQL = {
               };
               data.data.push(temp);
             }
-            // console.log("data:" + JSON.stringify(data));
             resolve(data);
           }
         }).catch((err)=>{
@@ -75,7 +72,6 @@ let SQL = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });
@@ -105,7 +101,6 @@ let SQL = {
             };
             data.data.push(temp);
           console.log("data:" + JSON.stringify(data));
-          // console.log
           resolve(data);
           })
         }).catch((err)=>{
@@ -114,7 +109,6 @@ let SQL = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });

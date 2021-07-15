@@ -1,8 +1,5 @@
 let SQL = require("./SQL_notes");
 
-const database = "User";
-// let statement = 'select * from lectures limit 1;'
-
 let api_notes = {
   //註冊 POST
   postNotes:function(data){
@@ -15,8 +12,6 @@ let api_notes = {
       let note_video_current = data.note_video_current.toString();
       // save in sql
       SQL.Note.postNotes(course_id,lecture_id,user_id,note,note_video_current,note_record_time).then((result)=>{
-        // console.log("result: " + result);
-        // resolve(JSON.stringify(result));
         resolve(result);
       })
 
@@ -27,8 +22,6 @@ let api_notes = {
     return new Promise((resolve, reject)=>{
         // 取得notes by course_id, lecture_id & user_id
         SQL.Note.getnotes(course_id,lecture_id,user_id).then((result)=>{
-          // console.log("result: " + JSON.stringify(result));
-          // resolve(JSON.stringify(result));
           resolve(result);
         })
 
@@ -39,13 +32,11 @@ let api_notes = {
     return new Promise((resolve, reject)=>{
         // 取得notes by course_id, lecture_id & user_id
         SQL.Note.deleteNote(note_id).then((result)=>{
-          // console.log("result: " + JSON.stringify(result));
-          // resolve(JSON.stringify(result));
           resolve(result);
         })
 
     });
   },
 };
-// api_user.Get();
+
 module.exports = api_notes;

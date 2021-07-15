@@ -379,11 +379,10 @@ let controllers = {
   },
   learnings:{
     getAllLearnings:function(){
-      models.learnings.getLearningData().then(()=>{
-        controllers.initialfadein().then(()=>{
+      controllers.initialfadein().then(()=>{
+        models.learnings.getLearningData().then(()=>{
           views.learnings.renderData();
         })
-
       });
     },
     chooseCourse:function(){

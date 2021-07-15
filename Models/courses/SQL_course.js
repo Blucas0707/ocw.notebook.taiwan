@@ -35,13 +35,6 @@ let SQL = {
         sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_category = ? order by course_establish DESC limit ?,4";
         para = [category,offset];
       }
-      // let sql_statement = "select * from (select * from courses order by course_establish DESC) as T where course_category like ? and course_university like ? limit ?,4";
-      // let para = [category, university, offset];
-      // console.log(para);
-      // console.log(para);
-      // console.log(page);
-      // console.log(category);
-      // console.log(university);
 
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{

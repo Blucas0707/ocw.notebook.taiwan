@@ -1,6 +1,14 @@
 require('dotenv').config({path:__dirname+'/../../.env'});
 // console.log(process.env.RDS_SQL_HOST);
+const argon2 = require('argon2');
 const mysql = require('mysql2');
+//驗證
+function hashVerify(hashPassword,password){
+  // return new Promise((resolve,reject)=>{
+    const verification = argon2.verify(hashPassword, password);
+    return(verification);
+  // });
+};
 //建立SQL物件
 let SQL = {
   host: process.env.RDS_SQL_HOST,
@@ -24,15 +32,8 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(sql_statement);
-          // console.log(para);
-          // console.log("password:" + rows[0]["user_password"]);
           let hashPassword = rows[0]["user_password"];
           if(hashPassword){ //user existed
-              // let data = {
-              //   "ok": true
-              // };
-              // console.log("data:" + data);
               resolve(hashPassword);
             }
           else{
@@ -40,62 +41,69 @@ let SQL = {
               "error": true,
               "message": "登入失敗，帳號或密碼錯誤或其他原因"
             };
-            // console.log("data:" + data);
             resolve(data);
           }
-          // console.log(this.isUserExisted);
         }).catch(()=>{
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });
     },
-    GoogleLogin:function(name,email,password){
+    GoogleLogin:function(name,email,password,hashPassword){
       // check user eisted
       let isUserExisted = null;
-      let sql_statement = "select count(*) from users where user_email = ? and user_password = ? ";
-      let para = [email, password];
+      let sql_statement = "select user_password from users where user_email = ?";
+      let para = [email];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows[0]["count(*)"])
-          if(rows[0]["count(*)"] == 1){ //user existed
+          if(rows[0] != undefined){ //user existed
+            let hashPassword_SQL = rows[0]["user_password"];
+            let verification = hashVerify(hashPassword_SQL,password);
+            if(verification){ //user existed
+                let data = {
+                  "ok": true
+                };
+                resolve(data);
+              }
+            else{
               let data = {
-                "ok": true
+                "error": true,
+                "message": "密碼錯誤"
               };
-              // console.log("data:" + data);
               resolve(data);
             }
-          else{
-            //存入sql
+          }
+          else{ // user not existed => register
             sql_statement = "insert into users (user_name, user_email, user_password)  values (?,?,?)";
-            para = [name,email,password];
+            para = [name,email,hashPassword];
             promisePool.query(sql_statement, para).then(([rows, fields])=>{
-              // console.log(rows);
               let data = {
                 "ok": true
               };
-              // console.log("data:" + data);
               resolve(data);
-            })
+            }).catch((err)=>{
+              // console.log("GR: "+err);
+              let data = {
+                "error": true,
+                "message": "伺服器內部錯誤,註冊失敗！"
+              };
+              resolve(data);
+            });
           }
-          // console.log(this.isUserExisted);
         }).catch(()=>{
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });
     },
     register:function(name,email,password){
-      // console.log("register:", password);
       // check user eisted
       let isUserExisted = null;
       let sql_statement = "select count(*) from users where user_email = ? limit 1 ";
@@ -103,20 +111,16 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows[0]["count(*)"])
           if(rows[0]["count(*)"] == 0){ //not existed
             this.isUserExisted = false;
             //update user to SQL
             sql_statement = "insert into users (user_name, user_email, user_password)  values (?,?,?)";
             para = [name,email,password];
             promisePool.query(sql_statement, para).then(([rows, fields])=>{
-              // console.log(rows);
               let data = {
                 "ok": true
               };
-              // console.log("data:" + data);
               resolve(data);
-
             })
           }else{
             this.isUserExisted = true;
@@ -124,17 +128,14 @@ let SQL = {
               "error": true,
               "message": "註冊失敗，重複的 Email 或其他原因"
             };
-            // console.log("data:" + data);
             resolve(data);
           }
-          // console.log(this.isUserExisted);
         }).catch((err)=>{
-          console.log(err);
+          // console.log(err);
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });
@@ -144,11 +145,9 @@ let SQL = {
       let isUserExisted = null;
       let sql_statement = "select user_id,user_name,user_email,user_password from users where user_email = ? limit 1 ";
       let para = [email];
-      // console.log(sql_statement,para);
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log("CheckLogin: ",rows);
           if(rows[0]["user_id"] && rows[0]["user_name"] && rows[0]["user_email"]){ //user existed
             let data = {
               "data":{
@@ -158,22 +157,17 @@ let SQL = {
                 "password":rows[0]["user_password"]
               }
             };
-            // console.log("data:" + data);
             resolve(data);
-
           }else{
             let data = null;
-            // console.log("data:" + data);
             resolve(data);
           }
-          // console.log(this.isUserExisted);
         }).catch((err)=>{
-          console.log(err);
+          // console.log(err);
           let data = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });

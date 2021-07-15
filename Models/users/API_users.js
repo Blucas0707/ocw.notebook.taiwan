@@ -7,7 +7,7 @@ const database = "User";
 function hashPassword2(password){
   return new Promise((resolve,reject)=>{
     const hashkey = argon2.hash("password");
-    console.log(hashkey);
+    // console.log(hashkey);
     resolve(hashkey);
   });
 };
@@ -60,10 +60,7 @@ let api_user = {
         // argon2 加密密碼
           // save in sql
           SQL.User.login(email).then((hashPassword)=>{
-            // console.log(hashPassword);
-            // console.log("result: " + JSON.stringify(result));
             let verify = hashVerify(hashPassword,password);
-            // console.log("verify" + verify);
             if(verify){
               let data = {
                 "ok": true
@@ -87,11 +84,15 @@ let api_user = {
       let name = data.name.toString();
       let email = data.email.toString();
       let password = data.sub.toString();
-      // save in sql
-      SQL.User.GoogleLogin(name,email,password).then((result)=>{
-        // console.log("result: " + JSON.stringify(result));
-        resolve(JSON.stringify(result));
-      })
+
+      //argon2加密
+      hashPassword2(password).then((hashPassword)=>{
+        // save in sql
+        SQL.User.GoogleLogin(name,email,password,hashPassword).then((result)=>{
+          // console.log("result: " + JSON.stringify(result));
+          resolve(JSON.stringify(result));
+        })
+      });
 
     });
   },
@@ -107,13 +108,8 @@ let api_user = {
       }else{
         // check user exist in SQL
         SQL.User.checkLogin(email).then((result)=>{
-          // console.log("result: " + JSON.stringify(result));
-          // console.log(result);
           let hashPassword = result.data.password;
-          // console.log(hashPassword,password);
           let verify = hashVerify(hashPassword,password);
-          // console.log("verify: " + verify);
-          // console.log(result);
           if(verify){
             let data = {
               "data":{
@@ -131,10 +127,5 @@ let api_user = {
       }
     });
   },
-  // //登出 DELETE
-  // Logout:function(){
-  //
-  // },
 };
-// api_user.Get();
 module.exports = api_user;

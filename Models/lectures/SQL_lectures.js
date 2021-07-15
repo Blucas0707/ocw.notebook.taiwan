@@ -1,5 +1,4 @@
 require('dotenv').config({path:__dirname+'/../../.env'});
-// console.log(process.env.RDS_SQL_HOST);
 const mysql = require('mysql2');
 //建立SQL物件
 let SQL = {
@@ -30,8 +29,6 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          // console.log(rows);
-          // console.log(rows.length);
           //沒有資料
           if(rows.length == 0){
             data_dict["total"] = 0;
@@ -50,7 +47,6 @@ let SQL = {
                 data_dict["data"].push(new_dict);
             }
           }
-          // console.log(data_dict);
           resolve(data_dict);
         }).catch((err)=>{
           // console.log(err);
@@ -58,7 +54,6 @@ let SQL = {
             "error": true,
             "message": "伺服器內部錯誤"
           };
-          // console.log("data:" + data);
           resolve(data);
         })
       });
