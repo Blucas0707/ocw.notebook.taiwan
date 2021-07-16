@@ -13,7 +13,7 @@ const api_notes = require("./Models/notes/API_notes");
 const api_learnings = require("./Models/learnings/API_learnings");
 const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
 const api_searches = require("./Models/searches/API_searches");
-const api_myprofiles = require("./Models/myprofiles/api_myprofiles");
+const api_myprofiles = require("./Models/myprofiles/API_myprofiles");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
