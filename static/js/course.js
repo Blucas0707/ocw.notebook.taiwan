@@ -34,7 +34,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log(result);
+          // console.log(result);
           // console.log(typeof(result));
           // console.log(models.user.loginSuccess);
           resolve(result);
@@ -91,9 +91,9 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log("update done");
+          // console.log("update done");
           result = JSON.parse(result);
-          console.log(result);
+          // console.log(result);
           if(result.ok){
             models.user.loginSuccess = true;
             models.user.isLogin = true;
@@ -192,8 +192,8 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          result = JSON.parse(result);
-          console.log(result);
+          // result = JSON.parse(result);
+          // console.log(result);
           if(result.ok){
             models.user.loginSuccess = true;
             models.user.isLogin = true;
@@ -231,6 +231,7 @@ let models = {
       });
     },
     isLogin:null,
+    user_name:null,
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         return fetch("/api/user",{
@@ -244,6 +245,8 @@ let models = {
             models.user.isLogin = true;
             models.lectures.allLecture_status.user_id = JSON.parse(result).data.id;
             models.user_id = JSON.parse(result).data.id;
+            models.user.user_name = JSON.parse(result).data.name;
+            // console.log(models.user.user_name);
           }
           else{
             models.user.isLogin = null;
@@ -322,6 +325,12 @@ let models = {
 };
 
 let views = {
+  click:{
+    renderUsername:function(){
+      let nav_myname = document.querySelector(".nav-myname");
+      nav_myname.innerHTML = models.user.user_name;
+    },
+  },
   courses:{
     clearCourses:function(elem){
       while(elem.hasChildNodes()){ //elem child存在
@@ -610,6 +619,8 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "flex";
         logout_btn.style.display = "flex";
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "flex";
 
         let login_btn = document.querySelector("#login-btn");
         let register_btn = document.querySelector("#register-btn");
@@ -629,6 +640,9 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "none";
         //隱藏Note box & 顯示note-not-login box
         document.querySelector(".note-list").style.display = "none";
         document.querySelector(".note-not-login").style.display = "flex";
@@ -650,6 +664,8 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "none";
         //隱藏Note box & 顯示note-not-login box
         document.querySelector(".note-list").style.display = "none";
         document.querySelector(".note-not-login").style.display = "flex";
@@ -810,6 +826,14 @@ let views = {
       })
     }
     search_list.style.display = "block";
+  },
+  showmyProfile:function(){
+    let profile_box_list = document.querySelector(".profile-box-list");
+    if(profile_box_list.style.display === "none" || profile_box_list.style.display === ""){
+        profile_box_list.style.display = "block";
+    }else{
+      profile_box_list.style.display = "none";
+    }
   },
 
 };
@@ -1015,7 +1039,7 @@ let controllers = {
       return new Promise((resolve, reject)=>{
         models.notes.getNotes().then((result)=>{
           views.notes.renderNotes(result);
-          console.log(result);
+          // console.log(result);
           controllers.click.clickNoteCurrent();
           controllers.click.clickNoteDelete();
         });
@@ -1061,6 +1085,18 @@ let controllers = {
     },
   },
   actions:{
+    clickmyProfile:function(){
+      let myprofile_btn = document.querySelector("#my-profile");
+      myprofile_btn.addEventListener("click",()=>{
+        window.location.assign("/myprofile");
+      })
+    },
+    clickProfile:function(){
+      let profile_btn = document.querySelector("#profile-btn");
+      profile_btn.addEventListener("click",()=>{
+        views.showmyProfile();
+      })
+    },
     isMenushow:false,
     clickMenu:function(){
       let menu_btn = document.querySelector(".img-hamburger-menu");
@@ -1092,7 +1128,7 @@ let controllers = {
           //Goole logout
           var auth2 = gapi.auth2.getAuthInstance();
           auth2.signOut().then(function () {
-            console.log('User signed out.');
+            // console.log('User signed out.');
           });
           models.user.Logout().then(()=>{
             views.user.Logout();
@@ -1114,7 +1150,7 @@ let controllers = {
         let login_btn = document.querySelector(".login-btn");
         login_btn.addEventListener("click", ()=>{
           models.user.Login().then(()=>{
-            console.log("login");
+            // console.log("login");
             views.user.loginStatus();
           });
         });
@@ -1122,7 +1158,7 @@ let controllers = {
     googlelogin:function(){
       let google_login_btn = document.querySelector(".g-signin2");
       google_login_btn.addEventListener("click", ()=>{
-        console.log("google click");
+        // console.log("google click");
         models.user.useGoogleLogin = true;
       });
     },
@@ -1133,7 +1169,7 @@ let controllers = {
 
       if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
         // console.log(models.user.isLogin);
-        console.log("update Lecture status");
+        // console.log("update Lecture status");
         models.lectures.updateLecture_status();
 
       }
@@ -1147,6 +1183,7 @@ let controllers = {
       controllers.member.login();
       controllers.member.logout();
       controllers.actions.clickMyLearning();
+      views.click.renderUsername();
     });
     controllers.actions.clickMenu();
     controllers.courses.searchKeyword();
@@ -1154,7 +1191,8 @@ let controllers = {
     //display lectures
     controllers.lectures.listLectures();
     controllers.click.cancelNote();
-
+    controllers.actions.clickProfile();
+    controllers.actions.clickmyProfile();
     //Note
     //上傳note
     controllers.click.postNotes();
@@ -1184,7 +1222,7 @@ function onSignIn(googleUser) {
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
     // console.log("ID Token: " + id_token);
-    console.log("Done!");
+    // console.log("Done!");
     models.user.GoogleLogin(id_token).then(()=>{
       window.location.reload();
     });

@@ -2,21 +2,25 @@ let SQL = require("./SQL_user");
 
 const argon2 = require('argon2');
 const database = "User";
-// let statement = 'select * from lectures limit 1;'
+
 //加密
 function hashPassword2(password){
   return new Promise((resolve,reject)=>{
-    const hashkey = argon2.hash("password");
-    // console.log(hashkey);
+    const hashkey = argon2.hash(password);
     resolve(hashkey);
   });
 };
 //驗證
-function hashVerify(hashPassword,password){
-  // return new Promise((resolve,reject)=>{
-    const verification = argon2.verify(hashPassword, password);
-    return(verification);
-  // });
+// let hashVerify = async function(hashkey,password){
+//   const verification = await argon2.verify(hashkey, "padsfsdsfsdfsfdsdfsdfdsfssword");
+//   console.log("verification:" + verification);
+// };
+
+function hashVerify(hashkey,password){
+  return new Promise((resolve,reject)=>{
+    const verification = argon2.verify(hashkey, password);
+    resolve(verification);
+  });
 };
 
 let api_user = {
@@ -49,6 +53,7 @@ let api_user = {
     return new Promise((resolve, reject)=>{
       let email = data.email.toString();
       let password = data.password.toString();
+      console.log("password:" + password);
       //email or password = empty
       if(email == "" || password == ""){
         let data = {
@@ -60,20 +65,20 @@ let api_user = {
         // argon2 加密密碼
           // save in sql
           SQL.User.login(email).then((hashPassword)=>{
-            let verify = hashVerify(hashPassword,password);
-            if(verify){
-              let data = {
-                "ok": true
-              };
-              resolve(JSON.stringify(data));
-            }else{
-              let data = {
-                "error": true,
-                "message": "登入失敗，帳號或密碼錯誤或其他原因"
-              };
-              resolve(data);
-            }
-
+            hashVerify(hashPassword,password).then((verification)=>{
+              if(verification){
+                let data = {
+                  "ok": true
+                };
+                resolve(data);
+              }else{
+                let data = {
+                  "error": true,
+                  "message": "登入失敗，帳號或密碼錯誤或其他原因"
+                };
+                resolve(data);
+              }
+            });
           });
       }
     });
@@ -89,7 +94,6 @@ let api_user = {
       hashPassword2(password).then((hashPassword)=>{
         // save in sql
         SQL.User.GoogleLogin(name,email,password,hashPassword).then((result)=>{
-          // console.log("result: " + JSON.stringify(result));
           resolve(JSON.stringify(result));
         })
       });
@@ -109,20 +113,21 @@ let api_user = {
         // check user exist in SQL
         SQL.User.checkLogin(email).then((result)=>{
           let hashPassword = result.data.password;
-          let verify = hashVerify(hashPassword,password);
-          if(verify){
-            let data = {
-              "data":{
-                "id": result.data.id,
-                "name": result.data.name,
-                "email": result.data.email,
-              }
-            };
-            resolve(JSON.stringify(data));
-          }else{
-            let data = null;
-            resolve(JSON.stringify(data));
-          }
+          hashVerify(hashPassword,password).then((verify)=>{
+            if(verify){
+              let data = {
+                "data":{
+                  "id": result.data.id,
+                  "name": result.data.name,
+                  "email": result.data.email,
+                }
+              };
+              resolve(JSON.stringify(data));
+            }else{
+              let data = null;
+              resolve(JSON.stringify(data));
+            }
+          });
         })
       }
     });

@@ -105,7 +105,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          result = JSON.parse(result);
+          // result = JSON.parse(result);
           if(result.ok){
             models.user.loginSuccess = true;
           }else{
@@ -142,6 +142,7 @@ let models = {
       });
     },
     isLogin:null,
+    user_name:null,
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         return fetch("/api/user",{
@@ -149,9 +150,9 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
           if(result != null){
             models.user.isLogin = true;
+            models.user.user_name = JSON.parse(result).data.name;
           }
           else{
             models.user.isLogin = false;
@@ -244,6 +245,10 @@ let views = {
     },10);
   },
   click:{
+    renderUsername:function(){
+      let nav_myname = document.querySelector(".nav-myname");
+      nav_myname.innerHTML = models.user.user_name;
+    },
     allCourse:function(index){
       return new Promise((resolve, reject)=>{
         let previous = document.querySelectorAll(".previous-arrow")[index];
@@ -392,6 +397,8 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "flex";
         logout_btn.style.display = "flex";
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "flex";
 
         let login_btn = document.querySelector("#login-btn");
         let register_btn = document.querySelector("#register-btn");
@@ -409,6 +416,9 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "none";
       }
     },
     Logout:function(){
@@ -424,6 +434,10 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "none";
+
       }
     },
   },
@@ -543,10 +557,31 @@ let views = {
       controllers.actions.isMenushow = false;
     }
   },
+  showmyProfile:function(){
+    let profile_box_list = document.querySelector(".profile-box-list");
+    console.log(profile_box_list.style.display);
+    if(profile_box_list.style.display === "none" || profile_box_list.style.display === ""){
+        profile_box_list.style.display = "block";
+    }else{
+      profile_box_list.style.display = "none";
+    }
+  },
 };
 
 let controllers = {
   actions:{
+    clickmyProfile:function(){
+      let myprofile_btn = document.querySelector("#my-profile");
+      myprofile_btn.addEventListener("click",()=>{
+        window.location.assign("/myprofile");
+      })
+    },
+    clickProfile:function(){
+      let profile_btn = document.querySelector("#profile-btn");
+      profile_btn.addEventListener("click",()=>{
+        views.showmyProfile();
+      })
+    },
     isMenushow:false,
     clickMenu:function(){
       let menu_btn = document.querySelector(".img-hamburger-menu");
@@ -827,6 +862,7 @@ let controllers = {
       // controllers.member.googlelogin();
       controllers.member.logout();
       controllers.actions.clickMyLearning();
+      views.click.renderUsername();
     });
     // 顯示課程：all /ntu /nthu /nytu
     controllers.courses.allCourse_list();
@@ -836,6 +872,8 @@ let controllers = {
     controllers.courses.searchKeyword();
     controllers.courses.searchBar();
     controllers.actions.clickMenu();
+    controllers.actions.clickProfile();
+    controllers.actions.clickmyProfile();
   },
 };
 

@@ -13,6 +13,7 @@ const api_notes = require("./Models/notes/API_notes");
 const api_learnings = require("./Models/learnings/API_learnings");
 const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
 const api_searches = require("./Models/searches/API_searches");
+const api_myprofiles = require("./Models/myprofiles/api_myprofiles");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -47,6 +48,11 @@ app.get("/course/:course_id", function(req, res){
 // 學習紀錄
 app.get('/mylearning', function (req, res) {
   res.sendFile(path.join(__dirname,'/templates/'+'mylearning.html'));
+});
+
+// 個人資料頁
+app.get("/myprofile", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'myprofile.html'));
 });
 
 //API
@@ -100,7 +106,6 @@ app.post("/api/note", function(req, res){
   api_notes.postNotes(req.body).then((result)=>{
     res.send(200,result);
   });
-
 });
 // 刪除筆記
 app.delete("/api/note/:note_id", function(req, res){
@@ -109,6 +114,7 @@ app.delete("/api/note/:note_id", function(req, res){
     res.send(200,result);
   });
 });
+
 //學習進度Learning API
 //更新課堂學習進度
 app.patch("/api/learning", function(req, res){
@@ -160,6 +166,23 @@ app.get("/api/mylearnings", function(req, res){
 
 });
 
+// 使用者資料 API
+//更新使用者名稱
+app.patch("/api/myprofile/username", function(req, res){
+  api_myprofiles.modifyUsername(req.body).then((result)=>{
+    console.log(result);
+    res.send(200,result);
+  })
+});
+
+//更新使用者密碼
+app.patch("/api/myprofile/userpassword", function(req, res){
+  api_myprofiles.modifyUserpassword(req.body).then((result)=>{
+    console.log(result);
+    res.send(200,result);
+  })
+});
+
 
 // 使用者API
 //取得使用者資訊
@@ -202,13 +225,13 @@ app.post("/api/user", function(req, res){
 //使用者登入
 app.patch("/api/user", function(req, res){
   api_user.Login(req.body).then((result)=>{
-    let login_result = JSON.parse(result);
+    let login_result = result;
     if(login_result.ok){
       //登入成功後，存到Session
       req.session.email = req.body.email.toString();
       req.session.password = req.body.password.toString();
     }
-    res.json(result);
+    res.send(200,result);
   })
 });
 //使用者登入 Google

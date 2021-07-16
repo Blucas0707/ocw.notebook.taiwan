@@ -3,11 +3,15 @@ require('dotenv').config({path:__dirname+'/../../.env'});
 const argon2 = require('argon2');
 const mysql = require('mysql2');
 //驗證
-function hashVerify(hashPassword,password){
-  // return new Promise((resolve,reject)=>{
-    const verification = argon2.verify(hashPassword, password);
-    return(verification);
-  // });
+// let hashVerify = async function(hashkey,password){
+//   const verification = await argon2.verify(hashkey, password);
+// };
+function hashVerify(hashkey,password){
+  return new Promise((resolve,reject)=>{
+    const verification = argon2.verify(hashkey, password);
+    // console.log(hashkey);
+    resolve(verification);
+  });
 };
 //建立SQL物件
 let SQL = {
@@ -33,6 +37,7 @@ let SQL = {
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
           let hashPassword = rows[0]["user_password"];
+          console.log("login:" + hashPassword);
           if(hashPassword){ //user existed
               resolve(hashPassword);
             }
@@ -62,20 +67,21 @@ let SQL = {
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
           if(rows[0] != undefined){ //user existed
             let hashPassword_SQL = rows[0]["user_password"];
-            let verification = hashVerify(hashPassword_SQL,password);
-            if(verification){ //user existed
+            hashVerify(hashPassword_SQL,password).then((verification)=>{
+              if(verification){ //user existed
+                  let data = {
+                    "ok": true
+                  };
+                  resolve(data);
+                }
+              else{
                 let data = {
-                  "ok": true
+                  "error": true,
+                  "message": "密碼錯誤"
                 };
                 resolve(data);
               }
-            else{
-              let data = {
-                "error": true,
-                "message": "密碼錯誤"
-              };
-              resolve(data);
-            }
+            });
           }
           else{ // user not existed => register
             sql_statement = "insert into users (user_name, user_email, user_password)  values (?,?,?)";

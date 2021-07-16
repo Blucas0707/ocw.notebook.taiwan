@@ -169,6 +169,45 @@ form.search input {
   font-size: 1rem;
 }
 
+.profile-box {
+  position: relative;
+  display: none;
+  margin: 0 10px;
+  border: 1px solid gray;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.profile-box:hover {
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+.profile-box-list {
+  display: none;
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background-color: white;
+  min-width: 80px;
+  border-radius: 5px;
+}
+
+.profile-box-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  color: #666666;
+}
+
+.profile-box-item:hover{
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
 .main {
   /* display: flex; */
 }
@@ -534,6 +573,7 @@ footer {
     /* flex:none; */
     width: 320px;
     /* color:black; */
+    border-radius: 5px;
   }
 
   .nav-login{
@@ -597,6 +637,10 @@ footer {
   }
   .img-hamburger-menu{
     display: flex;
+  }
+
+  .profile-box {
+    border: 0;
   }
 
   footer {

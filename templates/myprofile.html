@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>OCW Notebook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/search-style.css">
+    <link rel="stylesheet" type="text/css" href="/css/myprofile-style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
@@ -79,46 +79,65 @@
                   <div id="logout-btn" class="profile-box-item">登出</div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
     <main class="main">
-      <div class="cover">
-        <div class="cover-content">
-          <div class="cover-greeting">輕鬆享受學習的每一刻</div>
-          <div class="cover-greeting2">探索這個世界，突破自己</div>
+      <div class="main-box">
+        <div class="main-profile-list">
+          <div id="edit-profile" class="main-profile-item">個人檔案</div>
+          <div id="edit-account" class="main-profile-item">帳戶</div>
         </div>
-        <img src="/img/cover-learning.jpeg" class="cover-img">
-      </div>
-      <div class="course-gallery" id = "course-gallery-contain">
-        <div class="course-all course-border">
-          <div class="course-title">
+        <div class="main-profile-content-list">
+          <div class="main-profile-content-title">
+            <div class="main-profile-content-title-1">個人檔案</div>
+            <!-- 帳戶 -->
+            <div class="main-profile-content-title-2">修改資訊</div>
+            <!-- 帳戶及更改密碼 -->
           </div>
-          <div class="course-content">
-            <div class="course-content-loading">
-              <img class="course-loading-img" src="/img/loading.gif" alt="">
+          <div class="main-profile-content-main">
+            <div class="main-profile-content-myprofile">
+              <div class="main-profile-content-myprofile-title">會員名稱：</div>
+              <input id="modify-name" type="text" name="" value="">
+              <div class="edit-name-input-error"></div>
+              <div class="main-profile-submit-box">
+                <div id="main-profile-name-submit-btn" class="main-profile-submit-btn">Save</div>
+              </div>
             </div>
-            <div class="course-content-main" id="allCourse">
+            <div class="main-profile-content-myaccount">
+              <div class="main-profile-content-myaccount-email">
+                <div class="main-profile-content-myaccount-email-title">電子郵件：</div>
+                <div class="main-profile-content-myaccount-email-display"></div>
+              </div>
+              <div class="main-profile-content-myaccount-password">
+                <div class="main-profile-content-myaccount-password-title">密碼：</div>
+                <div class="edit-password-input" >
+                  <input id="now-password" type="password" name="" value="" placeholder="輸入目前密碼">
+                </div>
+                <div class="edit-password-input" >
+                  <input id="new-password" type="password" name="" value="" placeholder="輸入新的密碼">
+                </div>
+                <div class="edit-password-input" >
+                  <input id="new-password-confirm" type="password" name="" value="" placeholder="重新輸入新密碼">
+                </div>
+                <div class="edit-password-input-error" ></div>
+              </div>
+              <div class="main-profile-submit-box">
+                <div id="main-profile-password-submit-btn" class="main-profile-submit-btn">Save</div>
+              </div>
             </div>
           </div>
-          <!-- <div class="previous-arrow" id="previous-arrow-all">
-            <div class="arrow-box">
-              <img src="/img/left-arrow.svg" alt="">
-            </div>
-          </div> -->
-          <!-- <div class="next-arrow" id="next-arrow-all">
-            <div class="arrow-box">
-              <img src="/img/right-arrow.svg" alt="">
-            </div>
+          <!-- <div class="main-profile-content-submit">
+            <div class="main-profile-submit-btn">Save</div>
           </div> -->
         </div>
       </div>
-      <!-- <div class="loading"><img src="/img/loading.gif" alt="" class="loading_img"></div> -->
     </main>
 
     <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
-  <script src="/js/search.js" type="text/javascript"></script>
+  <script src="/js/myprofile.js" type="text/javascript"></script>
   </body>
 </html>

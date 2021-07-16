@@ -39,6 +39,7 @@ let models = {
   },
   user:{
     isLogin:null,
+    user_name:null,
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         return fetch("/api/user",{
@@ -51,6 +52,8 @@ let models = {
           if(result != null){
             models.user.isLogin = true;
             models.user_id = JSON.parse(result).data.id;
+            models.user.user_name = JSON.parse(result).data.name;
+            // console.log(models.user.user_name);
           }
           else{
             models.user.isLogin = null;
@@ -76,6 +79,12 @@ let models = {
 };
 
 let views = {
+  click:{
+    renderUsername:function(){
+      let nav_myname = document.querySelector(".nav-myname");
+      nav_myname.innerHTML = models.user.user_name;
+    },
+  },
   courses:{
     clearCourses:function(elem){
       while(elem.hasChildNodes()){ //elem child存在
@@ -173,8 +182,21 @@ let views = {
   },
   user:{
     isLogin:function(){
-      //判斷未登入
-      if(models.user.isLogin == null){
+      //判斷已經登入
+      if(models.user.isLogin){
+        ///已登入 顯示學習紀錄&登出 隱藏登入＆註冊
+        let mylearning_btn = document.querySelector("#mylearning-btn");
+        let logout_btn = document.querySelector("#logout-btn");
+        mylearning_btn.style.display = "flex";
+        logout_btn.style.display = "flex";
+        let profile_btn = document.querySelector("#profile-btn");
+        profile_btn.style.display = "flex";
+
+        // let login_btn = document.querySelector("#login-btn");
+        // let register_btn = document.querySelector("#register-btn");
+        // login_btn.style.display = "none";
+        // register_btn.style.display = "none";
+      }else{
         //導向首頁
         window.location.assign("/");
       }
@@ -186,6 +208,7 @@ let views = {
         window.location.assign("/");
       }
     },
+
   },
   nav:function(){
     //按下學習紀錄按鈕 => 導向自己
@@ -257,10 +280,30 @@ let views = {
       controllers.actions.isMenushow = false;
     }
   },
+  showmyProfile:function(){
+    let profile_box_list = document.querySelector(".profile-box-list");
+    if(profile_box_list.style.display === "none" || profile_box_list.style.display === ""){
+        profile_box_list.style.display = "block";
+    }else{
+      profile_box_list.style.display = "none";
+    }
+  },
 };
 
 let controllers = {
   actions:{
+    clickmyProfile:function(){
+      let myprofile_btn = document.querySelector("#my-profile");
+      myprofile_btn.addEventListener("click",()=>{
+        window.location.assign("/myprofile");
+      })
+    },
+    clickProfile:function(){
+      let profile_btn = document.querySelector("#profile-btn");
+      profile_btn.addEventListener("click",()=>{
+        views.showmyProfile();
+      })
+    },
     isMenushow:false,
     clickMenu:function(){
       let menu_btn = document.querySelector(".img-hamburger-menu");
@@ -465,6 +508,9 @@ let controllers = {
       controllers.courses.searchKeyword();
       controllers.courses.searchBar();
       controllers.actions.clickMenu();
+      views.click.renderUsername();
+      controllers.actions.clickProfile();
+      controllers.actions.clickmyProfile();
       // controllers.initialfadein().then(()=>{
       //   controllers.learnings.getAllLearnings();
       // })

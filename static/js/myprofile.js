@@ -67,6 +67,7 @@ let models = {
     },
     searchKeyword:function(keyword){
       return new Promise((resolve, reject)=>{
+        // let url = "https://search-courses-ptaras3nil34n6zdm7mfwnljhe.us-east-2.es.amazonaws.com/courses/_search?analyzer=ik_max_word&default_operator=AND&q=course_name:" + keyword;
         let url = "/api/search?keyword=" + keyword;
         return fetch(url,{
           method:"GET",
@@ -104,7 +105,6 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // result = JSON.parse(result);
           if(result.ok){
             models.user.loginSuccess = true;
           }else{
@@ -141,7 +141,9 @@ let models = {
       });
     },
     isLogin:null,
+    user_id:null,
     user_name:null,
+    user_email:null,
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         return fetch("/api/user",{
@@ -152,8 +154,10 @@ let models = {
           // console.log(result);
           if(result != null){
             models.user.isLogin = true;
+            models.user.user_id = JSON.parse(result).data.id;
             models.user.user_name = JSON.parse(result).data.name;
-            console.log(models.user.user_name);
+            models.user.user_email = JSON.parse(result).data.email;
+            // console.log(models.user.user_name);
           }
           else{
             models.user.isLogin = false;
@@ -169,7 +173,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          console.log(result);
+          // console.log(result);
           models.user.isLogin = null;
           resolve(true);
         });
@@ -210,6 +214,67 @@ let models = {
           resolve(true);
         });
       })
+    },
+  },
+  update:{
+    updateUsername:function(new_username){
+      return new Promise((resolve, reject)=>{
+        let data = {
+          "user_id":models.user.user_id,
+          "user_name":new_username
+        };
+        // console.log(email,password);
+        return fetch("/api/myprofile/username",{
+          method:'PATCH',
+          headers: {
+            "Content-type":"application/json",
+          },
+          body: JSON.stringify(data),
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          // result = JSON.parse(result);
+          console.log(result);
+          if(result.ok){
+            // models.user.loginSuccess = true;
+          }else{
+            // models.user.loginSuccess = false;
+          }
+          // console.log(result);
+          // console.log(models.user.loginSuccess);
+          resolve(true);
+        });
+      });
+    },
+    updateUserpassword:function(now_password,new_password){
+      return new Promise((resolve, reject)=>{
+        // let now_password = document.querySelector(".login-email").value;
+        // let new_password = document.querySelector(".login-password").value;
+        let data = {
+          "user_id":models.user.user_id,
+          "now_password":now_password,
+          "new_password":new_password
+        };
+        // console.log(email,password);
+        return fetch("/api/myprofile/userpassword",{
+          method:'PATCH',
+          headers: {
+            "Content-type":"application/json",
+          },
+          body: JSON.stringify(data),
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          // result = JSON.parse(result);
+          console.log(result);
+          if(result.ok){
+            resolve(true);
+          }else{
+            reject(true);
+          }
+          // resolve(true);
+        });
+      });
     },
   },
 };
@@ -276,131 +341,6 @@ let views = {
         elem.removeChild(elem.firstChild); //刪除子節點
       };
     },
-    renderTitle:function(){
-      let search_title = document.querySelector(".course-title");
-      let keyword = decodeURIComponent(window.location.search).split("=")[1];
-      search_title.innerHTML = "搜尋結果:「" + keyword +"」";
-    },
-    renderAllSearch:function(result){
-      let search_results = result.hits.hits;
-      let search_list = document.querySelector(".course-content-main");
-      if(search_results.length != 0){
-        for(let index=0;index<search_results.length;index++){
-          //新增 div search-box under div search-list
-          let search_result = search_results[index];
-          course_id = search_result._id;
-          course_name = search_result._source.course_name; //course_name
-          course_cover = search_result._source.course_cover; //course_name
-          course_teacher = search_result._source.course_teacher; //course_name
-          // create new div under course-gallery
-          let div_course_class = document.createElement('div');
-          div_course_class.className = "course-class";
-          div_course_class.id = course_id;
-
-          // course_cover
-          let div_course_class_cover = document.createElement("div");
-          div_course_class_cover.className = "course-class-cover";
-          // create new img under new div
-          let img_cover = document.createElement("img");
-          img_cover.src = course_cover;
-          div_course_class_cover.appendChild(img_cover);
-          //course_name
-          let div_course_class_name = document.createElement("div");
-          div_course_class_name.className = "course-class-name";
-          div_course_class_name.innerHTML = course_name;
-          if(course_name.length > 20 && course_name.length < 30){
-            div_course_class_name.style.fontSize = "medium";
-          }else if (course_name.length > 30) {
-            div_course_class_name.style.fontSize = "small";
-          }
-          //course_teacher
-          let div_course_class_teacher = document.createElement("div");
-          div_course_class_teacher.className = "course-class-teacher";
-          div_course_class_teacher.innerHTML = course_teacher;
-
-          div_course_class.appendChild(div_course_class_cover);
-          div_course_class.appendChild(div_course_class_name);
-          div_course_class.appendChild(div_course_class_teacher);
-          search_list.appendChild(div_course_class);
-
-          div_course_class.addEventListener("click",()=>{
-            window.location.assign("course/"+div_course_class.id);
-          })
-        }
-      }else{ //no result
-        search_list.innerHTML = "此次搜尋無結果";
-        search_list.style.fontSize = "2rem";
-        document.querySelector(".course-content").style.display = "flex";
-        document.querySelector(".course-content").style.justifyContent = "center";
-        document.querySelector(".course-content").style.alignItems = "center";
-
-      }
-    },
-    renderAllCourses_list:function(result,university){ // All/台/清/交
-      let course_id, course_name, course_cover, course_teacher, course_description;
-      let dataLength = result.data.length;
-      for(let index = 0;index<dataLength;index++){
-        course_id = result.data[index].course_id;
-        course_name = result.data[index].course_name;
-        course_cover = result.data[index].course_cover;
-        course_teacher = result.data[index].course_teacher;
-        course_description = result.data[index].course_description;
-        // create new div under course-gallery
-        let div_course_class = document.createElement('div');
-        div_course_class.className = "course-class";
-        div_course_class.id = course_id;
-
-        // course_cover
-        let div_course_class_cover = document.createElement("div");
-        div_course_class_cover.className = "course-class-cover";
-        // create new img under new div
-        let img_cover = document.createElement("img");
-        img_cover.src = course_cover;
-        div_course_class_cover.appendChild(img_cover);
-        //course_name
-        let div_course_class_name = document.createElement("div");
-        div_course_class_name.className = "course-class-name";
-        div_course_class_name.innerHTML = course_name;
-        if(course_name.length > 20 && course_name.length < 30){
-          div_course_class_name.style.fontSize = "medium";
-        }else if (course_name.length > 30) {
-          div_course_class_name.style.fontSize = "small";
-        }
-        //course_teacher
-        let div_course_class_teacher = document.createElement("div");
-        div_course_class_teacher.className = "course-class-teacher";
-        div_course_class_teacher.innerHTML = course_teacher;
-        //course_description
-        // let div_course_class_description= document.createElement("div");
-        // div_course_class_description.className = "course-class-description";
-        // div_course_class_description.innerHTML = course_description;
-
-        div_course_class.appendChild(div_course_class_cover);
-        div_course_class.appendChild(div_course_class_name);
-        div_course_class.appendChild(div_course_class_teacher);
-        // div_course_class.appendChild(div_course_class_description);
-        let div_allCourse = "";
-        if(university ==""){
-          div_allCourse = document.querySelector("#allCourse");
-        }
-        else if(university =="台灣大學"){
-          div_allCourse = document.querySelector("#allCourse_NTU");
-        }
-        else if(university =="清華大學"){
-          div_allCourse = document.querySelector("#allCourse_NTHU");
-        }
-        else{
-          div_allCourse = document.querySelector("#allCourse_NYTU");
-        }
-        // div_allCourse.style.opacity = 0;
-        div_allCourse.appendChild(div_course_class);
-        // views.fadein(div_allCourse);
-      }
-
-      //點選課程
-      controllers.courses.chooseCourse();
-
-    }
   },
   user:{
     registerStatus:function(){
@@ -478,6 +418,7 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+
         let profile_btn = document.querySelector("#profile-btn");
         profile_btn.style.display = "none";
       }
@@ -495,8 +436,10 @@ let views = {
         let logout_btn = document.querySelector("#logout-btn");
         mylearning_btn.style.display = "none";
         logout_btn.style.display = "none";
+
         let profile_btn = document.querySelector("#profile-btn");
         profile_btn.style.display = "none";
+
       }
     },
   },
@@ -618,6 +561,7 @@ let views = {
   },
   showmyProfile:function(){
     let profile_box_list = document.querySelector(".profile-box-list");
+    console.log(profile_box_list.style.display);
     if(profile_box_list.style.display === "none" || profile_box_list.style.display === ""){
         profile_box_list.style.display = "block";
     }else{
@@ -628,6 +572,103 @@ let views = {
 
 let controllers = {
   actions:{
+    updateUsername:function(){
+      //  顯示username
+      document.querySelector("#modify-name").value = models.user.user_name;
+      let update_btn = document.querySelector("#main-profile-name-submit-btn");
+      update_btn.addEventListener("click",()=>{
+        let new_username = document.querySelector("#modify-name").value;
+        if(new_username != "" || new_username != null){
+          models.update.updateUsername(new_username).then(()=>{
+            //顯示成功訊息
+            let error_msg = document.querySelector(".edit-name-input-error");
+            error_msg.innerHTML = "修改成功";
+            error_msg.style.color = "blue";
+            window.location.assign("/myprofile");
+          })
+        }else{ //null username
+          //顯示錯誤訊息
+          let error_msg = document.querySelector(".edit-name-input-error");
+          error_msg.innerHTML = "輸入錯誤";
+          error_msg.style.color = "red";
+        }
+      })
+    },
+    updateUserpassword:function(){
+      let update_btn = document.querySelector("#main-profile-password-submit-btn");
+      update_btn.addEventListener("click",()=>{
+        let now_password = document.querySelector("#now-password").value;
+        let new_password = document.querySelector("#new-password").value;
+        let new_password_confirm = document.querySelector("#new-password-confirm").value;
+        if(now_password != "" && new_password != "" && new_password_confirm != ""){
+          //比對 new_password & new_password_confirm
+          if(new_password != new_password_confirm){ //兩次密碼不相等
+            //顯示錯誤訊息
+            let error_msg = document.querySelector(".edit-password-input-error");
+            error_msg.innerHTML = "請重新確認新密碼";
+            error_msg.style.color = "red";
+          }else if (new_password.length <= 6) {
+            //顯示錯誤訊息
+            let error_msg = document.querySelector(".edit-password-input-error");
+            error_msg.innerHTML = "新密碼長度小於6位";
+            error_msg.style.color = "red";
+          }
+          else{
+            models.update.updateUserpassword(now_password,new_password).then(()=>{
+              //顯示成功訊息
+              let error_msg = document.querySelector(".edit-password-input-error");
+              error_msg.innerHTML = "修改成功";
+              error_msg.style.color = "blue";
+              alert("修改成功,請重新登入!");
+              models.user.Logout();
+              window.location.assign("/");
+            }).catch(()=>{
+              //顯示錯誤訊息
+              let error_msg = document.querySelector(".edit-password-input-error");
+              error_msg.innerHTML = "現有密碼錯誤";
+              error_msg.style.color = "red";
+            });
+          }
+        }else{ //null username
+          //顯示錯誤訊息
+          let error_msg = document.querySelector(".edit-password-input-error");
+          error_msg.innerHTML = "輸入錯誤";
+          error_msg.style.color = "red";
+        }
+      })
+    },
+    chooseProfiles:function(){
+      let edit_profile_btn = document.querySelector("#edit-profile");
+      edit_profile_btn.addEventListener("click",()=>{
+        //顯示profile div
+        let profile_div = document.querySelector(".main-profile-content-myprofile");
+        profile_div.style.display = "block";
+        let title_1 = document.querySelector(".main-profile-content-title-1");
+        title_1.innerHTML = "個人檔案";
+        let title_2 = document.querySelector(".main-profile-content-title-2");
+        title_2.innerHTML = "修改資訊";
+        //隱藏account div
+        let account_div = document.querySelector(".main-profile-content-myaccount");
+        account_div.style.display = "none";
+      });
+
+      let edit_account_btn = document.querySelector("#edit-account");
+      edit_account_btn.addEventListener("click",()=>{
+        //隱藏profile div
+        let profile_div = document.querySelector(".main-profile-content-myprofile");
+        profile_div.style.display = "none";
+        //顯示account div
+        let account_div = document.querySelector(".main-profile-content-myaccount");
+        account_div.style.display = "block";
+        let title_1 = document.querySelector(".main-profile-content-title-1");
+        title_1.innerHTML = "帳戶";
+        let title_2 = document.querySelector(".main-profile-content-title-2");
+        title_2.innerHTML = "帳戶及更改密碼";
+
+        let email = document.querySelector(".main-profile-content-myaccount-email-display");
+        email.innerHTML = models.user.user_email;
+      });
+    },
     clickmyProfile:function(){
       let myprofile_btn = document.querySelector("#my-profile");
       myprofile_btn.addEventListener("click",()=>{
@@ -652,89 +693,6 @@ let controllers = {
       mylearning_btn.addEventListener("click",()=>{
         window.location.assign("/mylearning");
       });
-    },
-    clickNext_allCourse_list:function(){
-      return new Promise((resolve,reject)=>{
-        let next_btns = document.querySelectorAll(".next-arrow");
-        let allCourse_university_list =["","台灣大學","清華大學","陽明交通大學"];
-        for(let index=0;index<next_btns.length;index++){
-          let next_btn = next_btns[index];
-          let allCourse_university = allCourse_university_list[index];
-          next_btn.addEventListener("click",()=>{
-            models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
-              //data < 4 => 最後一頁,隱藏next btn
-              if(models.courses.allCourse_datalist[index].data == null){
-                next_btn.style.display = "none";
-              }
-              else if (models.courses.allCourse_datalist[index].data.length < 4){
-                next_btn.style.display = "none";
-              }
-
-              if(models.courses.allCourse_nextPages[index] != null){
-                //最後not null page 存到temp
-                models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
-                // console.log("not null");
-                //clear sub elem
-                let allCourse_div = document.querySelectorAll(".course-content-main")[index];
-                views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
-                views.courses.renderAllCourses_list(result,university);
-                //顯示previous btn
-                // document.querySelector(".previous-arrow").style.display= "flex";
-                let previous = document.querySelectorAll(".previous-arrow")[index];
-                previous.style.display= "flex";
-              }else{
-                //隱藏Next button
-                next_btn.style.display = "none";
-                models.courses.allCourse_nextPages[index] = models.courses.allCourse_tempPages[index];
-              }
-            });
-          });
-        }
-      })
-    },
-    clickPrevious_allCourse_list:function(){
-      return new Promise((resolve,reject)=>{
-
-        let previous_btns = document.querySelectorAll(".previous-arrow");
-        let allCourse_university_list =["","台灣大學","清華大學","陽明交通大學"];
-        for(let index=0;index<previous_btns.length;index++){
-          let previous_btn = previous_btns[index];
-          let allCourse_university = allCourse_university_list[index];
-          previous_btn.addEventListener("click",()=>{
-
-            //第一頁 隱藏previous btn
-            if(models.courses.allCourse_nextPages[index]>1){
-              models.courses.allCourse_nextPages[index] -= 2;
-            }else{
-              models.courses.allCourse_nextPages[index] = 0;
-            }
-            if(models.courses.allCourse_nextPages[index] == 0){
-              let previous_btns = document.querySelectorAll(".previous-arrow")[index].style.display = "none";
-            }
-
-            models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
-              // console.log(models.courses.allCourse_data,models.courses.allCourse_nextPages[index]);
-              if(models.courses.allCourse_nextPages[index] != null){
-                //最後not null page 存到temp
-                models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
-                // console.log("not null");
-                //clear sub elem
-                let allCourse_div = document.querySelectorAll(".course-content-main")[index];
-                views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
-                views.courses.renderAllCourses_list(result,university);
-                //顯示next btn
-                // document.querySelector(".next-arrow").style.display= "flex";
-                let next = document.querySelectorAll(".next-arrow")[index];
-                next.style.display= "flex";
-              }else{
-                //隱藏previous_btn
-                previous_btn.style.display = "none";
-                models.courses.allCourse_nextPages[index] = models.courses.allCourse_tempPages[index];
-              }
-            });
-          });
-        }
-      })
     },
   },
   courses:{
@@ -778,20 +736,6 @@ let controllers = {
         }
       })
     },
-    chooseCategory:function(){
-      let course_category = document.querySelector("#learning-category");
-      course_category.addEventListener("change",()=>{
-        models.courses.allCourse_category = course_category.value;
-        models.courses.allCourse_nextPages[0] = 0;
-        // console.log(models.learnings.allLearning_category,models.learnings.allLearning_nextPage);
-        models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
-          //clear sub elem
-          let allCourse_div = document.querySelector("#allCourse");
-          views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
-          views.courses.renderAllCourses_list(result,university);
-        })
-      })
-    },
     allCourse:function(){
       models.courses.getAllCourse().then(()=>{
         views.courses.renderAllCourses();
@@ -824,9 +768,17 @@ let controllers = {
       });
     },
     allCourse_list:function(){ // All台清交
-      let keyword = decodeURIComponent(window.location.search).split("=")[1];
-      models.courses.searchKeyword(keyword).then((result)=>{
-        views.courses.renderAllSearch(result);
+      models.courses.getCourses("","").then(([result,university])=>{
+        views.courses.renderAllCourses_list(result,university);
+      });
+      models.courses.getCourses("","台灣大學").then(([result,university])=>{
+        views.courses.renderAllCourses_list(result,university);
+      });
+      models.courses.getCourses("","清華大學").then(([result,university])=>{
+        views.courses.renderAllCourses_list(result,university);
+      });
+      models.courses.getCourses("","陽明交通大學").then(([result,university])=>{
+        views.courses.renderAllCourses_list(result,university);
       });
     },
   },
@@ -835,8 +787,13 @@ let controllers = {
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         models.user.checkLogin().then(()=>{
-          views.user.isLogin();
-          resolve(true);
+          if(models.user.isLogin){
+            views.user.isLogin();
+            resolve(true);
+          }else{
+            window.location.assign("/");
+            resolve(true);
+          }
         });
       })
     },
@@ -913,15 +870,20 @@ let controllers = {
       controllers.member.logout();
       controllers.actions.clickMyLearning();
       views.click.renderUsername();
+      controllers.actions.updateUsername();
+      controllers.actions.updateUserpassword();
     });
     // 顯示課程：all /ntu /nthu /nytu
-    controllers.courses.allCourse_list();
-    views.courses.renderTitle();
+    // controllers.courses.allCourse_list();
+    // controllers.actions.clickNext_allCourse_list();
+    // controllers.actions.clickPrevious_allCourse_list();
+    // controllers.courses.chooseCategory();
     controllers.courses.searchKeyword();
     controllers.courses.searchBar();
     controllers.actions.clickMenu();
     controllers.actions.clickProfile();
     controllers.actions.clickmyProfile();
+    controllers.actions.chooseProfiles();
   },
 };
 
