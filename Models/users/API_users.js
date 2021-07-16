@@ -94,6 +94,7 @@ let api_user = {
       hashPassword2(password).then((hashPassword)=>{
         // save in sql
         SQL.User.GoogleLogin(name,email,password,hashPassword).then((result)=>{
+          console.log(result);
           resolve(JSON.stringify(result));
         })
       });

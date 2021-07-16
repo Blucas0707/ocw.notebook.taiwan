@@ -663,7 +663,7 @@ let controllers = {
         let title_1 = document.querySelector(".main-profile-content-title-1");
         title_1.innerHTML = "帳戶";
         let title_2 = document.querySelector(".main-profile-content-title-2");
-        title_2.innerHTML = "帳戶及更改密碼";
+        title_2.innerHTML = "帳戶及更改密碼" +"<br>"+"(Google登入，無法更改密碼)";
 
         let email = document.querySelector(".main-profile-content-myaccount-email-display");
         email.innerHTML = models.user.user_email;

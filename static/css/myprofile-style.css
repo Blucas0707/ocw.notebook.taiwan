@@ -418,6 +418,7 @@ form.search input {
 .edit-password-input input {
   height: 35px;
   padding-left: 5px;
+  width: 100%;
 }
 
 .edit-password-input-error {
@@ -457,7 +458,9 @@ form.search input {
   color: white;
 }
 
-
+.edit-name-input-error, .edit-password-input-error {
+  text-align: center;
+}
 
 
 
