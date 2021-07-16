@@ -36,12 +36,22 @@ let SQL = {
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
-          let hashPassword = rows[0]["user_password"];
-          console.log("login:" + hashPassword);
-          if(hashPassword){ //user existed
-              resolve(hashPassword);
+          console.log(rows,rows.length);
+          
+          if(rows.length != 0){ //user existed
+            let hashPassword = rows[0]["user_password"];
+            console.log("login:" + hashPassword);
+            if(hashPassword){ //user existed
+                resolve(hashPassword);
+              }
+            else{
+              let data = {
+                "error": true,
+                "message": "登入失敗，帳號或密碼錯誤或其他原因"
+              };
+              resolve(data);
             }
-          else{
+          }else{ //user not existed
             let data = {
               "error": true,
               "message": "登入失敗，帳號或密碼錯誤或其他原因"

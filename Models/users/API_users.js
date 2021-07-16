@@ -65,20 +65,29 @@ let api_user = {
         // argon2 加密密碼
           // save in sql
           SQL.User.login(email).then((hashPassword)=>{
-            hashVerify(hashPassword,password).then((verification)=>{
-              if(verification){
-                let data = {
-                  "ok": true
-                };
-                resolve(data);
-              }else{
-                let data = {
-                  "error": true,
-                  "message": "登入失敗，帳號或密碼錯誤或其他原因"
-                };
-                resolve(data);
-              }
-            });
+            console.log("hashPassword:" + hashPassword.error);
+            if(hashPassword.error){ //SQL error
+              let data = {
+                "error": true,
+                "message": "登入失敗，帳號或密碼錯誤或其他原因"
+              };
+              resolve(data);
+            }else{
+              hashVerify(hashPassword,password).then((verification)=>{
+                if(verification){
+                  let data = {
+                    "ok": true
+                  };
+                  resolve(data);
+                }else{
+                  let data = {
+                    "error": true,
+                    "message": "登入失敗，帳號或密碼錯誤或其他原因"
+                  };
+                  resolve(data);
+                }
+              });
+            }
           });
       }
     });
