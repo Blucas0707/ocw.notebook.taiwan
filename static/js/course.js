@@ -872,7 +872,7 @@ let controllers = {
           }
         }else{
           let search_box = document.querySelector("#keyword");
-          if(search_box.style.display === "none"){
+          if(search_box.style.display === "none" || search_box.style.display === ""){
             search_box.style.display = "flex";
           }else{
             search_box.style.display = "none";

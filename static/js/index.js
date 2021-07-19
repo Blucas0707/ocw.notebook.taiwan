@@ -111,8 +111,6 @@ let models = {
           }else{
             models.user.loginSuccess = false;
           }
-          // console.log(result);
-          // console.log(models.user.loginSuccess);
           resolve(true);
         });
       });
@@ -702,7 +700,7 @@ let controllers = {
       let search_btn = document.querySelector(".keyin_Keyword");
       search_btn.addEventListener("click",()=>{
         let keyword = document.querySelector("#keyword").value;
-        if(window.outerWidth >= 1200){
+        if(window.outerWidth >= 1200){ //RWD解析度
           if(keyword !=""){
             // models.courses.searchKeyword(keyword);
             window.location.assign("/search?keyword=" + keyword);
@@ -712,7 +710,7 @@ let controllers = {
           }
         }else{
           let search_box = document.querySelector("#keyword");
-          if(search_box.style.display === "none"){
+          if(search_box.style.display === "none" || search_box.style.display === ""){
             search_box.style.display = "flex";
           }else{
             search_box.style.display = "none";

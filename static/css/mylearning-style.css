@@ -159,6 +159,9 @@ form.search input {
   height: 35px;
 }
 
+.img-hamburger-menu:hover {
+  cursor: pointer;
+}
 
 .nav-login-menu-box {
   /* margin:10px; */
@@ -233,6 +236,10 @@ form.search input {
   font-size: 1rem;
   line-height: 24px;
   margin-left: 20px;
+}
+
+#learning-status:hover, #learning-category:hover {
+  cursor: pointer;
 }
 
 /* cover */

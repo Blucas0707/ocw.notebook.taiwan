@@ -285,6 +285,9 @@ form.search input {
   height: 35px;
 }
 
+.nav-login-menu:hover {
+  cursor: pointer;
+}
 
 .nav-login-menu-box {
   /* margin:10px; */
@@ -443,6 +446,9 @@ form.search input {
   /* margin-left: 20px; */
 }
 
+#learning-category:hover {
+  cursor: pointer;
+}
 
 .course-content {
   /* display: flex;

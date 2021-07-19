@@ -285,6 +285,9 @@ form.search input {
   height: 35px;
 }
 
+.img-hamburger-menu:hover {
+  cursor: pointer;
+}
 
 .nav-login-menu-box {
   /* margin:10px; */

@@ -245,6 +245,10 @@ form.search input {
   border-radius: 0 6px 6px 0;
 }
 
+.keyin_Keyword:hover {
+  cursor: pointer;
+}
+
 .nav-login {
   display: flex;
   flex: auto;
@@ -286,6 +290,9 @@ form.search input {
   height: 35px;
 }
 
+.img-hamburger-menu {
+  cursor: pointer;
+}
 
 .nav-login-menu-box {
   /* margin:10px; */
