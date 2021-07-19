@@ -1,172 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>OCW Notebook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/course-style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com">
-    <link rel="icon" href="/img/favicon.ico">
-  </head>
-  <body class="body">
-    <div class="hideall"></div>
-    <!-- login box -->
-    <div class="login-box">
-      <div class="login-header"></div>
-      <div class="login-title">
-        登入會員帳號
-        <img src="/img/icon_close.svg" alt="" class="login-cancel">
-      </div>
-      <!-- <form id="login-form" method="PATCH" > -->
-      <div class="login-input-box">
-        <div class="g-signin2" onclick="ClickLogin()" data-onsuccess="onSignIn"></div>
-        <input type="text" name="email" placeholder="輸入電子信箱" class="login-email">
-        <input type="password" name="password" placeholder="輸入密碼" class="login-password">
-      </div>
-        <!-- <input type="submit" value="登入帳戶" class="login-btn"> -->
-      <!-- </form> -->
-      <div class="login-btn">登入帳戶</div>
-      <div class="login-status"></div>
-      <div class="login-register" >還沒有帳戶？點此註冊</div>
-    </div>
-    <!-- register box -->
-    <div class="register-box">
-      <div class="register-header"></div>
-      <div class="register-title">
-        註冊會員帳號
-        <img src="/img/icon_close.svg" alt="" class="register-cancel">
-      </div>
-      <form id="register-form" method="POST" >
-        <input type="text" name="name" placeholder="輸入姓名" class="register-name" required>
-        <input type="text" name="email" placeholder="輸入電子信箱" class="register-email" required>
-        <input type="password" name="password" placeholder="輸入密碼" class="register-password" required>
-        <!-- <input type="submit" value="註冊新帳戶" class="register-btn"> -->
-      </form>
-      <div class="register-btn">註冊新帳戶</div>
-      <div class="register-status" ></div>
-      <div class="register-login">已經有帳戶了？點此登入</div>
-    </div>
 
-    <!-- <div class="nav-bar">
-      <div class="nav-bar-items">
+<head>
+  <meta charset="utf-8">
+  <title>OCW Notebook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="This OCW notebook allows you to learn with OCW resouces from universities in Taiwan and you can record your learning history and notes which inspires you!"/>
+  <link rel="stylesheet" type="text/css" href="/css/course-style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com">
+  <link rel="icon" href="/img/favicon.ico">
+</head>
+
+<body class="body">
+  <div class="hideall"></div> <!-- login box -->
+  <div class="login-box">
+    <div class="login-header"></div>
+    <div class="login-title"> 登入會員帳號 <img src="/img/icon_close.svg" alt="icon_close Error" class="login-cancel"> </div> <!-- <form id="login-form" method="PATCH" > -->
+    <div class="login-input-box">
+      <div class="g-signin2" onclick="ClickLogin()" data-onsuccess="onSignIn"></div> <input type="text" name="email" placeholder="輸入電子信箱" class="login-email"> <input type="password" name="password" placeholder="輸入密碼" class="login-password">
+    </div> <!-- <input type="submit" value="登入帳戶" class="login-btn"> -->
+    <!-- </form> -->
+    <div class="login-btn">登入帳戶</div>
+    <div class="login-status"></div>
+    <div class="login-register">還沒有帳戶？點此註冊</div>
+  </div> <!-- register box -->
+  <div class="register-box">
+    <div class="register-header"></div>
+    <div class="register-title"> 註冊會員帳號 <img src="/img/icon_close.svg" alt="icon_close Error" class="register-cancel"> </div>
+    <form id="register-form" method="POST"> <input type="text" name="name" placeholder="輸入姓名" class="register-name" required> <input type="text" name="email" placeholder="輸入電子信箱" class="register-email" required> <input type="password" name="password"
+        placeholder="輸入密碼" class="register-password" required> <!-- <input type="submit" value="註冊新帳戶" class="register-btn"> -->
+    </form>
+    <div class="register-btn">註冊新帳戶</div>
+    <div class="register-status"></div>
+    <div class="register-login">已經有帳戶了？點此登入</div>
+  </div>
+  <!-- <div class="nav-bar"> <div class="nav-bar-items"> <div class="nav-title"><a href="/">OCW Notebook</a></div> <div class="nav-search"> </div> <div class="nav-login"> <div id="login-btn" class="nav-login-box">登入</div> <div id="register-btn" class="nav-login-box">註冊</div> <div id="mylearning-btn" class="nav-login-box">學習紀錄</div> <div id="logout-btn" class="nav-login-box">登出</div> </div> </div> </div> -->
+  <div class="nav-bar">
+    <div class="nav-bar-items">
+      <h1>
         <div class="nav-title"><a href="/">OCW Notebook</a></div>
-        <div class="nav-search">
-        </div>
-        <div class="nav-login">
-          <div id="login-btn" class="nav-login-box">登入</div>
-          <div id="register-btn" class="nav-login-box">註冊</div>
-          <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
-          <div id="logout-btn" class="nav-login-box">登出</div>
+      </h1>
+      <div class="nav-search">
+        <div class="nav-search-box">
+          <form class="search" action="/search" name="search-keyword"> <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search"> </form> <button type="button" class="keyin_Keyword"><img
+              src="/img/icon_search.svg" alt="icon_search Error"></button>
+          <div class="search-list"> </div>
         </div>
       </div>
-    </div> -->
-    <div class="nav-bar">
-      <div class="nav-bar-items">
-        <div class="nav-title"><a href="/">OCW Notebook</a></div>
-        <div class="nav-search">
-          <div class="nav-search-box">
-            <form class="search" action="/search" name ="search-keyword">
-              <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search">
-            </form>
-            <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
-            <div class="search-list">
-            </div>
-          </div>
-        </div>
-        <div class="nav-login">
-          <div id="hamburger_menu" class="nav-login-menu">
-            <img src="/img/hamburger_menu.svg" alt="" class="img-hamburger-menu">
-            <div class="nav-login-menu-box">
-              <div id="login-btn" class="nav-login-box">登入</div>
-              <div id="register-btn" class="nav-login-box">註冊</div>
-              <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
-              <div id="profile-btn" class="profile-box">
-                <div class="nav-myname"></div>
-                <div class="profile-box-list">
-                  <div id="my-profile" class="profile-box-item">個人資料</div>
-                  <div id="logout-btn" class="profile-box-item">登出</div>
-                </div>
+      <div class="nav-login">
+        <div id="hamburger_menu" class="nav-login-menu"> <img src="/img/hamburger_menu.svg" alt="hamburger_menu Error" class="img-hamburger-menu">
+          <div class="nav-login-menu-box">
+            <div id="login-btn" class="nav-login-box">登入</div>
+            <div id="register-btn" class="nav-login-box">註冊</div>
+            <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
+            <div id="profile-btn" class="profile-box">
+              <div class="nav-myname"></div>
+              <div class="profile-box-list">
+                <div id="my-profile" class="profile-box-item">個人資料</div>
+                <div id="logout-btn" class="profile-box-item">登出</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="cover">
-      <div class="cover-container">
-        <div class="cover-content">
-          <div class="cover-greeting">影片觀看</div>
+  </div>
+  <div class="cover">
+    <div class="cover-container">
+      <div class="cover-content">
+        <div class="cover-greeting">影片觀看</div>
+      </div>
+    </div>
+  </div>
+  <main class="main">
+    <div class="learning-box">
+      <div class="learning-title-box">
+        <div class="course-title"></div>
+      </div>
+      <div class="learning-content-box">
+        <div class="lecturelist-box">
+          <ul class="lecture-list">
+            <!-- <li> <div class="lecture-status"></div> <div class="lecture-id">單元 1 </div> <div class="lecture-name">[TEST1]</div> </li> -->
+          </ul>
+        </div>
+        <div class="video-box"> <video class="lecture-video" controls autoplay preload>
+            <source src="" type="video/mp4" id="lecture-video"> Your browser does not support the video tag.
+          </video>
+          <div class="video-timer-box">完成度： <span class="completed-ratio">0.00%</span></div>
+        </div>
+        <div class="reference-box">
+          <div class="reference-list">
+            <div class="note-download reference-list-element">講義下載</div>
+            <div class="reference-download reference-list-element">參考資料下載</div>
+            <div class="video-download reference-list-element">影音下載</div>
+          </div>
         </div>
       </div>
     </div>
-
-    <main class="main">
-      <div class="learning-box">
-        <div class="learning-title-box">
-          <div class="course-title"></div>
-        </div>
-        <div class="learning-content-box">
-          <div class="lecturelist-box">
-            <ul class="lecture-list">
-              <!--
-              <li>
-                <div class="lecture-status"></div>
-                <div class="lecture-id">單元 1 </div>
-                <div class="lecture-name">[TEST1]</div>
-              </li> -->
-            </ul>
+    <div class="note-box">
+      <div class="note-empty"></div>
+      <div class="note-content-box">
+        <div class="note-title">Note</div>
+        <div class="note-not-login">登入後使用筆記功能</div>
+        <div class="note-list">
+          <div class="note-update-box">
+            <div class="note-input-box">
+              <!-- <input type="text" name="note-input" value="" placeholder="留下你的筆記..."> --> <textarea id="note-input-content" name="note-input" rows="8" cols="80" placeholder="留下你的筆記..." required></textarea>
+            </div>
+            <div class="note-btn-box">
+              <div id="note-video-current"></div>
+              <div id="note-alert"></div>
+              <div id="note-cancel-btn" class="note-btn">Cancel</div>
+              <div id="note-save-btn" class="note-btn">Save</div>
+            </div>
           </div>
-          <div class="video-box">
-            <video class="lecture-video" controls autoplay preload>
-              <source src="" type="video/mp4" id="lecture-video">
-              Your browser does not support the video tag.
-            </video>
-            <div class="video-timer-box">完成度： <span class="completed-ratio">0.00%</span></div>
-          </div>
-          <div class="reference-box">
-              <div class="reference-list">
-                <div class="note-download reference-list-element">講義下載</div>
-                <div class="reference-download reference-list-element">參考資料下載</div>
-                <div class="video-download reference-list-element">影音下載</div>
-              </div>
+          <div class="note-show-all">
+            <!-- <div class="note-show-list"> <div class="note-time">2021/06/22 08:30:19</div> <div class="note-content">ghgfdsfdgfdhgdffdhdfhgs</div> </div> -->
           </div>
         </div>
       </div>
-      <div class="note-box">
-        <div class="note-empty"></div>
-        <div class="note-content-box">
-          <div class="note-title">Note</div>
-          <div class="note-not-login">登入後使用筆記功能</div>
-          <div class="note-list">
-            <div class="note-update-box">
-              <div class="note-input-box">
-                <!-- <input type="text" name="note-input" value="" placeholder="留下你的筆記..."> -->
-                <textarea id="note-input-content" name="note-input" rows="8" cols="80" placeholder="留下你的筆記..." required></textarea>
-              </div>
-              <div class="note-btn-box">
-                <div id="note-video-current"></div>
-                <div id="note-alert"></div>
-                <div id="note-cancel-btn" class="note-btn">Cancel</div>
-                <div id="note-save-btn" class="note-btn">Save</div>
-              </div>
-            </div>
-            <div class="note-show-all">
-              <!-- <div class="note-show-list">
-                <div class="note-time">2021/06/22 08:30:19</div>
-                <div class="note-content">ghgfdsfdgfdhgdffdhdfhgs</div>
-              </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="note-empty"></div>
-      </div>
-    </main>
-    <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
+      <div class="note-empty"></div>
+    </div>
+  </main>
+  <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
   <script src="/js/course.js" type="text/javascript"></script>
-  </body>
+</body>
+
 </html>

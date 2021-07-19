@@ -1,141 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>OCW Notebook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/mylearning-style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/img/favicon.ico">
-  </head>
-  <body class="body">
-    <div class="nav-bar">
-      <div class="nav-bar-items">
+
+<head>
+  <meta charset="utf-8">
+  <title>OCW Notebook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="This OCW notebook allows you to learn with OCW resouces from universities in Taiwan and you can record your learning history and notes which inspires you!"/>
+  <link rel="stylesheet" type="text/css" href="/css/mylearning-style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/favicon.ico">
+</head>
+
+<body class="body">
+  <div class="nav-bar">
+    <div class="nav-bar-items">
+      <h1>
         <div class="nav-title"><a href="/">OCW Notebook</a></div>
-        <div class="nav-search">
-          <div class="nav-search-box">
-            <form class="search" action="/search" name ="search-keyword">
-              <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search">
-            </form>
-            <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
-            <div class="search-list">
-            </div>
-          </div>
+      </h1>
+      <div class="nav-search">
+        <div class="nav-search-box">
+          <form class="search" action="/search" name="search-keyword"> <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search"> </form> <button type="button" class="keyin_Keyword"><img
+              src="/img/icon_search.svg" alt="icon_search Error"></button>
+          <div class="search-list"> </div>
         </div>
-        <div class="nav-login">
-          <div id="hamburger_menu" class="nav-login-menu">
-            <img src="/img/hamburger_menu.svg" alt="" class="img-hamburger-menu">
-            <div class="nav-login-menu-box">
-              <!-- <div id="login-btn" class="nav-login-box">登入</div>
-              <div id="register-btn" class="nav-login-box">註冊</div> -->
-              <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
-              <div id="profile-btn" class="profile-box">
-                <div class="nav-myname"></div>
-                <div class="profile-box-list">
-                  <div id="my-profile" class="profile-box-item">個人資料</div>
-                  <div id="logout-btn" class="profile-box-item">登出</div>
-                </div>
+      </div>
+      <div class="nav-login">
+        <div id="hamburger_menu" class="nav-login-menu"> <img src="/img/hamburger_menu.svg" alt="hamburger_menu Error" class="img-hamburger-menu">
+          <div class="nav-login-menu-box">
+            <!-- <div id="login-btn" class="nav-login-box">登入</div> <div id="register-btn" class="nav-login-box">註冊</div> -->
+            <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
+            <div id="profile-btn" class="profile-box">
+              <div class="nav-myname"></div>
+              <div class="profile-box-list">
+                <div id="my-profile" class="profile-box-item">個人資料</div>
+                <div id="logout-btn" class="profile-box-item">登出</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="nav-bar">
-      <div class="nav-bar-items">
-        <div class="nav-title"><a href="/">OCW Notebook</a></div>
-        <div class="nav-search">
-          <div class="nav-search-box">
-            <form class="search" action="/search" name ="search-keyword">
-              <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search">
-            </form>
-            <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button>
-            <div class="search-list">
-            </div>
-          </div>
-        </div>
-        <div class="nav-login">
-          <div id="mylearning-btn" class="nav-login-box">學習紀錄</div>
-          <div id="logout-btn" class="nav-login-box">登出</div>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="cover">
-      <div class="cover-container">
-        <div class="cover-content">
-          <div class="cover-greeting">學習紀錄</div>
-        </div>
+  </div>
+  <!-- <div class="nav-bar"> <div class="nav-bar-items"> <div class="nav-title"><a href="/">OCW Notebook</a></div> <div class="nav-search"> <div class="nav-search-box"> <form class="search" action="/search" name ="search-keyword"> <input type="search" placeholder="輸入課程關鍵字" name="keyword" AUTOCOMPLETE="off" id="keyword" class="search"> </form> <button type="button" class="keyin_Keyword"><img src="/img/icon_search.svg"></button> <div class="search-list"> </div> </div> </div> <div class="nav-login"> <div id="mylearning-btn" class="nav-login-box">學習紀錄</div> <div id="logout-btn" class="nav-login-box">登出</div> </div> </div> </div> -->
+  <div class="cover">
+    <div class="cover-container">
+      <div class="cover-content">
+        <div class="cover-greeting">學習紀錄</div>
       </div>
     </div>
-
-    <main class="main">
-      <div class="status-container">
-        <div class="status-container-box">
-          <select name="learning-status" id="learning-status">
-            <option value="" disabled selected>學習狀態</option>
-            <option value="-1">全部課程</option>
-            <option value="100">已完成</option>
-            <option value="1">進行中</option>
-            <option value="0">未開始</option>
-          </select>
-          <select name="learning-category" id="learning-category">
-            <option value="" disabled selected>課程分類</option>
-            <option value="%">全部課程</option>
-            <option value="文史哲藝">文史哲藝</option>
-            <option value="法社管理">法社管理</option>
-            <option value="理工電資">理工電資</option>
-            <option value="生農醫衛">生農醫衛</option>
-            <option value="百家學堂">百家學堂</option>
-          </select>
-        </div>
-      </div>
-      <div class="static-course-box">
-        <!-- <div class="static-container">
-          <div class="static-container-box">
-            <div class="static-box">學習總時數(HR)：<span class="static-hours">100.2</span></div>
-            <div class="static-box">課程完成數：<span class="static-count"></span></div>
-          </div>
-        </div> -->
-        <div class="course-gallery" id = "course-gallery-contain">
-          <div class="course-all course-border">
-            <div class="course-title"></div>
-            <div class="course-content">
-              <div class="course-content-loading">
-                <img class="course-loading-img" src="/img/loading.gif" alt="">
+  </div>
+  <main class="main">
+    <div class="status-container">
+      <div class="status-container-box"> <select name="learning-status" id="learning-status">
+          <option value="" disabled selected>學習狀態</option>
+          <option value="-1">全部課程</option>
+          <option value="100">已完成</option>
+          <option value="1">進行中</option>
+          <option value="0">未開始</option>
+        </select> <select name="learning-category" id="learning-category">
+          <option value="" disabled selected>課程分類</option>
+          <option value="%">全部課程</option>
+          <option value="文史哲藝">文史哲藝</option>
+          <option value="法社管理">法社管理</option>
+          <option value="理工電資">理工電資</option>
+          <option value="生農醫衛">生農醫衛</option>
+          <option value="百家學堂">百家學堂</option>
+        </select> </div>
+    </div>
+    <div class="static-course-box">
+      <!-- <div class="static-container"> <div class="static-container-box"> <div class="static-box">學習總時數(HR)：<span class="static-hours">100.2</span></div> <div class="static-box">課程完成數：<span class="static-count"></span></div> </div> </div> -->
+      <div class="course-gallery" id="course-gallery-contain">
+        <div class="course-all course-border">
+          <div class="course-title"></div>
+          <div class="course-content">
+            <div class="course-content-loading"> <img class="course-loading-img" src="/img/loading.gif" alt="course-loading-img Error"> </div>
+            <div class="course-content-main" id="allCourse"> </div>
+            <div class="course-content-page">
+              <div class="course-content-page-number">1</div>
+              <div class="previous-arrow">
+                <div class="arrow-box"> <img src="/img/left-arrow.svg" alt="left-arrow Error"> </div>
               </div>
-              <div class="course-content-main" id="allCourse">
-              </div>
-              <div class="course-content-page">
-                <div class="course-content-page-number">1</div>
-                <div class="previous-arrow">
-                  <div class="arrow-box">
-                    <img src="/img/left-arrow.svg" alt="">
-                  </div>
-                </div>
-                <div class="next-arrow">
-                  <div class="arrow-box">
-                    <img src="/img/right-arrow.svg" alt="">
-                  </div>
-                </div>
+              <div class="next-arrow">
+                <div class="arrow-box"> <img src="/img/right-arrow.svg" alt="right-arrow Error"> </div>
               </div>
             </div>
           </div>
-          <!-- <div class="previous-arrow">
-            <img src="/img/previous.svg" alt="">
-          </div>
-          <div class="next-arrow">
-            <img src="/img/next.svg" alt="">
-          </div> -->
-        </div>
-        <!-- <div class="empty-box"></div> -->
-      </div>
-
-      <!-- <div class="loading"><img src="/img/loading.gif" alt="" class="loading_img"></div> -->
-    </main>
-    <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
+        </div> <!-- <div class="previous-arrow"> <img src="/img/previous.svg" alt=""> </div> <div class="next-arrow"> <img src="/img/next.svg" alt=""> </div> -->
+      </div> <!-- <div class="empty-box"></div> -->
+    </div> <!-- <div class="loading"><img src="/img/loading.gif" alt="" class="loading_img"></div> -->
+  </main>
+  <footer class="copyright" id="footer">COPYRIGHT &copy;2021 OCW Notebook Taiwan</footer>
   <script src="/js/mylearning.js" type="text/javascript"></script>
-  </body>
+</body>
+
 </html>
