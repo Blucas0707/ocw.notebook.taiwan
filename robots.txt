@@ -1,0 +1,5 @@
+# robots.txt for https://ocw.notebook.blucas0707.com
+
+#允許所有搜尋引擎檢索所有內容(通常建議使用)
+User-agent: *
+Disallow:
