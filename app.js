@@ -284,7 +284,7 @@ app.get('/log', function (req, res) {
 });
 // Route nohup log
 app.get('/nohup.out', function (req, res) {
-  res.sendFile(path.join(__dirname,'/Crawler/'+'nohup.out'));
+  res.sendFile(path.join(__dirname,'/'+'nohup.out'));
 });
 
 // app.use('/', router);
