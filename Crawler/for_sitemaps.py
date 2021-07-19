@@ -35,8 +35,10 @@ def make_sitemap():
     with open("sitemap.xml", "a+") as sitemap:
         for result in results:
             course_id = str(result[0])
-            content = "  <url>\n" + "    <loc>https://ocw.notebook.blucas0707.com/course/"+ course_id +"</loc>\n" + "  <url>\n"
+            content = "  <url>\n" + "    <loc>https://ocw.notebook.blucas0707.com/course/"+ course_id +"</loc>\n" + "  </url>\n"
             sitemap.write(content)
+        content = "\n</urlset>"
+        sitemap.write(content)
         print("append done")
     sitemap.close()
 
