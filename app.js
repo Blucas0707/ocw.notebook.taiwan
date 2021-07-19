@@ -291,6 +291,9 @@ app.get('/nohup.out', function (req, res) {
 app.get("/robots.txt", function (req,res) {
   res.sendFile(path.join(__dirname,'/'+'robots.txt'));
 })
+app.get("/sitemap.xml", function (req,res) {
+  res.sendFile(path.join(__dirname,'/Crawler/'+'sitemap.xml'));
+})
 
 // app.use('/', router);
 app.listen(3000, function(){
