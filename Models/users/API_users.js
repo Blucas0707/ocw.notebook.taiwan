@@ -130,6 +130,7 @@ let api_user = {
                   "id": result.data.id,
                   "name": result.data.name,
                   "email": result.data.email,
+                  "sub":result.data.sub,
                 }
               };
               resolve(JSON.stringify(data));

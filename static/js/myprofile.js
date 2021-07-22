@@ -144,6 +144,7 @@ let models = {
     user_id:null,
     user_name:null,
     user_email:null,
+    user_sub:null,
     checkLogin:function(){
       return new Promise((resolve, reject)=>{
         return fetch("/api/user",{
@@ -157,6 +158,7 @@ let models = {
             models.user.user_id = JSON.parse(result).data.id;
             models.user.user_name = JSON.parse(result).data.name;
             models.user.user_email = JSON.parse(result).data.email;
+            models.user.user_sub = JSON.parse(result).data.sub;
             // console.log(models.user.user_name);
           }
           else{
@@ -217,6 +219,35 @@ let models = {
     },
   },
   update:{
+    updateSubscription:function(subscription){
+      return new Promise((resolve, reject)=>{
+        let data = {
+          "user_id":models.user.user_id,
+          "user_sub":subscription
+        };
+        // console.log(email,password);
+        return fetch("/api/myprofile/subscription",{
+          method:'PATCH',
+          headers: {
+            "Content-type":"application/json",
+          },
+          body: JSON.stringify(data),
+        }).then((response)=>{
+          return response.json();
+        }).then((result)=>{
+          // result = JSON.parse(result);
+          console.log(result);
+          if(result.ok){
+            // models.user.loginSuccess = true;
+          }else{
+            // models.user.loginSuccess = false;
+          }
+          // console.log(result);
+          // console.log(models.user.loginSuccess);
+          resolve(true);
+        });
+      });
+    },
     updateUsername:function(new_username){
       return new Promise((resolve, reject)=>{
         let data = {
@@ -572,6 +603,25 @@ let views = {
 
 let controllers = {
   actions:{
+    updateSubscription:function(){
+      let update_btn = document.querySelector("#main-profile-mysubscription-submit-btn");
+      update_btn.addEventListener("click",()=>{
+        // 確認是否繼續訂閱
+        let subcription;
+        if(document.querySelector("#keep-sub").checked){
+          subcription = 1;
+        }else{
+          subcription = 0;
+        }
+        models.update.updateSubscription(subcription).then(()=>{
+          //顯示成功訊息
+          let error_msg = document.querySelector(".edit-subscription-input-error");
+          error_msg.innerHTML = "修改成功";
+          error_msg.style.color = "blue";
+          window.location.assign("/myprofile");
+        })
+      })
+    },
     updateUsername:function(){
       //  顯示username
       document.querySelector("#modify-name").value = models.user.user_name;
@@ -638,6 +688,7 @@ let controllers = {
       })
     },
     chooseProfiles:function(){
+      // 點擊 個人檔案
       let edit_profile_btn = document.querySelector("#edit-profile");
       edit_profile_btn.addEventListener("click",()=>{
         //顯示profile div
@@ -647,23 +698,58 @@ let controllers = {
         title_1.innerHTML = "個人檔案";
         let title_2 = document.querySelector(".main-profile-content-title-2");
         title_2.innerHTML = "修改資訊";
-        //隱藏account div
+        //隱藏 更改姓名&取消訂閱 div
         let account_div = document.querySelector(".main-profile-content-myaccount");
         account_div.style.display = "none";
+        let subscription_div = document.querySelector(".main-profile-content-mysubscription");
+        subscription_div.style.display = "none";
       });
-
+      // 點擊 帳戶
       let edit_account_btn = document.querySelector("#edit-account");
       edit_account_btn.addEventListener("click",()=>{
-        //隱藏profile div
+        //隱藏 更改姓名&取消訂閱 div
         let profile_div = document.querySelector(".main-profile-content-myprofile");
         profile_div.style.display = "none";
-        //顯示account div
+        let subscription_div = document.querySelector(".main-profile-content-mysubscription");
+        subscription_div.style.display = "none";
+        //顯示 更改密碼  div
         let account_div = document.querySelector(".main-profile-content-myaccount");
         account_div.style.display = "block";
         let title_1 = document.querySelector(".main-profile-content-title-1");
         title_1.innerHTML = "帳戶";
         let title_2 = document.querySelector(".main-profile-content-title-2");
         title_2.innerHTML = "帳戶及更改密碼" +"<br>"+"(Google登入，無法更改密碼)";
+
+        let email = document.querySelector(".main-profile-content-myaccount-email-display");
+        email.innerHTML = models.user.user_email;
+      });
+
+      // 點擊 訂閱
+      let edit_subcription_btn = document.querySelector("#edit-subcription");
+      edit_subcription_btn.addEventListener("click",()=>{
+        //顯示訂閱狀態
+        let status = document.querySelector(".main-profile-content-mysubscription-status");
+        if(models.user.user_sub === 1){ //已訂閱
+          status.innerHTML = "已訂閱";
+          status.style.color = "blue";
+        }else{
+          status.innerHTML = "未訂閱";
+          status.style.color = "red";
+        }
+
+        //隱藏 更改姓名＆更改密碼 div
+        let profile_div = document.querySelector(".main-profile-content-myprofile");
+        profile_div.style.display = "none";
+        let account_div = document.querySelector(".main-profile-content-myaccount");
+        account_div.style.display = "none";
+
+        //顯示訂閱 div
+        let subcription_div = document.querySelector(".main-profile-content-mysubscription");
+        subcription_div.style.display = "block";
+        let title_1 = document.querySelector(".main-profile-content-title-1");
+        title_1.innerHTML = "訂閱";
+        let title_2 = document.querySelector(".main-profile-content-title-2");
+        title_2.innerHTML = "提醒信件四天一次";
 
         let email = document.querySelector(".main-profile-content-myaccount-email-display");
         email.innerHTML = models.user.user_email;
@@ -872,6 +958,7 @@ let controllers = {
       views.click.renderUsername();
       controllers.actions.updateUsername();
       controllers.actions.updateUserpassword();
+      controllers.actions.updateSubscription();
     });
     // 顯示課程：all /ntu /nthu /nytu
     // controllers.courses.allCourse_list();

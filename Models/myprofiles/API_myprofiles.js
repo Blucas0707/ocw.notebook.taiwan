@@ -18,6 +18,17 @@ function hashVerify(hashPassword,password){
 };
 
 let api_myprofiles = {
+  //修改訂閱
+  modifySubscription:function(data){
+    return new Promise((resolve, reject)=>{
+      let user_id = data.user_id.toString();
+      let subcription = data.user_sub.toString();
+      // save in sql
+      SQL.myProfile.modifySubscription(user_id,subcription).then((result)=>{
+        resolve(JSON.stringify(result));
+      })
+    });
+  },
   //修改姓名
   modifyUsername:function(data){
     return new Promise((resolve, reject)=>{

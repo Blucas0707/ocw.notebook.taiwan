@@ -459,6 +459,7 @@ form.search input {
   overflow: scroll;
   border: 2px solid gray;
   border-radius: 10px;
+  margin-right: 2px;
 }
 
 .lecture-list {
@@ -531,6 +532,7 @@ li:hover {
 }
 
 .reference-list {
+  margin-left: 2px;
   border: 2px solid gray;
   /* border-bottom: 0; */
   border-radius: 10px;
@@ -538,6 +540,9 @@ li:hover {
 .reference-list-element {
   padding-left: 10px;
   border-bottom: 2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .video-download {
   border-bottom: 0;
@@ -546,7 +551,7 @@ li:hover {
 .note-download:hover {
   cursor: pointer;
   background-color: #f4f3e3;
-  border-radius: 6px 6px 0 0;
+  border-radius: 6px 0 0 6px;
   /* color: white; */
 }
 
@@ -559,7 +564,7 @@ li:hover {
 .video-download:hover {
   cursor: pointer;
   background-color: #f4f3e3;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 6px 6px 0;
   /* color: white; */
 }
 

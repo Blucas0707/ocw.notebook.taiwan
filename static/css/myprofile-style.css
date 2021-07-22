@@ -458,8 +458,20 @@ form.search input {
   color: white;
 }
 
-.edit-name-input-error, .edit-password-input-error {
+.edit-name-input-error, .edit-password-input-error, .edit-subscription-input-error {
   text-align: center;
+}
+
+.main-profile-content-mysubscription {
+  display: none;
+}
+
+.main-profile-content-mysubscription-status {
+  text-align: center;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
 

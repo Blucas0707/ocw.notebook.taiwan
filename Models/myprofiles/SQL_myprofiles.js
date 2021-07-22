@@ -24,6 +24,25 @@ let SQL = {
     queueLimit: 0
   }),
   myProfile:{
+    modifySubscription:function(user_id,subcription){
+      let sql_statement = "update users set user_sub = ? where user_id = ?";
+      let para = [subcription,user_id];
+      let promisePool = SQL.pool.promise();
+      return new Promise((resolve, reject)=>{
+        promisePool.query(sql_statement,para).then(([rows, fields])=>{
+          let data = {
+            "ok": true,
+          };
+          resolve(data);
+        }).catch(()=>{
+          let data = {
+            "error": true,
+            "message": "伺服器內部錯誤"
+          };
+          resolve(data);
+        })
+      });
+    },
     modifyUsername:function(user_id,new_user_name){
       let sql_statement = "update users set user_name = ? where user_id = ?";
       let para = [new_user_name,user_id];

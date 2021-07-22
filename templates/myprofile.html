@@ -75,6 +75,7 @@
       <div class="main-profile-list">
         <div id="edit-profile" class="main-profile-item">個人檔案</div>
         <div id="edit-account" class="main-profile-item">帳戶</div>
+        <div id="edit-subcription" class="main-profile-item">訂閱</div>
       </div>
       <div class="main-profile-content-list">
         <div class="main-profile-content-title">
@@ -82,6 +83,7 @@
           <div class="main-profile-content-title-2">修改資訊</div> <!-- 帳戶及更改密碼 -->
         </div>
         <div class="main-profile-content-main">
+          <!-- 更改姓名 -->
           <div class="main-profile-content-myprofile">
             <div class="main-profile-content-myprofile-title">會員名稱：</div> <input id="modify-name" type="text" name="" value="">
             <div class="edit-name-input-error"></div>
@@ -89,6 +91,7 @@
               <div id="main-profile-name-submit-btn" class="main-profile-submit-btn">Save</div>
             </div>
           </div>
+          <!-- 更改密碼 -->
           <div class="main-profile-content-myaccount">
             <div class="main-profile-content-myaccount-email">
               <div class="main-profile-content-myaccount-email-title">電子郵件：</div>
@@ -103,6 +106,23 @@
             </div>
             <div class="main-profile-submit-box">
               <div id="main-profile-password-submit-btn" class="main-profile-submit-btn">Save</div>
+            </div>
+          </div>
+          <!-- 取消訂閱 -->
+          <div class="main-profile-content-mysubscription">
+            <!-- <div class="main-profile-content-mysubscription-title">會員名稱：</div> <input id="modify-name" type="text" name="" value=""> -->
+            <div class="main-profile-content-mysubscription-status"></div>
+            <div>
+              <input type="radio" id="keep-sub" name="sub" value="1" checked>
+              <label for="huey">繼續訂閱提醒信件</label>
+            </div>
+            <div>
+              <input type="radio" id="cancel-sub" name="sub" value="0" >
+              <label for="huey">取消訂閱提醒信件</label>
+            </div>
+            <div class="edit-subscription-input-error"></div>
+            <div class="main-profile-submit-box">
+              <div id="main-profile-mysubscription-submit-btn" class="main-profile-submit-btn">Save</div>
             </div>
           </div>
         </div> <!-- <div class="main-profile-content-submit"> <div class="main-profile-submit-btn">Save</div> </div> -->

@@ -37,7 +37,7 @@ let SQL = {
       return new Promise((resolve, reject)=>{
         promisePool.query(sql_statement,para).then(([rows, fields])=>{
           console.log(rows,rows.length);
-          
+
           if(rows.length != 0){ //user existed
             let hashPassword = rows[0]["user_password"];
             console.log("login:" + hashPassword);
@@ -159,7 +159,7 @@ let SQL = {
     checkLogin:function(email){
       // check user eisted
       let isUserExisted = null;
-      let sql_statement = "select user_id,user_name,user_email,user_password from users where user_email = ? limit 1 ";
+      let sql_statement = "select user_id,user_name,user_email,user_password,user_sub from users where user_email = ? limit 1 ";
       let para = [email];
       let promisePool = SQL.pool.promise();
       return new Promise((resolve, reject)=>{
@@ -170,7 +170,8 @@ let SQL = {
                 "id": rows[0]["user_id"],
                 "name": rows[0]["user_name"],
                 "email": rows[0]["user_email"],
-                "password":rows[0]["user_password"]
+                "password":rows[0]["user_password"],
+                "sub":rows[0]["user_sub"]
               }
             };
             resolve(data);

@@ -183,6 +183,14 @@ app.patch("/api/myprofile/userpassword", function(req, res){
   })
 });
 
+//更新使用者訂閱
+app.patch("/api/myprofile/subscription", function(req, res){
+  api_myprofiles.modifySubscription(req.body).then((result)=>{
+    console.log(result);
+    res.send(200,result);
+  })
+});
+
 
 // 使用者API
 //取得使用者資訊
