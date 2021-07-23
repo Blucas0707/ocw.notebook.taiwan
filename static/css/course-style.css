@@ -516,6 +516,19 @@ li:hover {
   width: 60%;
 }
 
+.video-box {
+  position: relative;
+}
+
+.output_canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotateY(180deg);
+  width: 150px;
+  height: 150px;
+}
+
 
 .lecture-video {
   width: 100%;
@@ -818,6 +831,11 @@ footer {
     border: 0;
   }
 
+  .output_canvas {
+    width: 80px;
+    height: 80px;
+  }
+
   footer {
     font-size: 0.8rem;
   }
@@ -899,6 +917,11 @@ footer {
 
   .profile-box {
     border: 0;
+  }
+
+  .output_canvas {
+    width: 80px;
+    height: 80px;
   }
 
   footer {

@@ -1175,6 +1175,73 @@ let controllers = {
       }
     };
   },
+  handpose:function(){
+    const videoElement = document.getElementsByClassName('input_video')[0];
+    const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    const canvasCtx = canvasElement.getContext('2d');
+    let last_handmarks = [];
+    function onResults(results) {
+      canvasCtx.save();
+      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      canvasCtx.drawImage(
+          results.image, 0, 0, canvasElement.width, canvasElement.height);
+      if (results.multiHandLandmarks) {
+        // setInterval(()=>{
+        //   detectDirection(last_handmarks,results.multiHandLandmarks[0]);
+        // },3000);
+        detectDirection(last_handmarks,results.multiHandLandmarks[0]);
+        last_handmarks = results.multiHandLandmarks[0];
+        // console.log(results.multiHandLandmarks);
+        for (const landmarks of results.multiHandLandmarks) {
+          // console.log(landmarks);
+          drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                         {color: '#00FF00', lineWidth: 5});
+          drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
+        }
+      }
+      canvasCtx.restore();
+    }
+
+    const hands = new Hands({locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+    }});
+    hands.setOptions({
+      maxNumHands: 1,
+      minDetectionConfidence: 0.7,
+      minTrackingConfidence: 0.7
+    });
+    hands.onResults(onResults);
+
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        await hands.send({image: videoElement});
+      },
+      width: 150,
+      height: 150
+    });
+    camera.start();
+
+    function detectDirection(last_handmarks,now_handmarks){
+      let play_video = document.querySelector(".lecture-video");
+      // console.log(last_handmarks,now_handmarks);
+      if(last_handmarks.length === 0 || now_handmarks.length === 0){
+        return ;
+      }
+
+      let last_x_avg = (last_handmarks[8].x + last_handmarks[12].x + last_handmarks[16].x + last_handmarks[20].x) / 4;
+      let now_x_avg = (now_handmarks[8].x + now_handmarks[12].x + now_handmarks[16].x + now_handmarks[20].x) / 4;
+      if( (now_x_avg - last_x_avg) > 0.17 ){
+        let direction = document.querySelector(".hand-direction");
+        direction.innerHTML = "左";
+        play_video.currentTime = play_video.currentTime + 10; //+ 10 secs
+
+      }else if ((now_x_avg - last_x_avg) < -0.17) {
+        let direction = document.querySelector(".hand-direction");
+        direction.innerHTML = "右";
+        play_video.currentTime = play_video.currentTime - 10; //- 10 secs
+      }
+    }
+  },
   init:function(){
     controllers.leavePage();
     views.nav();
@@ -1184,6 +1251,7 @@ let controllers = {
       controllers.member.logout();
       controllers.actions.clickMyLearning();
       views.click.renderUsername();
+      controllers.handpose();
     });
     controllers.actions.clickMenu();
     controllers.courses.searchKeyword();

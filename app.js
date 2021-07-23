@@ -55,6 +55,11 @@ app.get("/myprofile", function(req, res){
   res.sendFile(path.join(__dirname,'/templates/'+'myprofile.html'));
 });
 
+// 手勢測試
+app.get("/hands", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'hands.html'));
+});
+
 //API
 //關鍵字搜索
 app.get("/api/search", function(req, res){
