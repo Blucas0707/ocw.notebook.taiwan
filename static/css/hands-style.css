@@ -1,8 +1,0 @@
-#inputVideo, .output_canvas {
-     transform: rotateY(180deg);
-   }
-
-.container {
-  display: flex;
-  
-}

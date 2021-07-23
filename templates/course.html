@@ -99,7 +99,10 @@
             <source src="" type="video/mp4" id="lecture-video"> Your browser does not support the video tag.
           </video>
           <div class="video-timer-box">完成度： <span class="completed-ratio">0.00%</span></div>
-          <div class="video-timer-box">手勢方向(往左，影片快轉，往右，影片倒轉)： <span class="hand-direction">未開啟攝影機</span></div>
+          <div class="video-timer-box hand_direction">
+              <div class="hand_direction_btn">開啟手勢偵測</div>
+          </div>
+          <div class="video-timer-box hand_direction_description">手勢方向(往左，影片快轉，往右，影片倒轉)： <span class="hand-direction"></span></div>
           <video class="input_video" style="display:none;"></video>
           <canvas class="output_canvas"></canvas>
         </div>

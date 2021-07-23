@@ -1176,8 +1176,8 @@ let controllers = {
     };
   },
   handpose:function(){
-    const videoElement = document.getElementsByClassName('input_video')[0];
-    const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    const videoElement = document.querySelector('.input_video');
+    const canvasElement = document.querySelector('.output_canvas');
     const canvasCtx = canvasElement.getContext('2d');
     let last_handmarks = [];
     function onResults(results) {
@@ -1186,14 +1186,10 @@ let controllers = {
       canvasCtx.drawImage(
           results.image, 0, 0, canvasElement.width, canvasElement.height);
       if (results.multiHandLandmarks) {
-        // setInterval(()=>{
-        //   detectDirection(last_handmarks,results.multiHandLandmarks[0]);
-        // },3000);
+
         detectDirection(last_handmarks,results.multiHandLandmarks[0]);
         last_handmarks = results.multiHandLandmarks[0];
-        // console.log(results.multiHandLandmarks);
         for (const landmarks of results.multiHandLandmarks) {
-          // console.log(landmarks);
           drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
                          {color: '#00FF00', lineWidth: 5});
           drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
@@ -1219,8 +1215,17 @@ let controllers = {
       width: 150,
       height: 150
     });
-    camera.start();
+    let hand_direction_btn = document.querySelector(".hand_direction_btn");
+    hand_direction_btn.addEventListener("click",()=>{
+      camera.start();
+      //隱藏hand_direction
+      document.querySelector(".hand_direction").style.display = "none";
+      //顯示說明
+      document.querySelector(".hand_direction_description").style.display = "block";
+    });
+    // camera.start();
 
+    //偵測手勢左右
     function detectDirection(last_handmarks,now_handmarks){
       let play_video = document.querySelector(".lecture-video");
       // console.log(last_handmarks,now_handmarks);
@@ -1230,17 +1235,37 @@ let controllers = {
 
       let last_x_avg = (last_handmarks[8].x + last_handmarks[12].x + last_handmarks[16].x + last_handmarks[20].x) / 4;
       let now_x_avg = (now_handmarks[8].x + now_handmarks[12].x + now_handmarks[16].x + now_handmarks[20].x) / 4;
-      if( (now_x_avg - last_x_avg) > 0.17 ){
+      // console.log("last_x_avg: " + last_x_avg);
+      // console.log("now_x_avg: " + now_x_avg);
+      // console.log("diff:" + (now_x_avg - last_x_avg));
+      if( (now_x_avg - last_x_avg) > 0.15 ){
         let direction = document.querySelector(".hand-direction");
         direction.innerHTML = "左";
         play_video.currentTime = play_video.currentTime + 10; //+ 10 secs
 
-      }else if ((now_x_avg - last_x_avg) < -0.17) {
+      }else if ((now_x_avg - last_x_avg) < -0.13) {
         let direction = document.querySelector(".hand-direction");
         direction.innerHTML = "右";
         play_video.currentTime = play_video.currentTime - 10; //- 10 secs
       }
     }
+  },
+  cameraIson:function(){
+    var constraints = window.constraints = {
+      audio: false,
+      video: true
+    };
+    navigator.mediaDevices.getUserMedia(constraints).then((result)=>{
+    // console.log(result.active);
+      if(result.active){
+        document.querySelector(".hand-direction").innerHTML = "已開啟攝影機";
+        document.querySelector(".hand-direction").style.color = "blue";
+      }
+    }).catch((error)=>{
+    // console.log(error);
+    document.querySelector(".hand-direction").innerHTML = "未開啟攝影機";
+    document.querySelector(".hand-direction").style.color = "red";
+    });
   },
   init:function(){
     controllers.leavePage();
@@ -1264,6 +1289,8 @@ let controllers = {
     //Note
     //上傳note
     controllers.click.postNotes();
+    //攝影機是否開啟
+    controllers.cameraIson();
   },
 };
 controllers.init();

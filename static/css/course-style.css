@@ -526,10 +526,27 @@ li:hover {
   top: 0;
   right: 0;
   transform: rotateY(180deg);
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }
 
+
+.hand_direction_btn {
+  border: 1px solid grey;
+  width: 110px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.hand_direction_btn:hover {
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+}
+
+.hand_direction_description {
+  display: none;
+}
 
 .lecture-video {
   width: 100%;
