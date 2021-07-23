@@ -582,7 +582,7 @@ li:hover {
 .note-download:hover {
   cursor: pointer;
   background-color: #f4f3e3;
-  border-radius: 6px 0 0 6px;
+  border-radius: 6px 6px 6px 6px;
   /* color: white; */
 }
 
@@ -595,7 +595,7 @@ li:hover {
 .video-download:hover {
   cursor: pointer;
   background-color: #f4f3e3;
-  border-radius: 0 6px 6px 0;
+  border-radius: 6px 6px 6px 6px;
   /* color: white; */
 }
 
