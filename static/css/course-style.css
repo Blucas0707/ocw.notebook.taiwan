@@ -521,6 +521,7 @@ li:hover {
 }
 
 .output_canvas {
+  opacity: 0.5;
   position: absolute;
   top: 0;
   right: 0;
