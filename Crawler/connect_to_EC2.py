@@ -25,12 +25,12 @@ try:
     params={"commands":["python -V"]}
     # print(running_instances[0])
 
-    response = ssm_client.send_command(DocumentName="AWS-RunShellScript", InstanceIds=["i-03d4c6d002f44f929"],Parameters=params)
+    response = ssm_client.send_command(DocumentName="AWS-RunShellScript", InstanceIds=[config["InstanceId"]],Parameters=params)
     # print(response)
     command_id = response["Command"]['CommandId']
     output = ssm_client.get_command_invocation(
         CommandId=command_id,
-        InstanceId="i-03d4c6d002f44f929",
+        InstanceId=config["InstanceId"],
         PluginName="aws:runShellScript"
     )
     print(command_id,output)
