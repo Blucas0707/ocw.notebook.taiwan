@@ -1204,7 +1204,7 @@ let controllers = {
     hands.setOptions({
       maxNumHands: 1,
       minDetectionConfidence: 0.7,
-      minTrackingConfidence: 0.7
+      minTrackingConfidence: 0.6
     });
     hands.onResults(onResults);
 
@@ -1228,25 +1228,46 @@ let controllers = {
     //偵測手勢左右
     function detectDirection(last_handmarks,now_handmarks){
       let play_video = document.querySelector(".lecture-video");
-      // console.log(last_handmarks,now_handmarks);
       if(last_handmarks.length === 0 || now_handmarks.length === 0){
         return ;
       }
-
-      let last_x_avg = (last_handmarks[8].x + last_handmarks[12].x + last_handmarks[16].x + last_handmarks[20].x) / 4;
-      let now_x_avg = (now_handmarks[8].x + now_handmarks[12].x + now_handmarks[16].x + now_handmarks[20].x) / 4;
-      // console.log("last_x_avg: " + last_x_avg);
-      // console.log("now_x_avg: " + now_x_avg);
-      // console.log("diff:" + (now_x_avg - last_x_avg));
-      if( (now_x_avg - last_x_avg) > 0.15 ){
+      //hand position : https://google.github.io/mediapipe/solutions/hands
+      // x(左到右):1=>0 , y(上到下):0=>1
+      //握拳停止
+      //MCP
+      let last_MCP_y_avg = (last_handmarks[5].y + last_handmarks[9].y + last_handmarks[13].y + last_handmarks[17].y) / 4;
+      let now_MCP_y_avg = (now_handmarks[5].y + now_handmarks[9].y + now_handmarks[13].y + now_handmarks[17].y) / 4;
+      let last_MCP_x_avg = (last_handmarks[5].x + last_handmarks[9].x + last_handmarks[13].x + last_handmarks[17].x) / 4;
+      let now_MCP_x_avg = (now_handmarks[5].x + now_handmarks[9].x + now_handmarks[13].x + now_handmarks[17].x) / 4;
+      //TIP
+      let last_TIP_y_avg = (last_handmarks[8].y + last_handmarks[12].y + last_handmarks[16].y + last_handmarks[20].y) / 4;
+      let now_TIP_y_avg = (now_handmarks[8].y + now_handmarks[12].y + now_handmarks[16].y + now_handmarks[20].y) / 4;
+      let last_TIP_x_avg = (last_handmarks[8].x + last_handmarks[12].x + last_handmarks[16].x + last_handmarks[20].x) / 4;
+      let now_TIP_x_avg = (now_handmarks[8].x + now_handmarks[12].x + now_handmarks[16].x + now_handmarks[20].x) / 4;
+      //  手勢條件
+      if ((now_TIP_x_avg - last_TIP_x_avg) > 0.15) { //向左揮動
         let direction = document.querySelector(".hand-direction");
         direction.innerHTML = "左";
-        play_video.currentTime = play_video.currentTime + 10; //+ 10 secs
-
-      }else if ((now_x_avg - last_x_avg) < -0.13) {
+        play_video.currentTime = play_video.currentTime - 10; //+ 10 secs
+      }else if ((now_TIP_x_avg - last_TIP_x_avg) < -0.13) { //向右揮動
         let direction = document.querySelector(".hand-direction");
         direction.innerHTML = "右";
-        play_video.currentTime = play_video.currentTime - 10; //- 10 secs
+        play_video.currentTime = play_video.currentTime + 10; //- 10 secs
+      }
+
+      //影片暫停or播放 => 握拳/鬆手
+      if(play_video.paused){ //暫停
+        if (now_TIP_y_avg < last_TIP_y_avg && now_TIP_y_avg<now_MCP_y_avg) { //鬆開
+          let direction = document.querySelector(".hand-direction");
+          direction.innerHTML = "繼續播放";
+          play_video.play();
+        }
+      }else{
+        if(now_TIP_y_avg > last_TIP_y_avg && now_TIP_y_avg>now_MCP_y_avg && (now_TIP_x_avg - now_MCP_x_avg < 0.1)){ //握拳停止
+          let direction = document.querySelector(".hand-direction");
+          direction.innerHTML = "暫停";
+          play_video.pause();
+        }
       }
     }
   },
