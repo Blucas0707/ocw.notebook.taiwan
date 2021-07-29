@@ -60,6 +60,11 @@ app.get("/hands", function(req, res){
   res.sendFile(path.join(__dirname,'/templates/'+'hands.html'));
 });
 
+//test
+app.get("/tensorflow", function(req, res){
+  res.sendFile(path.join(__dirname,'/templates/'+'tensorflow.html'));
+});
+
 //API
 //關鍵字搜索
 app.get("/api/search", function(req, res){

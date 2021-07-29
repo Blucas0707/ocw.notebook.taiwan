@@ -13,14 +13,15 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com">
   <link rel="icon" href="/img/favicon.ico">
-  <!-- handpose -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+  <!-- Require the peer dependencies of handpose. -->
+    <script src="https://unpkg.com/@tensorflow/tfjs-core@2.1.0/dist/tf-core.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.1.0/dist/tf-converter.js"></script>
+
+    <!-- You must explicitly require a TF.js backend if you're not using the tfs union bundle. -->
+    <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.1.0/dist/tf-backend-webgl.js"></script>
+    <!-- Alternatively you can use the WASM backend: <script src="https://unpkg.com/@tensorflow/tfjs-backend-wasm@2.1.0/dist/tf-backend-wasm.js"></script> -->
+    <script src="https://unpkg.com/@tensorflow-models/handpose@0.0.6/dist/handpose.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-backend-wasm@2.1.0/dist/tf-backend-wasm.js"></script>
 </head>
 
 <body class="body">
@@ -102,9 +103,9 @@
           <div class="video-timer-box hand_direction">
               <div class="hand_direction_btn">開啟手勢偵測</div>
           </div>
-          <div class="video-timer-box hand_direction_description">手勢方向： <span class="hand-direction"></span> <br>(左揮：倒退/右揮：快轉/握拳：暫停/開掌：播放)</div>
-          <video class="input_video" style="display:none;"></video>
-          <canvas class="output_canvas"></canvas>
+          <div class="video-timer-box hand_direction_description">手勢方向： <span class="hand-direction"></span> <br>(左揮/倒退，右揮/快轉，握拳/暫停，開掌/播放)</div>
+          <!-- <video class="input_video" style="display:none;"></video> -->
+          <canvas class="output_canvas" id="cvs"></canvas>
         </div>
         <div class="reference-box">
           <div class="reference-list">

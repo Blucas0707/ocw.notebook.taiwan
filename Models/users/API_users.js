@@ -37,6 +37,12 @@ let api_user = {
               "message": "輸入為空，請重新輸入"
           };
           resolve(JSON.stringify(data));
+      }else if (email.indexOf(";") != -1 ) {
+        let data = {
+              "error": true,
+              "message": "包含非法字元()"
+          };
+          resolve(JSON.stringify(data));
       }else{
         // argon2 加密密碼
         hashPassword2(password).then((hashPassword)=>{
@@ -59,6 +65,12 @@ let api_user = {
         let data = {
               "error": true,
               "message": "輸入為空，請重新輸入"
+          };
+          resolve(JSON.stringify(data));
+      }else if (email.indexOf(";") != -1 ) {
+        let data = {
+              "error": true,
+              "message": "包含非法字元()"
           };
           resolve(JSON.stringify(data));
       }else{
@@ -119,6 +131,12 @@ let api_user = {
       if(email == "" || password == ""){
         let data = null;
         resolve(JSON.stringify(data));
+      }else if (email.indexOf(";") != -1 ) {
+        let data = {
+              "error": true,
+              "message": "包含非法字元()"
+          };
+          resolve(JSON.stringify(data));
       }else{
         // check user exist in SQL
         SQL.User.checkLogin(email).then((result)=>{
