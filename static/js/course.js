@@ -1311,6 +1311,7 @@ let controllers = {
             video.play();
             cameraisOn = true;
             camera_btn.innerHTML = "關閉手勢偵測";
+            document.querySelector("#cvs").style.display = "block";
             video.addEventListener("loadeddata",ontime_refresh);
             //顯示說明
             document.querySelector(".hand_direction_description").style.display = "block";
@@ -1324,6 +1325,7 @@ let controllers = {
           video.srcObject = null;
           cameraisOn = false;
           camera_btn.innerHTML = "開啟手勢偵測";
+          document.querySelector("#cvs").style.display = "none";
           window.clearInterval(intervalId);
           //隱藏hand_direction
           document.querySelector(".hand_direction_description").style.display = "none";

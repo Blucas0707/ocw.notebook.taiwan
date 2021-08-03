@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
-var session = require('express-session')
-var AWS = require('aws-sdk');
-var region = 'us-east-2'; // e.g. us-west-1
-var domain = 'search-courses-ptaras3nil34n6zdm7mfwnljhe.us-east-2.es.amazonaws.com'; // e.g. search-domain.region.es.amazonaws.com
-var index = "courses";
+const session = require('express-session')
+const AWS = require('aws-sdk');
+const region = 'us-east-2'; // e.g. us-west-1
+const domain = process.env.DOMAIN; // e.g. search-domain.region.es.amazonaws.com
+const index = "courses";
 // const bodyParser = require("body-parser");
 const api_user = require("./Models/users/API_users");
 const api_courses = require("./Models/courses/API_courses");
@@ -201,7 +201,6 @@ app.patch("/api/myprofile/subscription", function(req, res){
   })
 });
 
-
 // 使用者API
 //取得使用者資訊
 app.get("/api/user", function(req, res){
@@ -256,14 +255,12 @@ app.patch("/api/user", function(req, res){
 const {OAuth2Client} = require('google-auth-library');
 app.post("/api/google/login/:id_token", function(req, res){
   let token = req.params.id_token;
-  let CLIENT_ID = "202448949919-94cu195aipb0jamqqdpbq5of9dk276vo.apps.googleusercontent.com";
+  let CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
   const client = new OAuth2Client(CLIENT_ID);
   async function verify() {
     const ticket = await client.verifyIdToken({
         idToken: token,
-        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
-        // Or, if multiple clients access the backend:
-        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+        audience: CLIENT_ID,
     });
     const payload = ticket.getPayload();
     const userid = payload['sub'];
@@ -285,25 +282,25 @@ app.post("/api/google/login/:id_token", function(req, res){
 
 //TEST only
 // Route NTU
-app.get('/NTU', function (req, res) {
-  res.sendFile(path.join(__dirname,'/Crawler/'+'NTU.json'));
-});
+// app.get('/NTU', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/Crawler/'+'NTU.json'));
+// });
 // Route NTHU
-app.get('/NTHU', function (req, res) {
-  res.sendFile(path.join(__dirname,'/Crawler/'+'NTHU.json'));
-});
+// app.get('/NTHU', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/Crawler/'+'NTHU.json'));
+// });
 // Route NYTU
-app.get('/NYTU', function (req, res) {
-  res.sendFile(path.join(__dirname,'/Crawler/'+'NYTU.json'));
-});
+// app.get('/NYTU', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/Crawler/'+'NYTU.json'));
+// });
 // Route log
-app.get('/log', function (req, res) {
-  res.sendFile(path.join(__dirname,'/Crawler/'+'log.txt'));
-});
+// app.get('/log', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/Crawler/'+'log.txt'));
+// });
 // Route nohup log
-app.get('/nohup.out', function (req, res) {
-  res.sendFile(path.join(__dirname,'/'+'nohup.out'));
-});
+// app.get('/nohup.out', function (req, res) {
+//   res.sendFile(path.join(__dirname,'/'+'nohup.out'));
+// });
 
 //for SEO optimization
 app.get("/robots.txt", function (req,res) {
@@ -315,5 +312,5 @@ app.get("/sitemap.xml", function (req,res) {
 
 // app.use('/', router);
 app.listen(3000, function(){
-    console.log("server");
+    console.log("server start");
 });

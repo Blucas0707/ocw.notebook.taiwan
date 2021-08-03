@@ -8,12 +8,10 @@ let models = {
     getAllCourse:function(){
       return new Promise((resolve, reject)=>{
         let url = "/api/courses" + "?page=" + models.courses.allCourse_nextPage + "&category=" + models.courses.allCourse_category + "&university=" + models.courses.allCourse_university;
-        // console.log(url);
         return fetch(url).then((response) => {
           return response.json();
         }).then((result) => {
           models.courses.allCourse_data = result;
-          // console.log(models.courses.allCourse_data);
           resolve(true);
         });
       });
@@ -59,8 +57,6 @@ let models = {
             models.courses.allCourse_datalist[3] = result;
             models.courses.allCourse_nextPages[3] = result.nextPage;
           }
-          // console.log(models.courses.allCourse_data);
-          // console.log(result);
           resolve([result,university]);
         });
       });
@@ -73,8 +69,6 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
-          // console.log(result.hits.hits);
           resolve(result);
         });
       });
@@ -94,7 +88,6 @@ let models = {
           "email":email,
           "password":password
         };
-        // console.log(email,password);
         return fetch("/api/user",{
           method:'PATCH',
           headers: {
@@ -104,14 +97,11 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // result = JSON.parse(result);
           if(result.ok){
             models.user.loginSuccess = true;
           }else{
             models.user.loginSuccess = false;
           }
-          // console.log(result);
-          // console.log(models.user.loginSuccess);
           resolve(true);
         });
       });
@@ -149,7 +139,6 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
           if(result != null){
             models.user.isLogin = true;
             models.user.user_name = JSON.parse(result).data.name;
@@ -205,8 +194,6 @@ let models = {
           }else{
             models.user.registerSuccess = false;
           }
-          // console.log(result);
-          // console.log(models.user.registerSuccess);
           resolve(true);
         });
       })
@@ -215,36 +202,6 @@ let models = {
 };
 
 let views = {
-  fadeout:function(elem){
-    let speed = 10;
-    let num = 1000;
-    let timer = setInterval(()=>{
-      // views.isFadeout = false;
-      num -= speed;
-      elem.style.opacity = (num / 1000);
-      // console.log(main.style.opacity);
-      if(num <= 0){
-        clearInterval(timer);
-        views.isFadeout = true;
-        resolve(true);
-      }
-    },10);
-  },
-  fadein:function(elem){
-    let speed = 10;
-    let num = 0;
-    let timer = setInterval(()=>{
-      // views.isFadein = false;
-      num += speed;
-      elem.style.opacity = (num / 1000);
-      // console.log(main.style.opacity);
-      if(num >= 1000){
-        clearInterval(timer);
-        // views.isFadein = true;
-        // resolve(true);
-      }
-    },10);
-  },
   click:{
     renderUsername:function(){
       let nav_myname = document.querySelector(".nav-myname");
@@ -370,10 +327,6 @@ let views = {
         let div_course_class_teacher = document.createElement("div");
         div_course_class_teacher.className = "course-class-teacher";
         div_course_class_teacher.innerHTML = course_teacher;
-        //course_description
-        // let div_course_class_description= document.createElement("div");
-        // div_course_class_description.className = "course-class-description";
-        // div_course_class_description.innerHTML = course_description;
 
         div_course_class.appendChild(div_course_class_cover);
         div_course_class.appendChild(div_course_class_name);
@@ -444,7 +397,7 @@ let views = {
         document.querySelector(".login-email").value = "";
         document.querySelector(".login-password").value = "";
         // 重新導向 "/"
-        window.location.replace('/');
+        window.location.reload();
 
       }else{ // register fail
         login_status.innerHTML = "登入失敗，帳號或密碼錯誤";
@@ -467,7 +420,6 @@ let views = {
         login_btn.style.display = "none";
         register_btn.style.display = "none";
       }else{
-        //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
         //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
         let login_btn = document.querySelector("#login-btn");
         let register_btn = document.querySelector("#register-btn");
@@ -579,8 +531,6 @@ let views = {
   },
   showSearch:function(result){
     let search_results = result.hits.hits;
-    // console.log(search_results[0]);
-    // console.log(search_results[0]._source);
     let search_list = document.querySelector(".search-list");
     // clear
     views.courses.clearCourses(search_list);
@@ -673,13 +623,11 @@ let controllers = {
               if(models.courses.allCourse_nextPages[index] != null){
                 //最後not null page 存到temp
                 models.courses.allCourse_tempPages[index] = models.courses.allCourse_nextPages[index];
-                // console.log("not null");
                 //clear sub elem
                 let allCourse_div = document.querySelectorAll(".course-content-main")[index];
                 views.courses.clearCourses(allCourse_div); //清除.course-content-main 的子元素
                 views.courses.renderAllCourses_list(result,university);
                 //顯示previous btn
-                // document.querySelector(".previous-arrow").style.display= "flex";
                 let previous = document.querySelectorAll(".previous-arrow")[index];
                 previous.style.display= "flex";
               }else{
@@ -783,7 +731,6 @@ let controllers = {
       course_category.addEventListener("change",()=>{
         models.courses.allCourse_category = course_category.value;
         models.courses.allCourse_nextPages[0] = 0;
-        // console.log(models.learnings.allLearning_category,models.learnings.allLearning_nextPage);
         models.courses.getCourses(models.courses.allCourse_category,"").then(([result,university])=>{
           //clear sub elem
           let allCourse_div = document.querySelector("#allCourse");
@@ -818,9 +765,7 @@ let controllers = {
       let update_university = university_list[index];
       models.courses.getCourses("",update_university).then(([result,university])=>{ //取得資料
         // //隱藏Loading img box
-        // elem.previousElementSibling.style.display = "none";
         views.courses.renderAllCourses_list(result,university); //渲染畫面
-        // views.fadein(elem);
       });
     },
     allCourse_list:function(){ // All台清交
@@ -891,6 +836,7 @@ let controllers = {
           models.user.Login().then(()=>{
             console.log("login");
             views.user.loginStatus();
+
           });
         });
     },
@@ -930,21 +876,11 @@ function ClickLogin(){
   models.user.useGoogleLogin=true;
 };
 function onSignIn(googleUser) {
-  // console.log("onsigin:", models.user.useGoogleLogin);
   if(models.user.useGoogleLogin){
-    // console.log(googleUser);
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
-    // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    // console.log('Full Name: ' + profile.getName());
-    // console.log('Given Name: ' + profile.getGivenName());
-    // console.log('Family Name: ' + profile.getFamilyName());
-    // console.log("Image URL: " + profile.getImageUrl());
-    // console.log("Email: " + profile.getEmail());
-
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
-    // console.log("ID Token: " + id_token);
     console.log("Done!");
     models.user.GoogleLogin(id_token).then(()=>{
       window.location.assign("/");

@@ -316,11 +316,12 @@ form.search input {
 .profile-box-list {
   display: none;
   position: absolute;
-  top: 46px;
+  top: calc(100% + 3px);
   right: 0;
   background-color: white;
   min-width: 80px;
   border-radius: 5px;
+  border: 1px solid grey;
 }
 
 .profile-box-item {
@@ -331,10 +332,18 @@ form.search input {
   color: #666666;
 }
 
-.profile-box-item:hover{
+#my-profile:hover{
   cursor: pointer;
   background-color: #438899;
   color: white;
+  border-radius: 4px 4px 0 0;
+}
+
+#logout-btn:hover{
+  cursor: pointer;
+  background-color: #438899;
+  color: white;
+  border-radius: 0 0 4px 4px;
 }
 
 .main {

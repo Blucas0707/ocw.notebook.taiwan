@@ -439,7 +439,6 @@ let views = {
         register_btn.style.display = "none";
       }else{
         //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
-        //未登入 顯示登入＆註冊 隱藏學習紀錄 & 登出
         let login_btn = document.querySelector("#login-btn");
         let register_btn = document.querySelector("#register-btn");
         login_btn.style.display = "flex";
@@ -893,7 +892,8 @@ let controllers = {
             console.log('User signed out.');
           });
           models.user.Logout().then(()=>{
-            views.user.Logout();
+            // views.user.Logout();
+            window.location.assign("/");
             resolve(true);
           });
         });
