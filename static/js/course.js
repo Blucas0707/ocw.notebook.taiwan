@@ -1174,6 +1174,17 @@ let controllers = {
 
       }
     };
+    //For ios
+    window.onpagehide = function(){
+      // return '您確定要離開嗎?';
+
+      if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
+        // console.log(models.user.isLogin);
+        // console.log("update Lecture status");
+        models.lectures.updateLecture_status();
+
+      }
+    };
   },
   handpose:function(){
     const videoElement = document.querySelector('.input_video');
