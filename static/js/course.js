@@ -938,20 +938,13 @@ let controllers = {
             let video_current_time = models.lectures.allLecture_status.lectures[index].lecture_video_current;
             //For Chrome & iphone
             lecture_video.addEventListener("loadeddata",function setVideotime(){
-              if(video_current_time == 0) {
-                  lecture_video.play();
-                  lecture_video.removeEventListener("loadeddata",setVideotime);
-              }
-              else {
-                  // lecture_video.load();
-                  lecture_video.addEventListener("canplay",function setVideo_foriOS(){
-                    lecture_video.pause();
-                    lecture_video.currentTime = video_current_time;
-                    lecture_video.play();
-                    lecture_video.removeEventListener("canplay",setVideo_foriOS);
-                  })
-                  lecture_video.removeEventListener("loadeddata",setVideotime);
-              }
+              lecture_video.addEventListener("canplay",function setVideo_foriOS(){
+                lecture_video.pause();
+                lecture_video.currentTime = video_current_time;
+                lecture_video.play();
+                lecture_video.removeEventListener("canplay",setVideo_foriOS);
+              })
+              lecture_video.removeEventListener("loadeddata",setVideotime);
             })
           }
 
