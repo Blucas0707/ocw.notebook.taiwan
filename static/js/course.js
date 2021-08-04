@@ -1155,27 +1155,40 @@ let controllers = {
     },
   },
   leavePage:function(){
-    window.onbeforeunload = function(){
+    //電腦版 Safari、Chrome、Firefox 能生效
+    window.addEventListener("beforeunload",()=>{
       // return '您確定要離開嗎?';
-
+      console.log('leave beforeunload');
       if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
-        // console.log(models.user.isLogin);
-        // console.log("update Lecture status");
         models.lectures.updateLecture_status();
-
       }
-    };
-    //For ios
-    window.onpagehide = function(){
-      // return '您確定要離開嗎?';
-
+    })
+    // window.onbeforeunload = function(){
+    //   // return '您確定要離開嗎?';
+    //   alert("leave pagehide");
+    //   if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
+    //     // console.log(models.user.isLogin);
+    //     // console.log("update Lecture status");
+    //     models.lectures.updateLecture_status();
+    //
+    //   }
+    // };
+    //電腦版 Safari 能生效
+    window.addEventListener('pagehide',()=>{
+      console.log('leave pagehide');
+      // alert("leave pagehide");
       if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
-        // console.log(models.user.isLogin);
-        // console.log("update Lecture status");
         models.lectures.updateLecture_status();
-
       }
-    };
+    })
+    //手機版 Chrome、Firefox 能生效
+    window.addEventListener('visibilitychange',()=>{
+      console.log('leave visibilitychange');
+      if(models.user.isLogin && models.lectures.allLecture_status.user_id != ""){
+        models.lectures.updateLecture_status();
+      }
+
+    });
   },
   handpose:function(){
     const videoElement = document.querySelector('.input_video');
