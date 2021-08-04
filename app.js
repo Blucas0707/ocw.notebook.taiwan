@@ -264,7 +264,6 @@ app.post("/api/google/login/:id_token", function(req, res){
     });
     const payload = ticket.getPayload();
     const userid = payload['sub'];
-    // console.log(payload);
     return payload;
   }
   verify().then((data,token)=>{
