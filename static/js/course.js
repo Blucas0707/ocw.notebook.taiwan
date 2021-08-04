@@ -938,6 +938,7 @@ let controllers = {
             let video_current_time = models.lectures.allLecture_status.lectures[index].lecture_video_current;
             //For Chrome & iphone
             lecture_video.addEventListener("loadeddata",function setVideotime(){
+              lecture_video.pause();
               lecture_video.addEventListener("canplay",function setVideo_foriOS(){
                 lecture_video.pause();
                 lecture_video.currentTime = video_current_time;
