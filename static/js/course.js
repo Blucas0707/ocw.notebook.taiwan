@@ -936,26 +936,23 @@ let controllers = {
           lecture_video.src = result.data[index].lecture_video;
           if(models.lectures.allLecture_status.lectures[index] != undefined){ //SQL中有data
             let video_current_time = models.lectures.allLecture_status.lectures[index].lecture_video_current;
-            lecture_video.currentTime = video_current_time;
-            //For iphone
+            //For Chrome & iphone
             lecture_video.addEventListener("loadeddata",function setVideotime(){
-              // console.log(lecture_video.currentTime);
-              if(lecture_video.currentTime == 0) {
-                  // console.lo("11111");
+              if(video_current_time == 0) {
                   lecture_video.play();
                   lecture_video.removeEventListener("loadeddata",setVideotime);
               }
               else {
                   // lecture_video.load();
-                  lecture_video.pause();
-                  lecture_video.currentTime = video_current_time;
+                  lecture_video.addEventListener("canplay",function setVideo_foriOS(){
+                    lecture_video.pause();
+                    lecture_video.currentTime = video_current_time;
+                    lecture_video.play();
+                    lecture_video.removeEventListener("canplay",setVideo_foriOS);
+                  })
                   lecture_video.removeEventListener("loadeddata",setVideotime);
-                  // console.log("22222");
-                  lecture_video.play();
-                  // setTimeout(lecture_video.play, 500);
               }
             })
-
           }
 
           lecture_video.addEventListener("loadeddata",()=>{ //video loaded
