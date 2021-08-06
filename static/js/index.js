@@ -12,8 +12,9 @@ let models = {
         return fetch(url).then((response) => {
           return response.json();
         }).then((result) => {
+
           models.courses.allCourse_data = result;
-          // console.log(models.courses.allCourse_data);
+          console.log(models.courses.allCourse_data);
           resolve(true);
         });
       });
@@ -39,7 +40,6 @@ let models = {
         }
 
         let url = "/api/courses" + "?page=" + page + "&category=" + category + "&university=" + university;
-        // console.log(url);
         return fetch(url).then((response) => {
           return response.json();
         }).then((result) => {
@@ -59,8 +59,6 @@ let models = {
             models.courses.allCourse_datalist[3] = result;
             models.courses.allCourse_nextPages[3] = result.nextPage;
           }
-          // console.log(models.courses.allCourse_data);
-          // console.log(result);
           resolve([result,university]);
         });
       });
@@ -601,6 +599,9 @@ let controllers = {
           let next_btn = next_btns[index];
           let allCourse_university = allCourse_university_list[index];
           next_btn.addEventListener("click",()=>{
+            if(index != 0){
+              models.courses.allCourse_category = "";
+            }
             models.courses.getCourses(models.courses.allCourse_category,allCourse_university).then(([result,university])=>{
               //data < 4 => 最後一頁,隱藏next btn
               if(models.courses.allCourse_datalist[index].data == null){
@@ -641,7 +642,9 @@ let controllers = {
           let previous_btn = previous_btns[index];
           let allCourse_university = allCourse_university_list[index];
           previous_btn.addEventListener("click",()=>{
-
+            if(index != 0){
+              models.courses.allCourse_category = "";
+            }
             //第一頁 隱藏previous btn
             if(models.courses.allCourse_nextPages[index]>1){
               models.courses.allCourse_nextPages[index] -= 2;
@@ -721,6 +724,9 @@ let controllers = {
     chooseCategory:function(){
       let course_category = document.querySelector("#learning-category");
       course_category.addEventListener("change",()=>{
+        //Previous & Next Btn reset
+        document.querySelectorAll(".previous-arrow")[0].style.display = "none";
+        document.querySelectorAll(".next-arrow")[0].style.display = "flex";
         models.courses.allCourse_category = course_category.value;
         models.courses.allCourse_nextPages[0] = 0;
         // console.log(models.learnings.allLearning_category,models.learnings.allLearning_nextPage);

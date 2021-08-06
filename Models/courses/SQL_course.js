@@ -26,13 +26,13 @@ let SQL = {
         };
       let sql_statement,para;
       if(category=="%" && university== "%"){
-        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses order by course_establish DESC limit ?,4";
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses order by course_name DESC limit ?,4";
         para = [offset];
       }else if (category=="%") {
-        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_university = ? order by course_establish DESC limit ?,4";
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_university = ? order by course_name DESC limit ?,4";
         para = [university,offset];
       }else if (university== "%") {
-        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_category = ? order by course_establish DESC limit ?,4";
+        sql_statement = "select course_id,course_university,course_category,course_name,course_cover,course_teacher,course_description from courses where course_category = ? order by course_name DESC limit ?,4";
         para = [category,offset];
       }
 
