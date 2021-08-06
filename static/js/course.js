@@ -1310,7 +1310,11 @@ let controllers = {
     // 建立初始化程序 1.載入模型 2.建立視訊
     let model = null;
     async function init(){
-      model = await handpose.load();
+      model = await handpose.load({
+        maxNumHands: 1,
+        minDetectionConfidence: 0.7,
+        minTrackingConfidence: 0.6
+      });
     }
     init();
     let last_handmarks = [];
