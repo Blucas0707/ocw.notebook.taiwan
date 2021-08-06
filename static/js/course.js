@@ -1311,9 +1311,9 @@ let controllers = {
     let model = null;
     async function init(){
       model = await handpose.load({
-        maxNumHands: 1,
-        minDetectionConfidence: 0.7,
-        minTrackingConfidence: 0.6
+        maxContinuousChecks: 1,
+        detectionConfidence: 0.9,
+        scoreThreshold: 0.9
       });
     }
     init();
