@@ -42,8 +42,18 @@
 *特別處理：爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
 
 ### 關鍵字查找ElasticSearch
+
+當Client使用關鍵字查找時，Server會將關鍵字傳到AWS ElasticSearch，並接收其回傳的智慧分詞結果，再回傳給Clent。
+
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="90%" />
+
+但需要預先將SQL中的課程名稱、課程老師、課程類別、課程學校、課程敘述、課程圖片存到AWS ElasticSearch中，並設定中文智慧最大分詞。
+
+*分詞Analyzer:
+中文最大分詞(ik_max_word): "藝術文化生活" => "藝", "術", "文化生活", "文化", "化生", "生活"
+中文智慧分詞(ik_smart): "藝術文化生活" => "藝", "術", "文化生活"
+
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/Save%20to%20ElasticSearch.png" alt="" width="50%"/>
-預先將SQL中的課程名稱、課程老師、課程類別、課程學校、課程敘述、課程圖片存到AWS ElasticSearch中，並設定中文智慧最大分詞。
 
 ```Python
  {
@@ -82,8 +92,6 @@
  }
 
 ```
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="50%"/>
-當Client使用關鍵字查找時，Server會將關鍵字傳到AWS ElasticSearch，並接收其回傳的智慧分詞結果，再回傳給Clent。
 
 
 
