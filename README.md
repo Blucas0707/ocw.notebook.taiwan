@@ -1,5 +1,5 @@
 # 發想
-在程式學習的過程中，上過一些線上課程，包含付費與免費的課，付費如：Coursea,Udemy，免費如：MIT、Harvard、台清交大OCW資源。<br>
+在程式學習的過程中，上過一些線上課程，包含付費與免費的課，付費如：Coursea, Udemy，免費如：MIT、Harvard、台清交大OCW資源。<br>
 發現許多大學的線上課程，其實都是非常好的學習資源，但僅僅只有影片與課堂講義，並沒有讓學習者能記錄自己學習筆記、歷程，甚至如遊戲化的進度等功能。<br>
 因此結合國內OCW免費資源，加上上述功能，希望能讓國內更多免費資源被多加運用，並讓學習者更具有學習熱忱！<br>
 
@@ -42,8 +42,18 @@
 *特別處理：爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
 
 ### 關鍵字查找ElasticSearch
+
+當Client使用關鍵字查找時，Server會將關鍵字傳到AWS ElasticSearch，並接收其回傳的智慧分詞結果，再回傳給Clent。
+
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="90%" />
+
+但需要預先將SQL中的課程名稱、課程老師、課程類別、課程學校、課程敘述、課程圖片存到AWS ElasticSearch中，並設定中文智慧最大分詞。
+
+*分詞Analyzer:
+中文最大分詞(ik_max_word): "藝術文化生活" => "藝", "術", "文化生活", "文化", "化生", "生活"
+中文智慧分詞(ik_smart): "藝術文化生活" => "藝", "術", "文化生活"
+
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/Save%20to%20ElasticSearch.png" alt="" width="50%"/>
-預先將SQL中的課程名稱、課程老師、課程類別、課程學校、課程敘述、課程圖片存到AWS ElasticSearch中，並設定中文智慧最大分詞。
 
 ```Python
  {
@@ -82,12 +92,4 @@
  }
 
 ```
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="50%"/>
-當Client使用關鍵字查找時，Server會將關鍵字傳到AWS ElasticSearch，並接收其回傳的智慧分詞結果，再回傳給Clent。
-
-
-
-
-
-
 
