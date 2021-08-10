@@ -32,14 +32,19 @@
 
 # 流程
 
-### Data 取得與處理
+### 流程圖
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/All.png" alt="" width="100%"/>
+
+### Data Collect & Storage
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/OCW%20data%20flow.png" alt="" width="50%"/>
 
 預先定義所需資料格式並用Python 分別爬取NTU, NTHU, NYCU三個學校的OCW課程資料。<br>
 這邊分成三個module: crawler_NTHU.py / crawler_NTHU.py / crawler_NTU.py，方便主程式crawler.py用Threading 同步爬取降低所需時間。<br>
 爬取的資料會預先存成json格式後，再存入AWS RDS MySQL中。<br>
 
-*特別處理：爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
+*特別處理：
+1. 爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
+2. NTU 因為http的CORS問題，因此先下載到local端，
 
 ### 關鍵字查找ElasticSearch
 
