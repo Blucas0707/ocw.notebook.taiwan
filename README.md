@@ -52,12 +52,22 @@ test password:123123123123<br>
 
 #### 資料庫配置
 
-Course & Lecture <br>
+共分3個Database: User、Course、Learning 
+
+DB: Course，包含兩個table: courses、lectures，courses，包含課程資訊，lectures包含課堂資訊（影片、講義、筆記等） <br>
+courses.course_id: primary key for courses, foreign key for lectures<br>
+lectures.lecture_id: primary key for courses<br>
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/course_lecture.png" alt="" width="50%" />
 
 
 
-User, Note, Learning & Status <br>
+
+DB: User，包含一個table: users，包含會員資訊<br>
+DB: Learning，包含三個table: notes、course_status、learnings，包含筆記資訊、課程完成狀態、學習相關紀錄等<br>
+users.user_id: primary key for users, foreign key for notes, course_status, learnings<br>
+notes.note_id: primary key for notes <br>
+course_status.(user_id, course_id): primary key for course_status <br>
+learnings.(user_id, course_id, lecture_id): primary key for learnings <br>
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/user_note_status_learning.png" alt="" width="50%" />
 
 
