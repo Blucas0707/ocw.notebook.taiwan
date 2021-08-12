@@ -52,6 +52,13 @@ test password:123123123123<br>
 
 #### 資料庫配置
 
+Course & Lecture <br>
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/course_lecture.png" alt="" width="50%" />
+
+
+
+User, Note, Learning & Status <br>
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/user_note_status_learning.png" alt="" width="50%" />
 
 
 ### 關鍵字查找ElasticSearch
