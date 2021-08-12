@@ -7,6 +7,10 @@
 # Demo
 ## click <a href="https://ocw.notebook.blucas0707.com/" target="_blank">here</a>
 
+test account:123123123123@gmail.com<br>
+test password:123123123123<br>
+
+
 ### 課程展示＆關鍵字查找
 ![image](https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/demo%20gif/%E8%AA%B2%E7%A8%8B%E5%B1%95%E7%A4%BA%E8%88%87%E9%97%9C%E9%8D%B5%E5%AD%97%E6%9F%A5%E6%89%BE.gif)
 
@@ -35,7 +39,7 @@
 ### 流程圖
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/All.png" alt="" width="100%"/>
 
-### Data Collect & Storage
+### 資料收集＆儲存
 <img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/OCW%20data%20flow.png" alt="" width="50%"/>
 
 預先定義所需資料格式並用Python 分別爬取NTU, NTHU, NYCU三個學校的OCW課程資料。<br>
@@ -44,7 +48,11 @@
 
 *特別處理：
 1. 爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
-2. NTU 因為http的CORS問題，因此先下載到local端，
+2. NTU 因為http的CORS問題，因此先下載到local端，再上傳到AWS S3，並使用Cloudfront，降低CDN延遲。
+
+#### 資料庫配置
+
+
 
 ### 關鍵字查找ElasticSearch
 
@@ -97,13 +105,10 @@
  }
 
 ```
-<<<<<<< HEAD
-=======
 
+### 寄提醒信
 
+<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/send%20reminder%20mail.png" alt="" width="80%"/>
+AWS Event Bridge 每四天會trigger lambda function，透過lambda function從RDS MySQL取得有訂閱的使用者信箱，並透過AWS Simple Mail Service寄出。
 
-
-
-
->>>>>>> e5ace72178acee750684a13efa849b7de269be00
 
