@@ -6,14 +6,15 @@ const region = 'us-east-2'; // e.g. us-west-1
 const domain = process.env.DOMAIN; // e.g. search-domain.region.es.amazonaws.com
 const index = "courses";
 // const bodyParser = require("body-parser");
-const api_user = require("./Models/users/API_users");
-const api_courses = require("./Models/courses/API_courses");
-const api_lectures = require("./Models/lectures/API_lectures");
-const api_notes = require("./Models/notes/API_notes");
-const api_learnings = require("./Models/learnings/API_learnings");
-const api_mylearnings = require("./Models/mylearnings/API_mylearnings");
-const api_searches = require("./Models/searches/API_searches");
-const api_myprofiles = require("./Models/myprofiles/API_myprofiles");
+const userController = require("./Controllers/userController");
+const courseController = require("./Controllers/courseController");
+const lectureController = require("./Controllers/lectureController");
+const noteController = require("./Controllers/noteController");
+const learningController = require("./Controllers/learningController");
+const mylearningController = require("./Controllers/mylearningController");
+const keywordsearchController = require("./Controllers/keywordsearchController");
+const myprofileController = require("./Controllers/myprofileController");
+const googleloginController = require("./Controllers/googleloginController");
 
 const app=express();
 app.use(express.static(path.join(__dirname,"static")));
@@ -55,251 +56,57 @@ app.get("/myprofile", function(req, res){
   res.sendFile(path.join(__dirname,'/templates/'+'myprofile.html'));
 });
 
-// 手勢測試
-app.get("/hands", function(req, res){
-  res.sendFile(path.join(__dirname,'/templates/'+'hands.html'));
-});
-
-//test
-app.get("/tensorflow", function(req, res){
-  res.sendFile(path.join(__dirname,'/templates/'+'tensorflow.html'));
-});
-
 //API
 //關鍵字搜索
-app.get("/api/search", function(req, res){
-  let keyword = req.query.keyword;
-  api_searches.searchKeyword(keyword).then((result)=>{
-    res.send(200,result);
-  });
-});
+app.get("/api/search", keywordsearchController.keywordsearch);
 
 //課程Course API
-app.get("/api/courses", function(req, res){
-  let page = (req.query.page) ? (req.query.page):("0");
-  let category = (req.query.category) ? (req.query.category):("%");
-  let university = (req.query.university) ? (req.query.university):("%");
-  api_courses.getAllCourse(page,category,university).then((result)=>{
-    res.send(200,result);
-  });
-});
+app.get("/api/courses",courseController.course);
 
 // 課堂Lecture API
-app.get("/api/course/:course_id", function(req, res){
-  let course_id = req.params.course_id;
-  api_lectures.getAllLectures(course_id).then((result)=>{
-    res.json(result);
-  });
-});
+app.get("/api/course/:course_id", lectureController.lecture);
 
 // 筆記Note API
 // course_id/lecture_id/user_id
-app.get("/api/note/:course_id/:lecture_id", function(req, res){
-  let course_id = req.params.course_id;
-  let lecture_id = req.params.lecture_id;
-  let user_id = req.session.user_id;
-  if(!course_id || !lecture_id || !user_id){
-    let data = {
-      "error":true,
-      "message":"參數錯誤"
-    };
-    res.send(200,data);
-  }
-  else{
-    api_notes.getNotes(course_id,lecture_id,user_id).then((result)=>{
-      res.send(200,result);
-    });
-  }
-});
+app.get("/api/note/:course_id/:lecture_id", noteController.getNotes);
 //上傳筆記
-app.post("/api/note", function(req, res){
-  api_notes.postNotes(req.body).then((result)=>{
-    res.send(200,result);
-  });
-});
+app.post("/api/note", noteController.postNotes);
 // 刪除筆記
-app.delete("/api/note/:note_id", function(req, res){
-  let note_id = req.params.note_id;
-  api_notes.deleteNote(note_id).then((result)=>{
-    res.send(200,result);
-  });
-});
+app.delete("/api/note/:note_id", noteController.deleteNote);
 
 //學習進度Learning API
 //更新課堂學習進度
-app.patch("/api/learning", function(req, res){
-  api_learnings.updateLecture_status(req.body).then((result)=>{
-    let update_status = JSON.parse(result);
-    res.json(result);
-  })
-});
+app.patch("/api/learning", learningController.updateLecture_status);
 //取得單一課程影片進度
-app.get("/api/learning/:course_id/:lecture_id", function(req, res){
-  let course_id = req.params.course_id;
-  let lecture_id = req.params.lecture_id;
-  let user_id = req.session.user_id;
-
-  if(user_id){
-    api_learnings.getOneLecture_status(user_id,course_id,lecture_id).then((result)=>{
-      let update_status = JSON.parse(result);
-      res.json(result);
-    })
-  }
-});
+app.get("/api/learning/:course_id/:lecture_id", learningController.getOneLecture_status);
 
 //取得使用者學習進度
-app.get("/api/learnings/:course_id", function(req, res){
-  let course_id = req.params.course_id;
-  let user_id = req.session.user_id;
-
-  if(user_id){
-    api_learnings.getAllLecture_status(user_id,course_id).then((result)=>{
-      let update_status = JSON.parse(result);
-      res.send(200,result);
-    })
-  }
-  else{
-
-  }
-});
+app.get("/api/learnings/:course_id", learningController.getAllLecture_status);
 
 //取得全部課程影片進度
-app.get("/api/mylearnings", function(req, res){
-  let user_id = req.session.user_id;
-  let page = (req.query.page) ? (req.query.page):("0");
-  let learning_status = (req.query.status) ? (req.query.status):("0");
-  let learning_category = (req.query.category) ? (req.query.category):("%");
-
-  api_mylearnings.getMyLearnings(user_id,page,learning_status,learning_category).then((result)=>{
-    res.send(200,result);
-  });
-
-});
+app.get("/api/mylearnings", mylearningController.getMyLearnings);
 
 // 使用者資料 API
 //更新使用者名稱
-app.patch("/api/myprofile/username", function(req, res){
-  api_myprofiles.modifyUsername(req.body).then((result)=>{
-    console.log(result);
-    res.send(200,result);
-  })
-});
+app.patch("/api/myprofile/username", myprofileController.modifyUsername);
 
 //更新使用者密碼
-app.patch("/api/myprofile/userpassword", function(req, res){
-  api_myprofiles.modifyUserpassword(req.body).then((result)=>{
-    console.log(result);
-    res.send(200,result);
-  })
-});
+app.patch("/api/myprofile/userpassword", myprofileController.modifyUserpassword);
 
 //更新使用者訂閱
-app.patch("/api/myprofile/subscription", function(req, res){
-  api_myprofiles.modifySubscription(req.body).then((result)=>{
-    console.log(result);
-    res.send(200,result);
-  })
-});
+app.patch("/api/myprofile/subscription", myprofileController.modifySubscription);
 
 // 使用者API
 //取得使用者資訊
-app.get("/api/user", function(req, res){
-  //取得Session
-  let email = req.session.email;
-  let password = req.session.password;
-  let data = {
-    "email":email,
-    "password":password
-  };
-  if(email && password){ //session 存在
-    api_user.checkLogin(data).then((result)=>{
-      req.session.user_id = JSON.parse(result).data.id;
-      res.json(result);
-    });
-  }
-  else{
-    res.json(null);
-  }
-});
+app.get("/api/user", userController.checkLogin);
 //使用者登出
-app.delete("/api/user", function(req, res){
-  //移除Session
-  req.session.email = null;
-  req.session.password = null;
-  req.session.user_id = null;
-  let data = {
-        "ok": true
-    };
-  res.json(data);
-
-});
+app.delete("/api/user", userController.logout);
 //使用者註冊
-app.post("/api/user", function(req, res){
-  api_user.Register(req.body).then((result)=>{
-    res.json(result);
-  })
-});
+app.post("/api/user", userController.Register);
 //使用者登入
-app.patch("/api/user", function(req, res){
-  api_user.Login(req.body).then((result)=>{
-    let login_result = result;
-    if(login_result.ok){
-      //登入成功後，存到Session
-      req.session.email = req.body.email.toString();
-      req.session.password = req.body.password.toString();
-    }
-    res.send(200,result);
-  })
-});
+app.patch("/api/user", userController.Login);
 //使用者登入 Google
-const {OAuth2Client} = require('google-auth-library');
-app.post("/api/google/login/:id_token", function(req, res){
-  let token = req.params.id_token;
-  let CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-  const client = new OAuth2Client(CLIENT_ID);
-  async function verify() {
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: CLIENT_ID,
-    });
-    const payload = ticket.getPayload();
-    const userid = payload['sub'];
-    return payload;
-  }
-  verify().then((data,token)=>{
-    api_user.GoogleLogin(data).then((result)=>{
-      let login_result = JSON.parse(result);
-      if(login_result.ok){
-        //登入成功後，存到Session
-        req.session.email = data.email.toString();
-        req.session.password = data.sub.toString();
-      }
-      res.json(result);
-    })
-  }).catch(console.error);
-});
-
-//TEST only
-// Route NTU
-// app.get('/NTU', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/Crawler/'+'NTU.json'));
-// });
-// Route NTHU
-// app.get('/NTHU', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/Crawler/'+'NTHU.json'));
-// });
-// Route NYTU
-// app.get('/NYTU', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/Crawler/'+'NYTU.json'));
-// });
-// Route log
-// app.get('/log', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/Crawler/'+'log.txt'));
-// });
-// Route nohup log
-// app.get('/nohup.out', function (req, res) {
-//   res.sendFile(path.join(__dirname,'/'+'nohup.out'));
-// });
+app.post("/api/google/login/:id_token", googleloginController.login);
 
 //for SEO optimization
 app.get("/robots.txt", function (req,res) {

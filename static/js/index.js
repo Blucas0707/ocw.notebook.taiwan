@@ -72,7 +72,7 @@ let models = {
         }).then((response)=>{
           return response.json();
         }).then((result)=>{
-          // console.log(result);
+          console.log(result);
           // console.log(result.hits.hits);
           resolve(result);
         });

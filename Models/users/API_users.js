@@ -10,11 +10,6 @@ function hashPassword2(password){
     resolve(hashkey);
   });
 };
-//驗證
-// let hashVerify = async function(hashkey,password){
-//   const verification = await argon2.verify(hashkey, "padsfsdsfsdfsfdsdfsdfdsfssword");
-//   console.log("verification:" + verification);
-// };
 
 function hashVerify(hashkey,password){
   return new Promise((resolve,reject)=>{
@@ -59,7 +54,6 @@ let api_user = {
     return new Promise((resolve, reject)=>{
       let email = data.email.toString();
       let password = data.password.toString();
-      console.log("password:" + password);
       //email or password = empty
       if(email == "" || password == ""){
         let data = {
