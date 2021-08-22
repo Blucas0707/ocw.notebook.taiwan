@@ -26,6 +26,7 @@ test password:123123123123<br>
 ### 會員資料修改
 ![image](https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/demo%20gif/%E5%A7%93%E5%90%8D%E5%AF%86%E7%A2%BC%E4%BF%AE%E6%94%B9.gif)
 
+***
 
 # 功能
 1. 會員：會員註冊／登入／登出／修改名稱、密碼／訂閱
@@ -34,13 +35,17 @@ test password:123123123123<br>
 4. 影片：影片觀看時間紀錄／判斷完成度(>85%)／手勢辨識互動
 5. 紀錄：課堂學習進度百分比／課程類別、進度查找
 
+***
+
 # 流程
 
 ### 流程圖
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/All.png" alt="" width="100%"/>
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/All.png" alt="" width="100%"/></div>
+
+___
 
 ### 資料收集＆儲存
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/OCW%20data%20flow.png" alt="" width="50%"/>
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/OCW%20data%20flow.png" alt="" width="50%"/></div>
 
 預先定義所需資料格式並用Python 分別爬取NTU, NTHU, NYCU三個學校的OCW課程資料。<br>
 這邊分成三個module: crawler_NTHU.py / crawler_NTHU.py / crawler_NTU.py，方便主程式crawler.py用Threading 同步爬取降低所需時間。<br>
@@ -50,32 +55,36 @@ test password:123123123123<br>
 1. 爬蟲若是斷線，會使用verified_proxies.json中的ip 去做連線
 2. NTU 因為http的CORS問題，因此先下載到local端，再上傳到AWS S3，並使用Cloudfront，降低CDN延遲。
 
+___
+
 #### 資料庫配置
 
 共分3個Database: User、Course、Learning 
 
-DB: Course，包含兩個table: courses、lectures，courses，包含課程資訊，lectures包含課堂資訊（影片、講義、筆記等） <br>
+1. DB: Course，包含兩個table: courses、lectures，courses，包含課程資訊，lectures包含課堂資訊（影片、講義、筆記等） <br>
 courses.course_id: primary key for courses, foreign key for lectures<br>
 lectures.lecture_id: primary key for courses<br>
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/course_lecture.png" alt="" width="50%" />
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/course_lecture2.png" alt="" width="50%" /></div>
 
-
-
-
-DB: User，包含一個table: users，包含會員資訊<br>
-DB: Learning，包含三個table: notes、course_status、learnings，包含筆記資訊、課程完成狀態、學習相關紀錄等<br>
+2. DB: User，包含一個table: users，包含會員資訊<br>
 users.user_id: primary key for users, foreign key for notes, course_status, learnings<br>
+
+3. DB: Learning，包含三個table: notes、course_status、learnings，包含筆記資訊、課程完成狀態、學習相關紀錄等<br>
 notes.note_id: primary key for notes <br>
 course_status.(user_id, course_id): primary key for course_status <br>
 learnings.(user_id, course_id, lecture_id): primary key for learnings <br>
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/user_note_status_learning.png" alt="" width="50%" />
 
+*特別處理：
+1. 會員密碼會透過hash-salt 加密放到SQL，確保資訊安全
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/SQL/user_note_status_learning.png" alt="" width="50%" /></div>
+
+___
 
 ### 關鍵字查找ElasticSearch
 
 當Client使用關鍵字查找時，Server會將關鍵字傳到AWS ElasticSearch，並接收其回傳的智慧分詞結果，再回傳給Clent。
 
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="90%" />
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/ElasticSearch%20flow.png" alt="" width="90%" /></div>
 
 但需要預先將SQL中的課程名稱、課程老師、課程類別、課程學校、課程敘述、課程圖片存到AWS ElasticSearch中，並設定中文智慧最大分詞。
 
@@ -83,7 +92,7 @@ learnings.(user_id, course_id, lecture_id): primary key for learnings <br>
 中文最大分詞(ik_max_word): "藝術文化生活" => "藝", "術", "文化生活", "文化", "化生", "生活"
 中文智慧分詞(ik_smart): "藝術文化生活" => "藝", "術", "文化生活"
 
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/Save%20to%20ElasticSearch.png" alt="" width="50%"/>
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/Save%20to%20ElasticSearch.png" alt="" width="50%"/></div>
 
 ```Python
  {
@@ -109,7 +118,7 @@ learnings.(user_id, course_id, lecture_id): primary key for learnings <br>
            "analyzer": "ik_max_word",
            "search_analyzer": "ik_max_word"
          },
- 	    "course_description": {
+         "course_description": {
            "type": "text",
            "analyzer": "ik_max_word",
            "search_analyzer": "ik_max_word"
@@ -123,9 +132,11 @@ learnings.(user_id, course_id, lecture_id): primary key for learnings <br>
 
 ```
 
+___
+
 ### 寄提醒信
 
-<img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/send%20reminder%20mail.png" alt="" width="80%"/>
+<div align=center><img src="https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/flow/send%20reminder%20mail.png" alt="" width="80%"/></div>
 AWS Event Bridge 每四天會trigger lambda function，透過lambda function從RDS MySQL取得有訂閱的使用者信箱，並透過AWS Simple Mail Service寄出。
 
 
