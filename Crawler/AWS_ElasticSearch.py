@@ -24,6 +24,10 @@ es = Elasticsearch(
 )
 
 body = {
+  "settings": {
+        "number_of_shards": 3,
+        "number_of_replicas": 2
+    },
   "mappings": {
       "properties": {
         "course_name": {
@@ -50,6 +54,10 @@ body = {
   }
 }
 
-# es.indices.create(index='courses', body=body)
-# es.indices.put_alias(index='courses', name='allcourses')
-# print(es.indices.get(index="courses"))
+try: 
+  es.indices.create(index='courses', body=body)
+  es.indices.put_alias(index='courses', name='allcourses')
+except:
+  indexName = 'courses'
+  print(f"index {indexName} is Existed")
+print(es.indices.get(index="courses"))
