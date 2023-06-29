@@ -11,11 +11,6 @@ Therefore, I propose combining the free resources from domestic OCW platforms wi
 
 
 # Demo
-## click <a href="https://ocw.notebook.blucas0707.com/" target="_blank">here</a>
-
-test account:123123123123@gmail.com<br>
-test password:123123123123<br>
-
 
 ### 課程展示＆關鍵字查找 Course Presentation & Keyword Search
 ![image](https://github.com/Blucas0707/ocw.notebook.taiwan/blob/main/Readme/demo%20gif/%E8%AA%B2%E7%A8%8B%E5%B1%95%E7%A4%BA%E8%88%87%E9%97%9C%E9%8D%B5%E5%AD%97%E6%9F%A5%E6%89%BE.gif)
